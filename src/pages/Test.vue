@@ -1,34 +1,40 @@
 
-<script setup >
-import { ref, onMounted, computed } from 'vue'
-import axios from 'axios'
-const quizData = ref(null)
-const currentQuestionIndex = ref(0);
-const selectedAnswers = ref("");
+<script setup>
 
-onMounted(async () => {
-  try {
-    const result = await axios.get('https://quizapi.io/api/v1/questions?apiKey=Fn3mWDcTNToCVxnnLtiH2OXe9XSGTcpUFpl3SUUq&limit=5&tags=html')
-    quizData.value = result.data
-    console.log((quizData.value.length));
-  } catch (error) {
-    console.log(error)
-  }
-})
-const currentQuestion = computed(() => {
-  return quizData.value[currentQuestionIndex.value];
-});
-
-const nextQuestion = () => {
-  currentQuestionIndex.value++;
-   selectedAnswers.value = "";
-};
-
-const prevQuestion = () => {
-  currentQuestionIndex.value--;
-   selectedAnswers.value = "";
-};
 </script>
+
+
+
+  <script setup>
+    import { ref, onMounted, computed } from 'vue'
+  import axios from 'axios'
+  const quizData = ref(null)
+  const currentQuestionIndex = ref(0);
+  const selectedAnswers = ref("");
+
+  onMounted(async () => {
+    try {
+      const result = await axios.get('https://quizapi.io/api/v1/questions?apiKey=Fn3mWDcTNToCVxnnLtiH2OXe9XSGTcpUFpl3SUUq&limit=5&tags=html')
+      quizData.value = result.data
+      console.log((quizData.value.length));
+    } catch (error) {
+      console.log(error)
+    }
+  })
+  const currentQuestion = computed(() => {
+    return quizData.value[currentQuestionIndex.value];
+  });
+
+  const nextQuestion = () => {
+    currentQuestionIndex.value++;
+     selectedAnswers.value = "";
+  };
+
+  const prevQuestion = () => {
+    currentQuestionIndex.value--;
+     selectedAnswers.value = "";
+  };
+  </script>
 <template>
   <h1>  QUIZ KOMMER HIT </h1>
   <div class="d-flex flex-column- justify-content-center">
