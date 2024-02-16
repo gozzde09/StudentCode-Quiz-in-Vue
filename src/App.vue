@@ -1,5 +1,5 @@
 <script setup>
-
+import Quiz from "./components/Quiz.vue";
 
 </script>
 
@@ -19,7 +19,7 @@
 
   <main>
     <RouterView />
-
+    <Quiz></Quiz>
   </main>
 
   <footer class="d-flex justify-content-evenly">
