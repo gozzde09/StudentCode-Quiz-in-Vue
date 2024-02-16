@@ -30,8 +30,9 @@ const prevQuestion = () => {
 };
 </script>
 <template>
-  <h1> JAVASCRIPT QUIZ KOMMER HIT </h1>
-  <div v-if="quizData">
+  <h1>  QUIZ KOMMER HIT </h1>
+  <div class="d-flex flex-column- justify-content-center">
+  <div v-if="quizData" >
     <p>Category: {{ currentQuestion.tags[0].name }}</p>
     <p>Difficulty: {{ currentQuestion.difficulty }}</p>
     <h2>{{ currentQuestion.question }}</h2>
@@ -48,7 +49,8 @@ const prevQuestion = () => {
     <p v-if="selectedAnswers === currentQuestion.correct_answer">
       Correct Answer!
     </p>
-    <button v-if="currentQuestionIndex > 0" @click="prevQuestion">Previous Question</button>
-    <button v-if="currentQuestionIndex < quizData.length - 1" @click="nextQuestion">Next Question</button>
+      <button  @click="prevQuestion" :disabled="currentQuestionIndex === 0">Previous Question</button>
+      <button  @click="nextQuestion" :disabled="currentQuestionIndex === quizData.length - 1">Next Question</button>
+  </div>
   </div>
 </template>
