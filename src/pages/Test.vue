@@ -1,10 +1,10 @@
 
 <script setup >
-import Quiz from "../components/Quiz.vue"
-import { ref, onMounted,computed } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import axios from 'axios'
 const quizData = ref(null)
-const selectedAnswers = [];
+const currentQuestionIndex = ref(0);
+const selectedAnswers = ref("");
 
 onMounted(async () => {
   try {
@@ -14,32 +14,41 @@ onMounted(async () => {
   } catch (error) {
     console.log(error)
   }
-
 })
+const currentQuestion = computed(() => {
+  return quizData.value[currentQuestionIndex.value];
+});
+
+const nextQuestion = () => {
+  currentQuestionIndex.value++;
+   selectedAnswers.value = "";
+};
+
+const prevQuestion = () => {
+  currentQuestionIndex.value--;
+   selectedAnswers.value = "";
+};
 </script>
 <template>
   <h1> JAVASCRIPT QUIZ KOMMER HIT </h1>
-  <Quiz />
- <div v-if="quizData" v-for="(question, index) in quizData" :key="index">
-        <ol  >
-      <li>   <p>Category: {{ question.tags[0].name }}</p>
-      <p>Difficulty: {{ question.difficulty }}</p>
-     <h3>   {{ question.question }} </h3>
-      <p>{{ question.description }}</p>
-
-          <div v-for="(answer, key) in question.answers" :key="key">
-        <label v-if="answer">
-          <input type="radio" :name="'question' + index" :value="key" v-model="selectedAnswers[index]">
-          {{ answer }}
-        </label>
-      </div>
-          <p>Selected Answer: {{ selectedAnswers[index] }}</p>
-          <p v-if="selectedAnswers[index] === question.correct_answer">
-            Correct Answer!
-          </p>
-              <!-- <button @click="nextQuestion">Nästa fråga</button> -->
-          </li>
-        </ol>
-      </div>
-<div v-else>Quiz is loading...</div>
+  <div v-if="quizData">
+    <p>Category: {{ currentQuestion.tags[0].name }}</p>
+    <p>Difficulty: {{ currentQuestion.difficulty }}</p>
+    <h2>{{ currentQuestion.question }}</h2>
+    <p>{{ currentQuestion.description }}</p>
+    <div v-for="(answer, key) in currentQuestion.answers" :key="key">
+      <label v-if="answer">
+        <input type="radio" :name="'question'" :value="key" v-model="selectedAnswers">
+        {{ answer }}
+      </label>
+    </div>
+    <!-- <div :answers="currentQuestion.answers" /> -->
+    <!-- <p>Selected Answer: {{ selectedAnswers }}</p>
+    <p> Correct answer : {{ currentQuestion.correct_answer }}</p> -->
+    <p v-if="selectedAnswers === currentQuestion.correct_answer">
+      Correct Answer!
+    </p>
+    <button v-if="currentQuestionIndex > 0" @click="prevQuestion">Previous Question</button>
+    <button v-if="currentQuestionIndex < quizData.length - 1" @click="nextQuestion">Next Question</button>
+  </div>
 </template>
