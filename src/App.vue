@@ -15,10 +15,6 @@ import NavBar from "./components/NavBar.vue"
   </header>
   <Quiz />
   <NavBar />
-  <div>
-    <RouterLink to="/"> HEMSIDA</RouterLink>
-    <RouterLink to="/Test"> JAVASCRIPT</RouterLink>
-  </div>
 
   <main>
     <RouterView />
