@@ -1,6 +1,5 @@
 <script setup>
 
-import Quiz from './components/Home.vue';
 </script>
 
 <template>
@@ -9,9 +8,11 @@ import Quiz from './components/Home.vue';
       <h1 class="mx-auto"> StudentCode </h1>
       <h2 class="mx-auto">Don't cheat - Repeat</h2>
     </div>
+    <div>
+      <RouterLink to="/"> HEMSIDA</RouterLink>
+    <RouterLink to="/Test"> JAVASCRIPT</RouterLink></div>
   </header>
   <main>
-    <Home/>
     <RouterView/>
   </main>
 
