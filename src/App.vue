@@ -1,6 +1,4 @@
-<script setup>
-import Quiz from "./components/Quiz.vue";
-
+ <script>
 </script>
 
 <template>
@@ -10,8 +8,6 @@ import Quiz from "./components/Quiz.vue";
       <h2 class="mx-auto">Don't cheat - Repeat</h2>
     </div>
   </header>
-
-
   <div>
     <RouterLink to="/"> HEMSIDA</RouterLink>
     <RouterLink to="/Test"> JAVASCRIPT</RouterLink>
@@ -19,7 +15,7 @@ import Quiz from "./components/Quiz.vue";
 
   <main>
     <RouterView />
-    <Quiz></Quiz>
+
   </main>
 
   <footer class="d-flex justify-content-evenly">
