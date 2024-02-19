@@ -13,12 +13,11 @@ import NavBar from "./components/NavBar.vue"
       <h2 class="mx-auto">Don't cheat - Repeat</h2>
     </div>
   </header>
-  <Quiz />
   <NavBar />
 
   <main>
     <RouterView />
-
+    <Quiz />
   </main>
 
   <footer class="d-flex justify-content-evenly">

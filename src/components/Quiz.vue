@@ -36,7 +36,6 @@
   border: 1px solid brown;
 
 }
-
 .valueProgress {
   width: 300px;
   height: 10px;
@@ -45,10 +44,13 @@
 
 .circle {
   border: 1px solid black;
-  /* border-radius: 100%; */
+  border-radius: 100%;
   text-align: center;
   width: 20px;
   height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-right: 20px;
   padding: 0;
 }
