@@ -29,25 +29,25 @@ const prevQuestion = () => {
 };
 </script>
 <template>
-  <h1>HTML QUIZ KOMMER HIT </h1>
-  <div class="d-flex flex-column- justify-content-center">
-    <div v-if="quizData">
-      <p>Category: {{ currentQuestion.tags[0].name }}</p>
-      <p>Difficulty: {{ currentQuestion.difficulty }}</p>
-      <h2>{{ currentQuestion.question }}</h2>
-      <p>{{ currentQuestion.description }}</p>
-      <div v-for="(answer, key) in currentQuestion.answers" :key="key">
-        <label v-if="answer">
-      <input type="radio" :name="'question'" :value="key" v-model="selectedAnswers">
-          {{ answer }}
-        </label>
-      </div>
-      <!-- <div :answers="currentQuestion.answers" /> -->
-      <!-- <p>Selected Answer: {{ selectedAnswers }}</p>
+    <h1>HTML QUIZ KOMMER HIT </h1>
+    <div class="d-flex flex-column- justify-content-center">
+      <div v-if="quizData">
+        <p>Category: {{ currentQuestion.tags[0].name }}</p>
+        <p>Difficulty: {{ currentQuestion.difficulty }}</p>
+        <h2>{{ currentQuestion.question }}</h2>
+        <p>{{ currentQuestion.description }}</p>
+        <div v-for="(answer, key) in currentQuestion.answers" :key="key">
+          <label v-if="answer">
+        <input type="radio" :name="'question'" :value="key" v-model="selectedAnswers">
+            {{ answer }}
+          </label>
+        </div>
+        <!-- <div :answers="currentQuestion.answers" /> -->
+        <!-- <p>Selected Answer: {{ selectedAnswers }}</p>
     <p> Correct answer : {{ currentQuestion.correct_answer }}</p> -->
-      <p v-if="selectedAnswers === currentQuestion.correct_answer">
-        Correct Answer!
-      </p>
+        <p v-if="selectedAnswers === currentQuestion.correct_answer">
+          Correct Answer!
+        </p>
       <div class="d-flex">
       <button class="btn btn-warning m-2" @click="prevQuestion" :disabled="currentQuestionIndex === 0">Previous Question</button>
       <button class="btn btn-warning m-2" @click="nextQuestion" :disabled="currentQuestionIndex === quizData.length - 1">Next Question</button>
