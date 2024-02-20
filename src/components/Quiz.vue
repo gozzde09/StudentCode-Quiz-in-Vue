@@ -4,12 +4,6 @@ import axios from 'axios'
 const quizData = ref(null)
 const currentQuestionIndex = ref(0);
 const selectedAnswers = ref("");
-const nummer = ref(0)
-
-const show = ref(false)
-function clickk() {
-  show.value = !show.value
-}
 
 onMounted(async () => {
   try {
@@ -38,26 +32,30 @@ const prevQuestion = () => {
   currentQuestionIndex.value--;
   selectedAnswers.value = "";
 };
-function lastLetter(word) {
-  let letter = word.slice(-1).toUpperCase()
-  return letter
+
+const show = ref(false)
+function clickk() {
+  show.value = !show.value
 }
 
-
+function lastLetter(word) {
+  let letter = word.slice(-1).toUpperCase();
+  return letter;
+}
 </script>
 
 <template>
   <div class="overlay">
-
+    <!-- GODKÄNNA ATT STÄNGA QUIZ -->
+    <button @click="clickk" :class="{ active: show }">Toggle Overlay</button>
   </div>
   <div v-if="quizData" class="container">
-
     <div v-if="show" class="my-modal">
       <button class="circle" @click="clickk">close</button>
     </div>
 
     <div class="flex">
-      <h1>{{ currentQuestion.tags[0].name }}</h1>
+      <h1> {{ currentQuestion.tags[0].name }}</h1>
       <button @click="clickk">X</button> <!--modal-->
     </div>
 
@@ -66,6 +64,7 @@ function lastLetter(word) {
         <div class="valueProgress"></div>
       </div>
       <p>2/5</p>
+      <!--TODO PROGRESSBAR , karusel? -->
     </div>
     <h2 class="center" v-if="selectedAnswers === currentQuestion.correct_answer">
       <strong> Correct Answer! </strong>
@@ -73,23 +72,23 @@ function lastLetter(word) {
     <p>Selected Answer: {{ selectedAnswers }}</p>
     <h2 class="center">{{ currentQuestion.question }}</h2>
 
-    <div v-for="(answer, key) in currentQuestion.answers" :key="key" class="center" style="margin-top: 40px;">
-      <button v-if="answer" class="alternatives correct">
-        <p class="circle correct"> {{ lastLetter(key) }} </p>
-        <h3>{{ answer }}.</h3>
-      </button>
-
-
-      <!-- <button class="alternatives wrong">
-        <p class="circle">A</p>
-        <h3>Lorem ipsum dolor sit amet.</h3>
-      </button> -->
-
+    <div v-for="(answer, key) in  currentQuestion.answers " :key="key" class="center" style="margin-top: 40px;">
+      <Button v-if="answer" class="alternatives"
+        :class="{ 'green': isSelected(key) && selectedAnswers === currentQuestion.correct_answer, 'red': isSelected(key) && selectedAnswers !== currentQuestion.correct_answer }"
+        @click="selectAnswer(key)" :active="isSelected(key)">
+        <p class="circle">{{ lastLetter(key) }}</p>
+        <h3>{{ answer }}></h3>
+      </Button>
     </div>
+
+
+
+    <p>Selected Answer: {{ selectedAnswers }}</p>
+
+
     <div class="center">
-      <button class="continue">Continue</button>
+      <button @click="nextQuestion" class="continue">Continue</button>
     </div>
-
   </div>
 </template>
 
@@ -102,6 +101,14 @@ function lastLetter(word) {
   z-index: 100;
 
 } */
+
+.green {
+  background-color: green;
+}
+
+.red {
+  background-color: red;
+}
 
 .correct {
   background-color: green;
@@ -184,7 +191,7 @@ function lastLetter(word) {
 .container {
   margin: 0 auto;
   background-color: rgb(0, 0, 0, 0.20);
-  height: 600px;
+  min-height: 700px;
   min-width: 370px;
   border-radius: 10px;
   position: relative;
@@ -194,6 +201,7 @@ function lastLetter(word) {
 
 .alternatives {
   min-width: 200px;
+  max-width: 300px;
   display: flex;
   align-items: center;
   margin-bottom: 10px;
