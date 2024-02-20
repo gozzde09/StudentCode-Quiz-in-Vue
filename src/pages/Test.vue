@@ -36,41 +36,41 @@ const prevQuestion = () => {
 };
 </script>
 <template>
-  <h1> HTML QUIZ KOMMER HIT </h1>
-  <div class="d-flex flex-column- justify-content-center">
-    <div v-if="quizData">
-      <p>Category: {{ currentQuestion.tags[0].name }}</p>
-      <p>Difficulty: {{ currentQuestion.difficulty }}</p>
-      <h2>{{ currentQuestion.question }}</h2>
-      <p>{{ currentQuestion.description }}</p>
-      <!-- <div v-for="(answer, key) in currentQuestion.answers" :key="key">
+  <div v-if="quizData" class="d-flex flex-column justify-content-center">
+    <h1> {{ currentQuestion.tags[0].name }} </h1>
+
+    <p>Category: {{ currentQuestion.tags[0].name }}</p>
+    <p>Difficulty: {{ currentQuestion.difficulty }}</p>
+    <h2>{{ currentQuestion.question }}</h2>
+    <!-- <p>{{ currentQuestion.description }}</p> -->
+    <!-- <div v-for="(answer, key) in currentQuestion.answers" :key="key">
         <ol :type="'A'" v-if="answer">
           <li>
-            <BButton v-if="answer" variant="light" @click="selectAnswer(key)" :active="isSelected(key)">
+            <BButton  variant="light" @click="selectAnswer(key)" :active="isSelected(key)">
               {{ answer }}
             </BButton>
           </li>
         </ol>
       </div> -->
-      <ol :type="'A'">
-        <li v-for="(answer, key) in currentQuestion.answers" :key="key">
-          <BButton v-if="answer" class="m-2" variant="light" @click="selectAnswer(key)" :active="isSelected(key)">
-            {{ answer }}
-          </BButton>
-        </li>
-      </ol>
 
-      <!-- <div :answers="currentQuestion.answers" /> -->
-      <p>Selected Answer: {{ selectedAnswers }}</p>
-      <!-- <p> Correct answer : {{ currentQuestion.correct_answer }}</p>  -->
-      <p v-if="selectedAnswers === currentQuestion.correct_answer">
-        <strong> Correct Answer! </strong>
-      </p>
-      <BButton class="m-2" variant="success" @click="prevQuestion" :disabled="currentQuestionIndex === 0">Previous
-        Question</BButton>
-      <BButton class="m-2" variant="success" @click="nextQuestion"
-        :disabled="currentQuestionIndex === quizData.length - 1">Next Question</BButton>
-    </div>
+    <ol :type="'A'" >
+      <li  v-for="(answer, key) in currentQuestion.answers" :key="key">
+        <BButton v-if="answer" class="m-2" variant="light" @click="selectAnswer(key)" :active="isSelected(key)">
+          {{ answer }}
+        </BButton>
+      </li>
+    </ol>
+
+    <!-- <div :answers="currentQuestion.answers" /> -->
+    <p>Selected Answer: {{ selectedAnswers }}</p>
+    <!-- <p> Correct answer : {{ currentQuestion.correct_answer }}</p>  -->
+    <p v-if="selectedAnswers === currentQuestion.correct_answer">
+      <strong> Correct Answer! </strong>
+    </p>
+    <BButton class="m-2" variant="success" @click="prevQuestion" :disabled="currentQuestionIndex === 0">Previous
+      Question</BButton>
+    <BButton class="m-2" variant="success" @click="nextQuestion" :disabled="currentQuestionIndex === quizData.length - 1">
+      Next Question</BButton>
   </div>
 </template>
 <style> label {
