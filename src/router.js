@@ -14,11 +14,7 @@ export default createRouter({
       component: Home,
       path: "/",
     },
-    {
-      component: Test,
-      name: "Test",
-      path: "/Test",
-    },
+
     {
       component: HtmlPage,
       name: "Html-quiz",

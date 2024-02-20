@@ -17,7 +17,7 @@ import NavBar from "./components/NavBar.vue"
 
   <main>
     <RouterView />
-    <Quiz />
+    <!-- <Quiz /> -->
   </main>
 
   <footer class="d-flex justify-content-evenly">
