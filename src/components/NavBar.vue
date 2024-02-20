@@ -10,24 +10,24 @@ function thisActivePage(path) {
 }
 </script>
 
-<template></nav>
+<template>
   <div class="d-flex justify-content-center">
     <b-nav pills>
       <b-nav-item :class="{ active: activePage === '/' }" @click="thisActivePage('/')">
         <RouterLink to="/" class="nav-text">Home</RouterLink>
       </b-nav-item>
 
-      <!-- Dropdownlänkarna -->
-      <b-nav-item-dropdown class="nav-dropdown" text="Quiz" toggle-class="nav-link-custom" right>
+      <!-- Dropdownlänkarna  -->
+      <b-nav-item-dropdown text="Quiz" toggle-class="nav-link-custom" right >
         <b-dropdown-item :class="{ active: activePage === '/HtmlPage' }" @click="thisActivePage('/HtmlPage')">
-          <RouterLink to="/HtmlPage">HTML</RouterLink>
+          <RouterLink class="dropdown-text" to="/HtmlPage">HTML</RouterLink>
         </b-dropdown-item>
-        <b-dropdown-item :class="{ active: activePage === '/JavascriptPage' }" @click="thisActivePage('/JavascriptPage')"
-          class="dropdown-text">
-          <RouterLink to="/JavascriptPage">JavaScript</RouterLink>
+        <b-dropdown-item  :class="{ active: activePage === '/JavascriptPage' }" @click="thisActivePage('/JavascriptPage')"
+          >
+          <RouterLink class="dropdown-text" to="/JavascriptPage">JavaScript</RouterLink>
         </b-dropdown-item>
         <b-dropdown-item :class="{ active: activePage === '/PhpPage' }" @click="thisActivePage('/PhpPage')">
-          <RouterLink to="/PhpPage">PHP</RouterLink>
+          <RouterLink class="dropdown-text" to="/PhpPage">PHP</RouterLink>
         </b-dropdown-item>
       </b-nav-item-dropdown>
 
@@ -51,10 +51,8 @@ function thisActivePage(path) {
   border-radius: 2px;
   transition: background-color 0.3s ease;
 }
-
-.nav-dropdown,
-.dropdown-text {
-  color: black !important;
-  text-decoration: none !important;
+.dropdown-text{
+  color: black ;
+  text-decoration: none ;
 }
 </style>
