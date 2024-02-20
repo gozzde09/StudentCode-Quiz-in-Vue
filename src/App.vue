@@ -24,11 +24,40 @@
 
   </main>
 
-  <footer class="d-flex justify-content-evenly">
-    <p>Om oss</p>
-    <p>Kontakt</p>
-    <p>Grupp 9</p>
-  </footer>
+  <footer>
+    <div class="footer-content">
+        <div class="about-us">
+            <h3> OM OSS </h3>
+            <p>Vi på StudentCode är dedikerade till att erbjuda 
+            engagerande och underhållande quiz för studenter,
+            som tar dig på en resa genom kodens värld. 
+            Upptäck vårt sortimen av quiz för att fördjupa
+            dina kunskaper och ha kul samtidigt!</p>
+        </div>
+        <div class="contact">
+            <h3> KONTAKTA OSS </h3>
+            <p><a href="quiz@studentcode.com"> </a>  
+              <a href="tel:+46 324 854 93"> </a>.</p>
+        </div>
+        <div class="social-media">
+    <h3> SOCIALA MEDIER </h3>
+    <p>
+        <a href="https://www.facebook.com/studentcode">Facebook</a>
+        <a href="https://www.instagram.com/studentcode">Instagram</a>
+    </p>
+</div>
+
+  
+        <div class="our-quizzes">
+            <h3> VÅRA QUIZ </h3>
+            <p> <a href="HTML"></a> <a href="PHP"></a> <a href="JS"></a>.</p>
+        </div>
+        <div class="git-hub">
+            <h3> GIT-HUB </h3>
+            <p> <a href="Länk till våra git-hub"></a>.</p>
+        </div>
+    </div>
+</footer>
 </template>
 
 <style scoped>
@@ -40,7 +69,7 @@
 }
 
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em #fbfbfb);
 }
 
 .logo.vue:hover {
