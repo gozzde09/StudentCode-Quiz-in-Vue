@@ -1,9 +1,8 @@
 
 <script setup>
 
-
-
-
+import Quiz from "./components/Quiz.vue";
+import NavBar from "./components/NavBar.vue"
 
 </script>
 
@@ -14,14 +13,11 @@
       <h2 class="mx-auto">Don't cheat - Repeat</h2>
     </div>
   </header>
-  <div>
-    <RouterLink to="/"> HEMSIDA</RouterLink>
-    <RouterLink to="/Test"> JAVASCRIPT</RouterLink>
-  </div>
+  <NavBar />
 
   <main>
     <RouterView />
-
+    <!-- <Quiz /> -->
   </main>
 
   <footer>
