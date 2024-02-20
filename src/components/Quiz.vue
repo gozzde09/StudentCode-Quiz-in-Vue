@@ -1,24 +1,63 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, computed } from 'vue'
+import axios from 'axios'
+const quizData = ref(null)
+const currentQuestionIndex = ref(0);
+const selectedAnswers = ref("");
+const nummer = ref(0)
 
 const show = ref(false)
 function clickk() {
   show.value = !show.value
 }
+
+onMounted(async () => {
+  try {
+    const result = await axios.get('https://quizapi.io/api/v1/questions?apiKey=Fn3mWDcTNToCVxnnLtiH2OXe9XSGTcpUFpl3SUUq&limit=5&tags=html')
+    quizData.value = result.data
+    console.log((quizData.value.length));
+  } catch (error) {
+    console.log(error)
+  }
+})
+const currentQuestion = computed(() => {
+  return quizData.value[currentQuestionIndex.value];
+});
+function selectAnswer(key) {
+  this.selectedAnswers = key;
+};
+function isSelected(key) {
+  return this.selectedAnswers === key;
+}
+const nextQuestion = () => {
+  currentQuestionIndex.value++;
+  selectedAnswers.value = "";
+};
+
+const prevQuestion = () => {
+  currentQuestionIndex.value--;
+  selectedAnswers.value = "";
+};
+function lastLetter(word) {
+  let letter = word.slice(-1).toUpperCase()
+  return letter
+}
+
+
 </script>
 
 <template>
   <div class="overlay">
 
   </div>
-  <div class="container">
+  <div v-if="quizData" class="container">
 
     <div v-if="show" class="my-modal">
       <button class="circle" @click="clickk">close</button>
     </div>
 
     <div class="flex">
-      <h1> JavaScript</h1>
+      <h1>{{ currentQuestion.tags[0].name }}</h1>
       <button @click="clickk">X</button> <!--modal-->
     </div>
 
@@ -28,18 +67,23 @@ function clickk() {
       </div>
       <p>2/5</p>
     </div>
+    <h2 class="center" v-if="selectedAnswers === currentQuestion.correct_answer">
+      <strong> Correct Answer! </strong>
+    </h2>
+    <p>Selected Answer: {{ selectedAnswers }}</p>
+    <h2 class="center">{{ currentQuestion.question }}</h2>
 
-    <h2 class="center">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex, voluptatem.</h2>
-
-    <div class="center" style="margin-top: 40px;">
-      <button class="alternatives correct">
-        <p class="circle correct">A</p>
-        <h3>Lorem ipsum dolor sit amet.</h3>
+    <div v-for="(answer, key) in currentQuestion.answers" :key="key" class="center" style="margin-top: 40px;">
+      <button v-if="answer" class="alternatives correct">
+        <p class="circle correct"> {{ lastLetter(key) }} </p>
+        <h3>{{ answer }}.</h3>
       </button>
-      <button class="alternatives wrong">
+
+
+      <!-- <button class="alternatives wrong">
         <p class="circle">A</p>
         <h3>Lorem ipsum dolor sit amet.</h3>
-      </button>
+      </button> -->
 
     </div>
     <div class="center">
