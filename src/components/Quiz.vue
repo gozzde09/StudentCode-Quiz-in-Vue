@@ -69,7 +69,11 @@ function lastLetter(word) {
     <h2 class="center" v-if="selectedAnswers === currentQuestion.correct_answer">
       <strong> Correct Answer! </strong>
     </h2>
+<<<<<<< HEAD
 
+=======
+    <p>Selected Answer: {{ selectedAnswers }}</p>
+>>>>>>> 7b2f79301c70d1f06665a5e4d2712470ff4f74a7
     <h2 class="center">{{ currentQuestion.question }}</h2>
 
     <div v-for="(answer, key) in  currentQuestion.answers " :key="key" class="center" style="margin-top: 40px;">
@@ -81,6 +85,7 @@ function lastLetter(word) {
       </Button>
     </div>
 
+<<<<<<< HEAD
     <!-- <div class="center">
       <button @click="nextQuestion" class="continue">Continue</button>
     </div>
@@ -91,6 +96,15 @@ function lastLetter(word) {
       <BButton class="m-2" variant="success" @click="nextQuestion"
         :disabled="currentQuestionIndex === quizData.length - 1">
         Next Question</BButton>
+=======
+
+
+    <p>Selected Answer: {{ selectedAnswers }}</p>
+
+
+    <div class="center">
+      <button @click="nextQuestion" class="continue">Continue</button>
+>>>>>>> 7b2f79301c70d1f06665a5e4d2712470ff4f74a7
     </div>
   </div>
 </template>
