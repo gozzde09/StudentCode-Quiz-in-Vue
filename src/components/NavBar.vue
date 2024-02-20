@@ -10,15 +10,7 @@ function thisActivePage(path) {
 }
 </script>
 
-<template>
-  <!-- Default varianten, den vi har nu -->
-  <!-- <nav class="d-flex justify-content-evenly">
-    <RouterLink to="/"> Hem</RouterLink>
-    <RouterLink to="/JavascriptPage"> JavaScript</RouterLink>
-    <RouterLink to="/Test">HTML</RouterLink>
-    <RouterLink to="/PhpPage">PHP</RouterLink>
-    <RouterLink to="/MyResults">Mina Resultat</RouterLink>
-  </nav> -->
+<template></nav>
   <div class="d-flex justify-content-center">
     <b-nav pills>
       <b-nav-item :class="{ active: activePage === '/' }" @click="thisActivePage('/')">

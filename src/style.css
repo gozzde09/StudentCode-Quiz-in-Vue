@@ -3,10 +3,14 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
+
 main {
   flex-grow: 1;
+   display: flex;
+  flex-direction: column;
   background-color: #EDE8E3;
 }
+
 #app {
   display: flex;
   flex-direction: column;
