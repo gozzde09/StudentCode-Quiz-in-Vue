@@ -118,6 +118,9 @@ function clickk() {
   /* text-align: center;
   width: 20px;
   height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-right: 20px;
   padding: 0; */
   /* border: none; */
