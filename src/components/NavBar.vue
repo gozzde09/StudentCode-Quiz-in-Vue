@@ -9,9 +9,8 @@ import { ref } from 'vue'
     <RouterLink to="/HtmlPage">HTML</RouterLink>
     <RouterLink to="/PhpPage">PHP</RouterLink>
     <RouterLink to="/MyResults">Mina Resultat</RouterLink>
-   </nav>
+  </nav>
 </template>
 
 <style scoped>
-
 </style>

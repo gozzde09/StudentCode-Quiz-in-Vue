@@ -63,29 +63,22 @@ function lastLetter(word) {
       <div class="progressBar">
         <div class="valueProgress"></div>
       </div>
-      <p>2/5</p>
-      <!--TODO PROGRESSBAR , karusel? -->
+      <p>{{ currentQuestionIndex + 1   }} /{{ quizData.length}}</p>
     </div>
     <h2 class="center" v-if="selectedAnswers === currentQuestion.correct_answer">
       <strong> Correct Answer! </strong>
     </h2>
-<<<<<<< HEAD
-
-=======
-    <p>Selected Answer: {{ selectedAnswers }}</p>
->>>>>>> 7b2f79301c70d1f06665a5e4d2712470ff4f74a7
     <h2 class="center">{{ currentQuestion.question }}</h2>
 
     <div v-for="(answer, key) in  currentQuestion.answers " :key="key" class="center" style="margin-top: 40px;">
-      <Button v-if="answer" class="alternatives"
+      <button v-if="answer" class="alternatives"
         :class="{ 'green': isSelected(key) && selectedAnswers === currentQuestion.correct_answer, 'red': isSelected(key) && selectedAnswers !== currentQuestion.correct_answer }"
         @click="selectAnswer(key)" :active="isSelected(key)">
         <p class="circle">{{ lastLetter(key) }}</p>
         <h3>{{ answer }}></h3>
-      </Button>
+      </button>
     </div>
 
-<<<<<<< HEAD
     <!-- <div class="center">
       <button @click="nextQuestion" class="continue">Continue</button>
     </div>
@@ -96,15 +89,6 @@ function lastLetter(word) {
       <BButton class="m-2" variant="success" @click="nextQuestion"
         :disabled="currentQuestionIndex === quizData.length - 1">
         Next Question</BButton>
-=======
-
-
-    <p>Selected Answer: {{ selectedAnswers }}</p>
-
-
-    <div class="center">
-      <button @click="nextQuestion" class="continue">Continue</button>
->>>>>>> 7b2f79301c70d1f06665a5e4d2712470ff4f74a7
     </div>
   </div>
 </template>
