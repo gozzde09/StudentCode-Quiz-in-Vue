@@ -55,7 +55,7 @@ function lastLetter(word) {
     </div>
 
     <div class="flex">
-      <h1> {{ currentQuestion.tags[0].name }}</h1>
+      <h1 class="mx-auto"> {{ currentQuestion.tags[0].name }}</h1>
       <button @click="clickk">X</button> <!--modal-->
     </div>
 
@@ -66,26 +66,31 @@ function lastLetter(word) {
       <p>2/5</p>
       <!--TODO PROGRESSBAR , karusel? -->
     </div>
-
-        <h2 class="center" v-if="selectedAnswers === currentQuestion.correct_answer">
-          <strong> Correct Answer! </strong>
-        </h2>
+    <h2 class="center" v-if="selectedAnswers === currentQuestion.correct_answer">
+      <strong> Correct Answer! </strong>
+    </h2>
 
     <h2 class="center">{{ currentQuestion.question }}</h2>
-    <div v-for="(answer, key) in currentQuestion.answers" :key="key" class="center" style="margin-top: 40px;">
-      <BButton v-if="answer" class="alternatives" @click="selectAnswer(key)" :active="isSelected(key)">
+
+    <div v-for="(answer, key) in  currentQuestion.answers " :key="key" class="center" style="margin-top: 40px;">
+      <Button v-if="answer" class="alternatives"
+        :class="{ 'green': isSelected(key) && selectedAnswers === currentQuestion.correct_answer, 'red': isSelected(key) && selectedAnswers !== currentQuestion.correct_answer }"
+        @click="selectAnswer(key)" :active="isSelected(key)">
         <p class="circle">{{ lastLetter(key) }}</p>
         <h3>{{ answer }}></h3>
-      </BButton>
+      </Button>
     </div>
 
-
-
-    <p>Selected Answer: {{ selectedAnswers }}</p>
-
-
-    <div class="center">
-      <button class="continue">Continue</button>
+    <!-- <div class="center">
+      <button @click="nextQuestion" class="continue">Continue</button>
+    </div>
+  -->
+    <div class="d-flex justify-content-around m-2">
+      <BButton class="m-2" variant="success" @click="prevQuestion" :disabled="currentQuestionIndex === 0">Previous
+        Question</BButton>
+      <BButton class="m-2" variant="success" @click="nextQuestion"
+        :disabled="currentQuestionIndex === quizData.length - 1">
+        Next Question</BButton>
     </div>
   </div>
 </template>
@@ -99,6 +104,14 @@ function lastLetter(word) {
   z-index: 100;
 
 } */
+
+.green {
+  background-color: green;
+}
+
+.red {
+  background-color: red;
+}
 
 .correct {
   background-color: green;
@@ -181,7 +194,7 @@ function lastLetter(word) {
 .container {
   margin: 0 auto;
   background-color: rgb(0, 0, 0, 0.20);
-  height: 600px;
+  min-height: 700px;
   min-width: 370px;
   border-radius: 10px;
   position: relative;
@@ -191,6 +204,7 @@ function lastLetter(word) {
 
 .alternatives {
   min-width: 200px;
+  max-width: 300px;
   display: flex;
   align-items: center;
   margin-bottom: 10px;
