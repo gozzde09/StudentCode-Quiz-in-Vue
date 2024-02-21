@@ -2,6 +2,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  font-family:  "Poppins",Helvetica, sans-serif;
 }
 
 main {
@@ -9,12 +10,13 @@ main {
    display: flex;
   flex-direction: column;
   background-color: #EDE8E3;
+
 }
 
 #app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: Helvetica, sans-serif;
   font-size: 1.1rem;
+  font-family:  "Poppins",Helvetica, sans-serif;
 }
