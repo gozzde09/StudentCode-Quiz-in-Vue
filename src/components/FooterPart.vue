@@ -28,7 +28,7 @@ const route = useRoute()
             engagerande och underhållande quiz för studenter,
             som tar dig på en resa genom kodens värld.
             Upptäck vårt sortimen av quiz för att fördjupa
-            dina kunskaper och ha kul samtidigt!</p>
+            dina kunskaper och ha kul samtidigt! </p>
           </li>
           <li class="nav-item"> 
             <router-link to="#" class="nav-link"> Contact 
@@ -44,6 +44,7 @@ const route = useRoute()
             <p> HTML </p>
             <p> PHP</p>
             <p> JS </p>
+            <p> WordPress </p>
          </li>
           
 
@@ -71,7 +72,6 @@ margin: 0 1rem;
 }
 .active {
   background-color: #EDE8E3;
-  color: black;
   border-radius: 2px;
   transition: background-color 0.3s ease;
 }
