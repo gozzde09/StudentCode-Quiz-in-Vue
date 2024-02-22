@@ -1,12 +1,6 @@
-<script setup>
-import { useRoute } from 'vue-router'
-
-const route = useRoute()
-</script>
-
 <template>
   <div class="row justify-content-center" id="the-jumbo">
-    <div class="col-md-6">
+    <div class="col-md-10">
       <div class="jumbotron">
         <h4 class="display-4">Are you ready to learn?</h4>
         <p class="lead">Here below we have all our different quizzes, want to pick just one or ace them all? It's up to

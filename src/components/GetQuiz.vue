@@ -305,7 +305,7 @@
     position: absolute;
     bottom: 10px;
     border-radius: 10px;
-    background-color: rgb(54, 54, 222);
+    background-color: #204764;
     color: white;
     padding: 10px 0;
   }
