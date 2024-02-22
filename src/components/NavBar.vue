@@ -22,8 +22,8 @@ const route = useRoute()
           </li>
           <li class="nav-item">
             <router-link to="/QuizPage" class="nav-link"
-              :class="{ active: $route.path.startsWith('/QuizPage') }">Quiz</router-link>
-          </li>
+              :class="{ active: $route.path.startsWith('/QuizPage') }">Quizzes</router-link>
+         </li>
           <li class="nav-item">
             <router-link to="/MyResults" class="nav-link" :class="{ active: $route.path === '/MyResults' }">My
               Results</router-link>

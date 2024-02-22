@@ -71,13 +71,6 @@ function lastLetter(word) {
     <h2 class="center" v-if="selectedAnswers === currentQuestion.correct_answer">
       <strong> Correct Answer! </strong>
     </h2>
-<<<<<<< HEAD:src/components/Quiz.vue
-  </div>
-
-    <p>Selected Answer: {{ selectedAnswers }}</p>
-=======
-
->>>>>>> dfc33feeb45ec28265b9afd9eea11daeb08945d8:src/components/GetQuiz.vue
     <h2 class="center">{{ currentQuestion.question }}</h2>
 
     <div v-for="(  answer, key  ) in    currentQuestion.answers   " :key="key" class="center" style="margin-top: 40px;">
@@ -99,8 +92,7 @@ function lastLetter(word) {
       <BButton class="m-2" variant="success" @click="nextQuestion"
         :disabled="currentQuestionIndex === quizData.length - 1">
         Next Question</BButton>
-    </div>
-  </div>
+    </div>  </div>
 </template>
 
 <style scoped>
