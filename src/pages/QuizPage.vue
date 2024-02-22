@@ -18,7 +18,7 @@
             <p class="card-text">The HTML quiz offers a comprehensive assessment of HTML knowledge, covering topics such
               as tags, attributes, and structure, providing an excellent opportunity for learners to test their
               understanding of web development fundamentals.</p>
-            <a href="#" class="btn btn-primary">Go to quiz</a>
+            <router-link to="/StartQuiz" class="btn btn-primary">Go to quiz</router-link>
           </div>
         </div>
       </div>
@@ -29,7 +29,7 @@
             <p class="card-text">The JavaScript quiz presents a dynamic examination, covering essential concepts like DOM
               manipulation, event handling, etc. , making it an
               indispensable tool for developers seeking to strengthen their front-end development expertise.</p>
-            <a href="#" class="btn btn-primary">Go to quiz</a>
+            <router-link to="/StartQuiz" class="btn btn-primary">Go to quiz</router-link>
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@
             <p class="card-text">The JavaScript quiz presents a dynamic examination of client-side scripting, covering
               essential concepts like DOM manipulation, event handling, etc. , making it an
               indispensable tool for developers seeking to strengthen their expertise.</p>
-            <a href="#" class="btn btn-primary">Go to quiz</a>
+            <router-link to="/StartQuiz" class="btn btn-primary">Go to quiz</router-link>
           </div>
         </div>
       </div>
@@ -51,7 +51,7 @@
             <p class="card-text">In the WordPress quiz, participants can explore various aspects of the popular content
               management system, including themes, plugins, and customization, making it an ideal resource for those
               interested in mastering website creation with WordPress.</p>
-            <a href="#" class="btn btn-primary">Go to quiz</a>
+            <router-link to="/StartQuiz" class="btn btn-primary">Go to quiz</router-link>
           </div>
         </div>
       </div>
