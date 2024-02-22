@@ -3,17 +3,27 @@
 
 </script>
 <template>
-  <div class="d-flex flex-column mx-auto justify-content-center">
-  <h1 class="mx-auto">Welcome!</h1>
-  <h3 class="mx-auto"> At StudentCode you can test your programming and coding skills.</h3>
-  <p>Discover our range of quizzes to deepen your knowledge
-  your skills and have fun at the same time!</p>
-  <button class="btn mx-auto align-items-end">Start Quiz</button>
+  <div class="d-flex flex-column mx-auto">
+    <h1 class="mx-auto">Welcome!</h1>
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="jumbotron">
+          <h3>At StudentCode you can test your programming and coding skills.</h3>
+          <p class="lead">Discover our range of quizzes to deepen your knowledge
+            your skills and have fun at the same time!</p>
+        </div>
+        <div class="d-flex">
+          <button class="btn mx-auto justify-content-end ">Start Quiz</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 <style scoped>
 h1 {
-  color: #204764
+  color: rgb(32, 71, 100);
+  margin-top: 2rem;
 }
 
 button {
