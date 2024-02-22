@@ -4,6 +4,7 @@ import axios from 'axios'
 const quizData = ref(null)
 const currentQuestionIndex = ref(0);
 const selectedAnswers = ref("");
+const progress = ref(0)
 
 onMounted(async () => {
   try {
@@ -26,6 +27,7 @@ function isSelected(key) {
 const nextQuestion = () => {
   currentQuestionIndex.value++;
   selectedAnswers.value = "";
+  progress.value += 20
 };
 
 const prevQuestion = () => {
@@ -45,64 +47,58 @@ function lastLetter(word) {
 </script>
 
 <template>
-  <div class="overlay">
-    <!-- GODKÄNNA ATT STÄNGA QUIZ -->
-    <button @click="clickk" :class="{ active: show }">Toggle Overlay</button>
-  </div>
-  <div v-if="quizData" class="container">
-    <div v-if="show" class="my-modal">
+  <!-- <div v-if="show" class="overlay">
+    GODKÄNNA ATT STÄNGA QUIZ
+     <button @click="clickk" :class="{ active: show }">Toggle Overlay</button>
+  </div> -->
+  <div v-if="quizData" class="container d-flex flex-column">
+    <div v-if="show" class="my-modal mx-auto">
       <button class="circle" @click="clickk">close</button>
     </div>
 
     <div class="flex">
       <h1 class="mx-auto"> {{ currentQuestion.tags[0].name }}</h1>
-      <button @click="clickk">X</button> <!--modal-->
+      <button @click="clickk" style="background-color:white">X</button> <!--modal-->
     </div>
 
     <div class="center" style="display: flex;">
       <div class="progressBar">
-        <div class="valueProgress"></div>
+        <div class="valueProgress" :style="{ width: progress + '%' }"></div>
       </div>
-      <p>2/5</p>
-      <!--TODO PROGRESSBAR , karusel? -->
+      <p>{{ currentQuestionIndex + 1 }}/{{ quizData.length }}</p>
+
     </div>
     <h2 class="center" v-if="selectedAnswers === currentQuestion.correct_answer">
       <strong> Correct Answer! </strong>
     </h2>
+<<<<<<< HEAD:src/components/Quiz.vue
   </div>
 
     <p>Selected Answer: {{ selectedAnswers }}</p>
+=======
+
+>>>>>>> dfc33feeb45ec28265b9afd9eea11daeb08945d8:src/components/GetQuiz.vue
     <h2 class="center">{{ currentQuestion.question }}</h2>
 
-    <div v-for="(answer, key) in  currentQuestion.answers " :key="key" class="center" style="margin-top: 40px;">
-      <Button v-if="answer" class="alternatives"
+    <div v-for="(  answer, key  ) in    currentQuestion.answers   " :key="key" class="center" style="margin-top: 40px;">
+      <button v-if="answer" class="alternatives"
         :class="{ 'green': isSelected(key) && selectedAnswers === currentQuestion.correct_answer, 'red': isSelected(key) && selectedAnswers !== currentQuestion.correct_answer }"
         @click="selectAnswer(key)" :active="isSelected(key)">
-        <p class="circle">{{ lastLetter(key) }}</p>
+        <p class="circle" >{{ lastLetter(key) }}</p>
         <h3>{{ answer }}></h3>
-      </Button>
+      </button>
     </div>
 
-<<<<<<< HEAD
     <!-- <div class="center">
       <button @click="nextQuestion" class="continue">Continue</button>
-    </div>
-  -->
+    </div> -->
+
     <div class="d-flex justify-content-around m-2">
       <BButton class="m-2" variant="success" @click="prevQuestion" :disabled="currentQuestionIndex === 0">Previous
         Question</BButton>
       <BButton class="m-2" variant="success" @click="nextQuestion"
         :disabled="currentQuestionIndex === quizData.length - 1">
         Next Question</BButton>
-=======
-
-
-    <p>Selected Answer: {{ selectedAnswers }}</p>
-
-
-    <div class="center">
-      <button @click="nextQuestion" class="continue">Continue</button>
->>>>>>> 7b2f79301c70d1f06665a5e4d2712470ff4f74a7
     </div>
   </div>
 </template>
@@ -117,23 +113,29 @@ function lastLetter(word) {
 
 } */
 
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: aquamarine;
+}
+
 .green {
-  background-color: green;
+  background-color: #28a745;
 }
 
 .red {
-  background-color: red;
+  background-color: #dc3545;
 }
 
 .correct {
-  background-color: green;
+  background-color: #28a745;
   /* border-color: rgb(1, 88, 1);
   border-width: 4px; */
   border: 2px solid rgb(1, 88, 1)
 }
 
 .wrong {
-  background-color: red;
+  background-color: #dc3545;
   border: 2px solid rgb(102, 0, 0)
 }
 
@@ -150,27 +152,31 @@ function lastLetter(word) {
   /* Hidden by default */
   position: fixed;
   /* Stay in place */
-  z-index: 1;
+  z-index: 3;
   /* Sit on top */
-  left: 50;
-  top: 50;
+  /* left: 150;
+  /* top: 150; */
   width: 400px;
   /* Full width */
-  height: 400px;
+  height: 300px;
   /* Full height */
   background-color: rgb(141, 10, 10);
+  margin: 0 auto;
+  margin-bottom: -400px;
+  top: 250;
+  left: 250;
 }
 
 .progressBar {
   width: 350px;
   height: 30px;
-  border: 2px solid green;
+  border: 2px solid #28a745;
   border-radius: 10px;
   overflow: hidden;
 }
 
 .valueProgress {
-  width: 10%;
+  /* width: 10%; */
   height: 100%;
   background-color: rgb(1, 141, 1);
 
@@ -200,23 +206,23 @@ function lastLetter(word) {
   font-size: 16px;
   font-weight: semi-bold;
   margin-top: 0.5rem;
-  margin-bottom: 0.5rem
+  margin-bottom: 0.5rem;
+  background-color:#EDE8E3;
 }
 
 .container {
   margin: 0 auto;
-  background-color: rgb(0, 0, 0, 0.20);
   min-height: 700px;
   min-width: 370px;
   border-radius: 10px;
   position: relative;
-
+background-color: #eaded2;
 
 }
 
 .alternatives {
-  min-width: 200px;
-  max-width: 300px;
+  width: 300px;
+
   display: flex;
   align-items: center;
   margin-bottom: 10px;
@@ -256,6 +262,7 @@ h1 {
 
 h2 {
   font-size: 1.4em;
+  color:#204764
 }
 
 .flex button {
