@@ -6,6 +6,7 @@ import HtmlPage from './pages/HtmlPage.vue'
 import JavascriptPage from './pages/JavascriptPage.vue'
 import PhpPage from './pages/PhpPage.vue'
 import MyResults from './pages/MyResults.vue'
+import AboutPage from './pages/AboutPage.vue'
 // import Prov from './pages/Prov.vue';
 
 export default createRouter({
@@ -18,6 +19,10 @@ export default createRouter({
     {
       component: QuizPage,
       path: "/QuizPage",
+    },
+    {
+      component: AboutPage,
+      path: "/about",
     },
     {
       component: StartQuiz,
