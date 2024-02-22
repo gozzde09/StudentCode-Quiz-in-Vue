@@ -23,6 +23,7 @@ declare module 'vue' {
     NavBar: typeof import('./src/components/NavBar.vue')['default']
     Prov: typeof import('./src/components/Prov.vue')['default']
     Quiz: typeof import('./src/components/Quiz.vue')['default']
+    QuizPage: typeof import('./src/components/QuizPage.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import Home from "./pages/Home.vue";
+import HomePage from "./pages/HomePage.vue";
 import HtmlPage from './pages/HtmlPage.vue'
 import JavascriptPage from './pages/JavascriptPage.vue'
 import PhpPage from './pages/PhpPage.vue'
@@ -10,7 +10,7 @@ export default createRouter({
   history: createWebHashHistory(),
   routes: [
     {
-      component: Home,
+      component: HomePage,
       path: "/",
     },
     {
