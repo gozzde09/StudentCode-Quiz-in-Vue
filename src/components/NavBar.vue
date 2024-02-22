@@ -123,7 +123,7 @@
   }
 
   .active {
-    background-color: #ede8e3;
+    background-color: #F5DCB4;
     color: black;
     border-radius: 2px;
     transition: background-color 0.3s ease;

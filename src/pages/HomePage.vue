@@ -13,7 +13,8 @@
             your skills and have fun at the same time!</p>
         </div>
         <div class="d-flex">
-          <button class="btn mx-auto justify-content-end ">Start Quiz</button>
+          <button class="mx-auto">
+             <router-link to="/StartQuiz" class="btn link mx-auto">Start quiz</router-link> </button>
         </div>
       </div>
     </div>
@@ -23,11 +24,12 @@
 <style scoped>
 h1 {
   color: rgb(32, 71, 100);
-  margin-top: 2rem;
+  margin: 2rem;
+  font-weight: bold;
 }
 
-button {
+button, .link {
   background-color: #204764 !important;
-  color: #EDE8E3 !important;
+  color: #ffffff !important;
 }
 </style>

@@ -44,6 +44,7 @@ const nextQuestion = () => {
   if (selectedAnswers.value === "") {
     const correctAnswer = currentQuestion.value.correct_answer;
     selectAnswer(correctAnswer);
+    selectedAnswers.value = correctAnswer;
     console.log(correctAnswer);
   }
   currentQuestionIndex.value++;
@@ -235,7 +236,7 @@ function lastLetter(word) {
   min-width: 370px;
   border-radius: 10px;
   position: relative;
-  background-color: #eaded2;
+  background-color:#F5DCB4;
 }
 
 .alternatives {
@@ -295,19 +296,4 @@ h2 {
   font-weight: semi-bold;
 }
 
-.continue {
-  width: 200px;
-  position: absolute;
-  bottom: 10px;
-  border-radius: 10px;
-  background-color: rgb(54, 54, 222);
-  color: white;
-  padding: 10px 0;
-}
-
-/* @media only screen and (min-width: 800px) {
-  .continue {
-    display: none;
-  }
-} */
 </style>
