@@ -18,7 +18,7 @@
             <p class="card-text">The HTML quiz offers a comprehensive assessment of HTML knowledge, covering topics such
               as tags, attributes, and structure, providing an excellent opportunity for learners to test their
               understanding of web development fundamentals.</p>
-            <router-link to="/StartQuiz" class="btn btn-primary">Go to quiz</router-link>
+            <router-link to="/GetQuiz" class="btn btn-primary">Go to quiz</router-link>
           </div>
         </div>
       </div>

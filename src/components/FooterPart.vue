@@ -1,7 +1,11 @@
-
 <template>
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-xxl">
+         <!-- toggle-knapp för mobile-view -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+          aria-controls="main-nav" aria-expanded="false" aria-label="Toggle Navigation">
+          <span class="navbar-toggler-icon" />
+        </button>
       <!-- navbarlänkar -->
       <div class="collapse navbar-collapse justify-content-lg-center align-center" id="main-nav">
         <ul class="navbar-nav">

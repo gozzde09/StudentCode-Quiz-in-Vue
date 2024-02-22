@@ -6,6 +6,7 @@ import HtmlPage from './pages/HtmlPage.vue'
 import JavascriptPage from './pages/JavascriptPage.vue'
 import PhpPage from './pages/PhpPage.vue'
 import MyResults from './pages/MyResults.vue'
+import GetQuiz from './components/GetQuiz.vue'
 // import Prov from './pages/Prov.vue';
 
 export default createRouter({
@@ -13,40 +14,44 @@ export default createRouter({
   routes: [
     {
       component: HomePage,
-      path: "/",
+      path: '/'
     },
     {
       component: QuizPage,
-      path: "/QuizPage",
+      path: '/QuizPage'
     },
     {
       component: StartQuiz,
-      path: "/StartQuiz",
+      path: '/StartQuiz'
+    },
+    {
+      component: GetQuiz,
+      path: '/GetQuiz'
     },
     {
       component: HtmlPage,
-      name: "Html-quiz",
-      path: "/HtmlPage",
+      name: 'Html-quiz',
+      path: '/HtmlPage'
     },
     {
       component: PhpPage,
-      name: "Php-quiz",
-      path: "/PhpPage",
+      name: 'Php-quiz',
+      path: '/PhpPage'
     },
     {
       component: JavascriptPage,
-      name: "JS-quiz",
-      path: "/JavascriptPage",
+      name: 'JS-quiz',
+      path: '/JavascriptPage'
     },
     {
       component: MyResults,
-      name: "Mina Resultat",
-      path: "/MyResults",
-    },
+      name: 'Mina Resultat',
+      path: '/MyResults'
+    }
     // {
     //   component: Prov,
     //   name: "Prov",
     //   path: "/Prov/:id",
     // },
-  ],
-});
+  ]
+})
