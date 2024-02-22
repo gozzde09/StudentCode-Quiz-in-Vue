@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "./pages/Home.vue";
+import StartQuiz from './pages/StartQuiz.vue'
 import QuizPage from "./pages/QuizPage.vue"
 import HtmlPage from './pages/HtmlPage.vue'
 import JavascriptPage from './pages/JavascriptPage.vue'
@@ -16,7 +17,11 @@ export default createRouter({
     },
     {
       component: QuizPage,
-      path: "/QuizPage"
+      path: "/QuizPage",
+    },
+    {
+      component: StartQuiz,
+      path: "/StartQuiz",
     },
     {
       component: HtmlPage,

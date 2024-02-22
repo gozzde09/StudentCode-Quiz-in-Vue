@@ -71,20 +71,13 @@ function lastLetter(word) {
     <h2 class="center" v-if="selectedAnswers === currentQuestion.correct_answer">
       <strong> Correct Answer! </strong>
     </h2>
-<<<<<<< HEAD:src/components/Quiz.vue
-  </div>
-
-    <p>Selected Answer: {{ selectedAnswers }}</p>
-=======
-
->>>>>>> dfc33feeb45ec28265b9afd9eea11daeb08945d8:src/components/GetQuiz.vue
     <h2 class="center">{{ currentQuestion.question }}</h2>
 
     <div v-for="(  answer, key  ) in    currentQuestion.answers   " :key="key" class="center" style="margin-top: 40px;">
       <button v-if="answer" class="alternatives"
         :class="{ 'green': isSelected(key) && selectedAnswers === currentQuestion.correct_answer, 'red': isSelected(key) && selectedAnswers !== currentQuestion.correct_answer }"
         @click="selectAnswer(key)" :active="isSelected(key)">
-        <p class="circle" >{{ lastLetter(key) }}</p>
+        <p class="circle">{{ lastLetter(key) }}</p>
         <h3>{{ answer }}></h3>
       </button>
     </div>
@@ -207,7 +200,7 @@ function lastLetter(word) {
   font-weight: semi-bold;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
-  background-color:#EDE8E3;
+  background-color: #EDE8E3;
 }
 
 .container {
@@ -216,7 +209,7 @@ function lastLetter(word) {
   min-width: 370px;
   border-radius: 10px;
   position: relative;
-background-color: #eaded2;
+  background-color: #eaded2;
 
 }
 
@@ -262,7 +255,7 @@ h1 {
 
 h2 {
   font-size: 1.4em;
-  color:#204764
+  color: #204764
 }
 
 .flex button {
