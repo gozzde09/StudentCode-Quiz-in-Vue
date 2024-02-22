@@ -28,10 +28,10 @@ const route = useRoute()
             <router-link to="/MyResults" class="nav-link" :class="{ active: $route.path === '/MyResults' }">My
               Results</router-link>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <router-link to="/About" class="nav-link" :class="{ active: $route.path === '/About' }">About
               Us</router-link>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
