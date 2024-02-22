@@ -4,6 +4,7 @@ import HtmlPage from './pages/HtmlPage.vue'
 import JavascriptPage from './pages/JavascriptPage.vue'
 import PhpPage from './pages/PhpPage.vue'
 import MyResults from './pages/MyResults.vue'
+// import Prov from './pages/Prov.vue';
 
 export default createRouter({
   history: createWebHashHistory(),
@@ -32,5 +33,10 @@ export default createRouter({
       name: "Mina Resultat",
       path: "/MyResults",
     },
+    // {
+    //   component: Prov,
+    //   name: "Prov",
+    //   path: "/Prov/:id",
+    // },
   ],
 });

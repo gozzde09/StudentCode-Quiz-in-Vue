@@ -58,7 +58,7 @@ function lastLetter(word) {
 
     <div class="flex">
       <h1 class="mx-auto"> {{ currentQuestion.tags[0].name }}</h1>
-      <button @click="clickk">X</button> <!--modal-->
+      <button @click="clickk" style="background-color:white">X</button> <!--modal-->
     </div>
 
     <div class="center" style="display: flex;">
@@ -78,7 +78,7 @@ function lastLetter(word) {
       <button v-if="answer" class="alternatives"
         :class="{ 'green': isSelected(key) && selectedAnswers === currentQuestion.correct_answer, 'red': isSelected(key) && selectedAnswers !== currentQuestion.correct_answer }"
         @click="selectAnswer(key)" :active="isSelected(key)">
-        <p class="circle">{{ lastLetter(key) }}</p>
+        <p class="circle" >{{ lastLetter(key) }}</p>
         <h3>{{ answer }}></h3>
       </button>
     </div>
@@ -114,22 +114,22 @@ function lastLetter(word) {
 }
 
 .green {
-  background-color: green;
+  background-color: #28a745;
 }
 
 .red {
-  background-color: red;
+  background-color: #dc3545;
 }
 
 .correct {
-  background-color: green;
+  background-color: #28a745;
   /* border-color: rgb(1, 88, 1);
   border-width: 4px; */
   border: 2px solid rgb(1, 88, 1)
 }
 
 .wrong {
-  background-color: red;
+  background-color: #dc3545;
   border: 2px solid rgb(102, 0, 0)
 }
 
@@ -164,7 +164,7 @@ function lastLetter(word) {
 .progressBar {
   width: 350px;
   height: 30px;
-  border: 2px solid green;
+  border: 2px solid #28a745;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -200,17 +200,17 @@ function lastLetter(word) {
   font-size: 16px;
   font-weight: semi-bold;
   margin-top: 0.5rem;
-  margin-bottom: 0.5rem
+  margin-bottom: 0.5rem;
+  background-color:#EDE8E3;
 }
 
 .container {
   margin: 0 auto;
-  background-color: rgb(0, 0, 0, 0.20);
   min-height: 700px;
   min-width: 370px;
   border-radius: 10px;
   position: relative;
-
+background-color: #eaded2;
 
 }
 
@@ -256,6 +256,7 @@ h1 {
 
 h2 {
   font-size: 1.4em;
+  color:#204764
 }
 
 .flex button {
