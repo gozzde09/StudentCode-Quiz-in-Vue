@@ -7,7 +7,7 @@ import JavascriptPage from './pages/JavascriptPage.vue'
 import PhpPage from './pages/PhpPage.vue'
 import MyResults from './pages/MyResults.vue'
 import GetQuiz from './components/GetQuiz.vue'
-// import Prov from './pages/Prov.vue';
+import AboutPage from './pages/AboutPage.vue'
 
 export default createRouter({
   history: createWebHashHistory(),
@@ -19,6 +19,10 @@ export default createRouter({
     {
       component: QuizPage,
       path: '/QuizPage'
+    },
+    {
+      component: AboutPage,
+      path: "/about",
     },
     {
       component: StartQuiz,
@@ -48,10 +52,5 @@ export default createRouter({
       name: 'Mina Resultat',
       path: '/MyResults'
     }
-    // {
-    //   component: Prov,
-    //   name: "Prov",
-    //   path: "/Prov/:id",
-    // },
   ]
 })
