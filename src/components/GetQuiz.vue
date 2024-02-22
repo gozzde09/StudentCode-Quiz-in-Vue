@@ -66,7 +66,7 @@
 
     <div class="center" style="display: flex">
       <div class="progressBar">
-        <div class="valueProgress" :style="{ width: progress + '%' }"></div>
+        <div class="valueProgress" :style="{ width: progress + '%' }" />
       </div>
       <p>{{ currentQuestionIndex + 1 }}/{{ quizData.length }}</p>
     </div>

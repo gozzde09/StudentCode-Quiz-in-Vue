@@ -35,28 +35,16 @@
             >
           </li>
           <li class="nav-item">
-            <router-link
-              to="/QuizPage"
-              class="nav-link"
-              :class="{ active: $route.path.startsWith('/QuizPage') }"
-              >Quiz</router-link
-            >
-          </li>
+            <router-link to="/QuizPage" class="nav-link"
+              :class="{ active: $route.path.startsWith('/QuizPage') }">Quizzes</router-link>
+         </li>
           <li class="nav-item">
-            <router-link
-              to="/MyResults"
-              class="nav-link"
-              :class="{ active: $route.path === '/MyResults' }"
-              >My Results</router-link
-            >
+            <router-link to="/MyResults" class="nav-link" :class="{ active: $route.path === '/MyResults' }">My
+              Results</router-link>
           </li>
           <!-- <li class="nav-item">
-            <router-link
-              to="/About"
-              class="nav-link"
-              :class="{ active: $route.path === '/About' }"
-              >About Us</router-link
-            >
+            <router-link to="/About" class="nav-link" :class="{ active: $route.path === '/About' }">About
+              Us</router-link>
           </li> -->
         </ul>
       </div>

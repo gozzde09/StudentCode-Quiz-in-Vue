@@ -17,6 +17,7 @@ declare module 'vue' {
     BNavItemDropdown: typeof import('bootstrap-vue-next')['BNavItemDropdown']
     copy: typeof import('./src/components/Quiz copy.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
+    FooterPart: typeof import('./src/components/FooterPart.vue')['default']
     GetQuiz: typeof import('./src/components/GetQuiz.vue')['default']
     Home: typeof import('./src/components/Home.vue')['default']
     JS: typeof import('./src/components/JS.vue')['default']
