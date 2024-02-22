@@ -69,11 +69,9 @@ function lastLetter(word) {
     <h2 class="center" v-if="selectedAnswers === currentQuestion.correct_answer">
       <strong> Correct Answer! </strong>
     </h2>
-<<<<<<< HEAD
+  </div>
 
-=======
     <p>Selected Answer: {{ selectedAnswers }}</p>
->>>>>>> 7b2f79301c70d1f06665a5e4d2712470ff4f74a7
     <h2 class="center">{{ currentQuestion.question }}</h2>
 
     <div v-for="(answer, key) in  currentQuestion.answers " :key="key" class="center" style="margin-top: 40px;">
