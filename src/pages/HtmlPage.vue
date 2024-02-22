@@ -4,8 +4,5 @@ import GetQuiz  from '../components/GetQuiz.vue'
 
 </script>
 <template>
-  <GetQuiz/>
+  <GetQuiz />
 </template>
-<style>
-
-</style>

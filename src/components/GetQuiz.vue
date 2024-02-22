@@ -2,38 +2,40 @@
 import { ref, onMounted, computed } from 'vue'
 import axios from 'axios'
 const quizData = ref(null)
-const currentQuestionIndex = ref(0);
-const selectedAnswers = ref("");
+const currentQuestionIndex = ref(0)
+const selectedAnswers = ref('')
 const progress = ref(0)
 
 onMounted(async () => {
   try {
-    const result = await axios.get('https://quizapi.io/api/v1/questions?apiKey=Fn3mWDcTNToCVxnnLtiH2OXe9XSGTcpUFpl3SUUq&limit=5&tags=html')
+    const result = await axios.get(
+      'https://quizapi.io/api/v1/questions?apiKey=Fn3mWDcTNToCVxnnLtiH2OXe9XSGTcpUFpl3SUUq&limit=5&tags=html'
+    )
     quizData.value = result.data
-    console.log((quizData.value.length));
+    console.log(quizData.value.length)
   } catch (error) {
     console.log(error)
   }
 })
 const currentQuestion = computed(() => {
-  return quizData.value[currentQuestionIndex.value];
-});
+  return quizData.value[currentQuestionIndex.value]
+})
 function selectAnswer(key) {
-  this.selectedAnswers = key;
-};
+  this.selectedAnswers = key
+}
 function isSelected(key) {
-  return this.selectedAnswers === key;
+  return this.selectedAnswers === key
 }
 const nextQuestion = () => {
-  currentQuestionIndex.value++;
-  selectedAnswers.value = "";
+  currentQuestionIndex.value++
+  selectedAnswers.value = ''
   progress.value += 20
-};
+}
 
 const prevQuestion = () => {
-  currentQuestionIndex.value--;
-  selectedAnswers.value = "";
-};
+  currentQuestionIndex.value--
+  selectedAnswers.value = ''
+}
 
 const show = ref(false)
 function clickk() {
@@ -41,8 +43,8 @@ function clickk() {
 }
 
 function lastLetter(word) {
-  let letter = word.slice(-1).toUpperCase();
-  return letter;
+  let letter = word.slice(-1).toUpperCase()
+  return letter
 }
 </script>
 
@@ -57,26 +59,31 @@ function lastLetter(word) {
     </div>
 
     <div class="flex">
-      <h1 class="mx-auto"> {{ currentQuestion.tags[0].name }}</h1>
-      <button @click="clickk" style="background-color:white">X</button> <!--modal-->
+      <h1 class="mx-auto">{{ currentQuestion.tags[0].name }}</h1>
+      <button @click="clickk" style="background-color: white">X</button>
+      <!--modal-->
     </div>
 
-    <div class="center" style="display: flex;">
+    <div class="center" style="display: flex">
       <div class="progressBar">
-        <div class="valueProgress" :style="{ width: progress + '%' }"></div>
+        <div class="valueProgress" :style="{ width: progress + '%' }" />
       </div>
       <p>{{ currentQuestionIndex + 1 }}/{{ quizData.length }}</p>
-
     </div>
     <h2 class="center" v-if="selectedAnswers === currentQuestion.correct_answer">
       <strong> Correct Answer! </strong>
     </h2>
     <h2 class="center">{{ currentQuestion.question }}</h2>
 
-    <div v-for="(  answer, key  ) in    currentQuestion.answers   " :key="key" class="center" style="margin-top: 40px;">
-      <button v-if="answer" class="alternatives"
-        :class="{ 'green': isSelected(key) && selectedAnswers === currentQuestion.correct_answer, 'red': isSelected(key) && selectedAnswers !== currentQuestion.correct_answer }"
-        @click="selectAnswer(key)" :active="isSelected(key)">
+    <div v-for="(answer, key) in currentQuestion.answers" :key="key" class="center" style="margin-top: 40px">
+      <button v-if="answer" class="alternatives" :class="{
+        green:
+          isSelected(key) &&
+          selectedAnswers === currentQuestion.correct_answer,
+        red:
+          isSelected(key) &&
+          selectedAnswers !== currentQuestion.correct_answer
+      }" @click="selectAnswer(key)" :active="isSelected(key)">
         <p class="circle">{{ lastLetter(key) }}</p>
         <h3>{{ answer }}></h3>
       </button>
@@ -124,12 +131,12 @@ function lastLetter(word) {
   background-color: #28a745;
   /* border-color: rgb(1, 88, 1);
   border-width: 4px; */
-  border: 2px solid rgb(1, 88, 1)
+  border: 2px solid rgb(1, 88, 1);
 }
 
 .wrong {
   background-color: #dc3545;
-  border: 2px solid rgb(102, 0, 0)
+  border: 2px solid rgb(102, 0, 0);
 }
 
 .center {
@@ -200,7 +207,7 @@ function lastLetter(word) {
   font-weight: semi-bold;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
-  background-color: #EDE8E3;
+  background-color: #ede8e3;
 }
 
 .container {
@@ -210,7 +217,6 @@ function lastLetter(word) {
   border-radius: 10px;
   position: relative;
   background-color: #eaded2;
-
 }
 
 .alternatives {
@@ -245,7 +251,6 @@ function lastLetter(word) {
   align-items: center;
   padding-top: 10px;
   padding-bottom: 10px;
-
 }
 
 h1 {
@@ -255,7 +260,7 @@ h1 {
 
 h2 {
   font-size: 1.4em;
-  color: #204764
+  color: #204764;
 }
 
 .flex button {

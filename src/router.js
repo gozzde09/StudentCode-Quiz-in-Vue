@@ -12,7 +12,7 @@ export default createRouter({
   history: createWebHashHistory(),
   routes: [
     {
-      component: Home,
+      component: HomePage,
       path: "/",
     },
     {
