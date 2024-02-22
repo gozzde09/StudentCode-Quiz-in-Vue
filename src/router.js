@@ -1,6 +1,4 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-
-import Test from "./pages/Test.vue";
 import Home from "./pages/Home.vue";
 import HtmlPage from './pages/HtmlPage.vue'
 import JavascriptPage from './pages/JavascriptPage.vue'
@@ -14,7 +12,6 @@ export default createRouter({
       component: Home,
       path: "/",
     },
-
     {
       component: HtmlPage,
       name: "Html-quiz",
