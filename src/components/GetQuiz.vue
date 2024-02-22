@@ -9,7 +9,7 @@
   onMounted(async () => {
     try {
       const result = await axios.get(
-        'https://quizapi.io/api/v1/questions?apiKey=Fn3mWDcTNToCVxnnLtiH2OXe9XSGTcpUFpl3SUUq&limit=5&tags=wordpress'
+        'https://quizapi.io/api/v1/questions?apiKey=Fn3mWDcTNToCVxnnLtiH2OXe9XSGTcpUFpl3SUUq&limit=5&tags=html'
       )
       quizData.value = result.data
       console.log(quizData.value.length)
@@ -76,7 +76,6 @@
     >
       <strong> Correct Answer! </strong>
     </h2>
-
     <h2 class="center">{{ currentQuestion.question }}</h2>
 
     <div
