@@ -1,7 +1,8 @@
 <script setup>
-import Quiz  from '../components/Quiz.vue';
+import GetQuiz  from '../components/GetQuiz.vue'
+
 
 </script>
 <template>
-  <Quiz />
+  <GetQuiz />
 </template>

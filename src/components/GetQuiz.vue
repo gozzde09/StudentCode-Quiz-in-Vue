@@ -4,11 +4,12 @@
   const quizData = ref(null)
   const currentQuestionIndex = ref(0)
   const selectedAnswers = ref('')
+  const progress = ref(0)
 
   onMounted(async () => {
     try {
       const result = await axios.get(
-        'https://quizapi.io/api/v1/questions?apiKey=Fn3mWDcTNToCVxnnLtiH2OXe9XSGTcpUFpl3SUUq&limit=5&tags=html'
+        'https://quizapi.io/api/v1/questions?apiKey=Fn3mWDcTNToCVxnnLtiH2OXe9XSGTcpUFpl3SUUq&limit=5&tags=wordpress'
       )
       quizData.value = result.data
       console.log(quizData.value.length)
@@ -28,6 +29,7 @@
   const nextQuestion = () => {
     currentQuestionIndex.value++
     selectedAnswers.value = ''
+    progress.value += 20
   }
 
   const prevQuestion = () => {
@@ -47,11 +49,12 @@
 </script>
 
 <template>
-  <div class="overlay">
-    <!-- GODKÄNNA ATT STÄNGA QUIZ -->
-  </div>
-  <div v-if="quizData" class="container">
-    <div v-if="show" class="my-modal">
+  <!-- <div v-if="show" class="overlay">
+    GODKÄNNA ATT STÄNGA QUIZ
+     <button @click="clickk" :class="{ active: show }">Toggle Overlay</button>
+  </div> -->
+  <div v-if="quizData" class="container d-flex flex-column">
+    <div v-if="show" class="my-modal mx-auto">
       <button class="circle" @click="clickk">close</button>
     </div>
 
@@ -63,9 +66,9 @@
 
     <div class="center" style="display: flex">
       <div class="progressBar">
-        <div class="valueProgress" />
+        <div class="valueProgress" :style="{ width: progress + '%' }"></div>
       </div>
-      <p>{{ currentQuestionIndex + 1 }} /{{ quizData.length }}</p>
+      <p>{{ currentQuestionIndex + 1 }}/{{ quizData.length }}</p>
     </div>
     <h2
       class="center"
@@ -73,6 +76,7 @@
     >
       <strong> Correct Answer! </strong>
     </h2>
+
     <h2 class="center">{{ currentQuestion.question }}</h2>
 
     <div
@@ -102,8 +106,8 @@
 
     <!-- <div class="center">
       <button @click="nextQuestion" class="continue">Continue</button>
-    </div>
-  -->
+    </div> -->
+
     <div class="d-flex justify-content-around m-2">
       <BButton
         class="m-2"
@@ -133,6 +137,12 @@
   z-index: 100;
 
 } */
+
+  .overlay {
+    width: 100vw;
+    height: 100vh;
+    background-color: aquamarine;
+  }
 
   .green {
     background-color: #28a745;
@@ -167,15 +177,19 @@
     /* Hidden by default */
     position: fixed;
     /* Stay in place */
-    z-index: 1;
+    z-index: 3;
     /* Sit on top */
-    left: 50;
-    top: 50;
+    /* left: 150;
+  /* top: 150; */
     width: 400px;
     /* Full width */
-    height: 400px;
+    height: 300px;
     /* Full height */
     background-color: rgb(141, 10, 10);
+    margin: 0 auto;
+    margin-bottom: -400px;
+    top: 250;
+    left: 250;
   }
 
   .progressBar {
@@ -187,7 +201,7 @@
   }
 
   .valueProgress {
-    width: 10%;
+    /* width: 10%; */
     height: 100%;
     background-color: rgb(1, 141, 1);
 
@@ -231,8 +245,8 @@
   }
 
   .alternatives {
-    min-width: 200px;
-    max-width: 300px;
+    width: 300px;
+
     display: flex;
     align-items: center;
     margin-bottom: 10px;
@@ -271,7 +285,7 @@
 
   h2 {
     font-size: 1.4em;
-    color: rgb(32, 71, 100);
+    color: #204764;
   }
 
   .flex button {

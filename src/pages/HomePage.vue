@@ -1,8 +1,11 @@
+<script>
+import GetQuiz from '../components/GetQuiz.vue';
 
+</script>
 <template>
   <h1 class="mx-auto">Welcome!</h1>
   <p class="mx-auto"> At StudentCode you can test your programming and coding skills.</p>
-
+  <GetQuiz />
   <button class="btn mx-auto justify-content-end">Start Quiz</button>
 
 </template>

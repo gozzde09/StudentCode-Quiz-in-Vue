@@ -1,5 +1,4 @@
 <script setup>
-// import Quiz from "./components/Quiz.vue";
 import NavBar from "./components/NavBar.vue"
 </script>
 
