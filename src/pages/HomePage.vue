@@ -22,12 +22,12 @@
 </template>
 <style scoped>
 h1 {
-  color: rgb(32, 71, 100);
+  color: rgb(21, 52, 76);
   font-weight: bold;
 }
 
 button {
-  background-color: #204764 !important;
+  background-color: #163b56 !important;
   color: #ffffff !important;
   padding: 10px;
 }
