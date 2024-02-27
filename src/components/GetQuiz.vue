@@ -32,17 +32,17 @@ function isSelected(key) {
 const nextQuestion = () => {
   revealAnswer.value = true
   setTimeout(() => {
-    if (selectedAnswers.value === "") {
-      const correctAnswer = currentQuestion.value.correct_answer;
-      selectAnswer(correctAnswer);
-      selectedAnswers.value = correctAnswer;
-      console.log(correctAnswer);
-    }
+    // if (selectedAnswers.value === "") {
+    //   const correctAnswer = currentQuestion.value.correct_answer;
+    //   selectAnswer(correctAnswer);
+    //   selectedAnswers.value = correctAnswer;
+    //   console.log(correctAnswer);
+    // }
     currentQuestionIndex.value++;
     selectedAnswers.value = '';
     progress.value += 400/quizData.value.length;
     revealAnswer.value = false
-  }, 2000)
+  }, 1000)
 };
 
 const show = ref(false)
@@ -97,7 +97,7 @@ function lastLetter(word) {
         <h3>{{ answer }}</h3>
       </button>
     </div>
-    <BButton class="mx-auto px-4 my-2 next" style="max-width:75%" variant="success" @click="nextQuestion">Continue</BButton>
+    <BButton :disabled="selectedAnswers === ''" class="mx-auto px-4 my-2 next" style="max-width:75%" variant="success" @click="nextQuestion">Continue</BButton>
     <!-- <div class="d-flex justify-content-around m-2">
       <BButton class="m-2" variant="success" @click="prevQuestion" :disabled="currentQuestionIndex === 0">Previous
         Question</BButton>
