@@ -21,42 +21,29 @@ onMounted(async () => {
 const currentQuestion = computed(() => {
   return quizData.value[currentQuestionIndex.value]
 })
-// function selectAnswer(key) {
-//   this.selectedAnswers = key
-// }
-// function isSelected(key) {
-//   return this.selectedAnswers === key
-// }
+
 function selectAnswer(key) {
   selectedAnswers.value = key
 }
 function isSelected(key) {
   return selectedAnswers.value === key
 }
-// const nextQuestion = () => {
-//   currentQuestionIndex.value++
-//   selectedAnswers.value = ''
-//   progress.value += 20
-// }
+
 const nextQuestion = () => {
   revealAnswer.value = true
   setTimeout(() => {
-  if (selectedAnswers.value === "") {
-    const correctAnswer = currentQuestion.value.correct_answer;
-    selectAnswer(correctAnswer);
-    selectedAnswers.value = correctAnswer;
-    console.log(correctAnswer);
-  }
-  currentQuestionIndex.value++;
-  selectedAnswers.value = '';
-  progress.value += 20;
-  revealAnswer.value = false
-}, 2000)
+    if (selectedAnswers.value === "") {
+      const correctAnswer = currentQuestion.value.correct_answer;
+      selectAnswer(correctAnswer);
+      selectedAnswers.value = correctAnswer;
+      console.log(correctAnswer);
+    }
+    currentQuestionIndex.value++;
+    selectedAnswers.value = '';
+    progress.value += 400/quizData.value.length;
+    revealAnswer.value = false
+  }, 2000)
 };
-// const prevQuestion = () => {
-//   currentQuestionIndex.value--
-//   selectedAnswers.value = ''
-// }
 
 const show = ref(false)
 function clickk() {
@@ -80,24 +67,24 @@ function lastLetter(word) {
     </div>
 
     <div class="flex">
-      <h1 class="mx-auto">{{ currentQuestion.tags[0].name }}</h1>
+      <h2 class="mx-auto">Category: {{ currentQuestion.tags[0].name }}</h2>
       <button @click="clickk" style="background-color: white">X</button>
       <!--modal-->
     </div>
 
-    <div class="center" style="display: flex">
-      <div class="progressBar">
-        <div class="valueProgress" :style="{ width: progress + '%' }" />
+    <div class="mx-auto d-flex flex-column">
+      <div class="progress">
+        <div class="progress-bar bg-success" role="progressbar" :style="{ width: progress + 'px' }" aria-valuenow="25"
+          aria-valuemin="0" aria-valuemax="100">
+          {{ currentQuestionIndex }} /{{ quizData.length }}</div>
       </div>
-      <p>{{ currentQuestionIndex + 1 }}/{{ quizData.length }}</p>
     </div>
     <!-- <h2 class="center" v-if="selectedAnswers === currentQuestion.correct_answer">
       <strong> Correct Answer! </strong>
     </h2> -->
-    <h2 class="center">{{ currentQuestion.question }}</h2>
-
-    <div v-for="(answer, key) in currentQuestion.answers" :key="key" class="center" style="margin-top: 40px">
-      <button v-if="answer" class="alternatives" :class="{
+    <h2 class="mx-auto my-3" style="max-width:60%">{{ currentQuestion.question }}</h2>
+    <div v-for="(answer, key) in currentQuestion.answers" :key="key" class="d-flex mt-3">
+      <button v-if="answer" class="mx-auto alternatives" :class="{
         green:
           revealAnswer && isSelected(key) &&
           selectedAnswers === currentQuestion.correct_answer,
@@ -107,17 +94,17 @@ function lastLetter(word) {
         yellow: revealAnswer === false && isSelected(key),
       }" @click="selectAnswer(key)" :active="isSelected(key)">
         <p class="circle">{{ lastLetter(key) }}</p>
-        <h3>{{ answer }}></h3>
+        <h3>{{ answer }}</h3>
       </button>
     </div>
-    <BButton class="mx-auto px-4" style="max-width:75%" variant="success" @click="nextQuestion">Continue</BButton>
-    <div class="d-flex justify-content-around m-2">
-      <!-- <BButton class="m-2" variant="success" @click="prevQuestion" :disabled="currentQuestionIndex === 0">Previous
+    <BButton class="mx-auto px-4 my-2 next" style="max-width:75%" variant="success" @click="nextQuestion">Continue</BButton>
+    <!-- <div class="d-flex justify-content-around m-2">
+      <BButton class="m-2" variant="success" @click="prevQuestion" :disabled="currentQuestionIndex === 0">Previous
         Question</BButton>
       <BButton class="m-2" variant="success" @click="nextQuestion"
         :disabled="currentQuestionIndex === quizData.length - 1">
-        Next Question</BButton> -->
-    </div>
+        Next Question</BButton>
+    </div> -->
   </div>
 </template>
 
@@ -144,9 +131,11 @@ function lastLetter(word) {
 .red {
   background-color: #dc3545;
 }
+
 .yellow {
   background-color: #caac29;
 }
+
 .correct {
   background-color: #28a745;
   /* border-color: rgb(1, 88, 1);
@@ -159,13 +148,6 @@ function lastLetter(word) {
   border: 2px solid rgb(102, 0, 0);
 }
 
-.center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
 
 .my-modal {
   /* display: none; */
@@ -187,22 +169,13 @@ function lastLetter(word) {
   left: 250;
 }
 
-.progressBar {
-  width: 350px;
+ .progress {
+  width:300px;
   height: 30px;
-  border: 2px solid #28a745;
   border-radius: 10px;
   overflow: hidden;
 }
 
-.valueProgress {
-  /* width: 10%; */
-  height: 100%;
-  background-color: rgb(1, 141, 1);
-
-  /* background: linear-gradient(to right, #e5405e 0%, #ffdb3a 45%, #3fffa2 100%); */
-  /* border-radius: 7px; */
-}
 
 .circle {
   /* border: 1px solid black; */
@@ -232,21 +205,15 @@ function lastLetter(word) {
 
 .container {
   margin: 0 auto;
-  min-height: 700px;
-  min-width: 370px;
   border-radius: 10px;
   position: relative;
-  background-color:#F5DCB4;
+  background-color: #f1dfc1;
 }
 
 .alternatives {
   width: 300px;
-
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 20px;
   border-radius: 20px;
   box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
   /* Vertically center the content */
@@ -295,5 +262,10 @@ h2 {
   font-size: 16px;
   font-weight: semi-bold;
 }
-
+.next {
+  background-color: #204764 !important;
+  color: #ffffff !important;
+  padding: 10px;
+  margin-bottom:1rem !important;
+}
 </style>

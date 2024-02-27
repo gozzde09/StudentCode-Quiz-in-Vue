@@ -1,28 +1,29 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container-xxl">
-         <!-- toggle-knapp för mobile-view -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
-          aria-controls="main-nav" aria-expanded="false" aria-label="Toggle Navigation">
-          <span class="navbar-toggler-icon" />
-        </button>
-      <!-- navbarlänkar -->
-      <div class="collapse navbar-collapse justify-content-lg-center align-center" id="main-nav">
-        <ul class="navbar-nav">
-          <li class="nav-item" style="max-width: 60%">
-            <router-link to="/About" class="nav-link" :class="{ active: $route.path === '/About' }">About Us</router-link>
+  <nav class="row d-flex navbar  navbar-light">
+    <div class="d-flex  flex-wrap  mx-auto">
+        <ul class=" d-flex flex-wrap mx-auto ">
+          <li class="nav-item">
+            <router-link
+              to="/About"
+              class="nav-link"
+              >About Us</router-link
+            >
             <p>
-              We at StudentCode are dedicated to offering engaging and
-              entertaining quiz for students, which takes you on a journey through
-              the world of code. Discover our assortment of quizzes to deepen your
-              knowledge and have fun at the same time!
+              Read about our team!
+              <!-- We at StudentCode are dedicated to offering engaging and
+              entertaining quiz for students, which takes you on a journey
+              through the world of code. Discover our assortment of quizzes to
+              deepen your knowledge and have fun at the same time! -->
             </p>
           </li>
           <li class="nav-item">
             <router-link to="#" class="nav-link"> Contact </router-link>
-           <p>quiz@studentcode.com <br> +46 324 854 93</p>
-              <a href="quiz@studentcode.com" />
-              <a href="tel:+46 324 854 93" />.
+            <p>
+              quiz@studentcode.com <br />
+              +46 324 854 93
+            </p>
+            <a href="quiz@studentcode.com" />
+            <a href="tel:+46 324 854 93" />
           </li>
           <!-- <li class="nav-item d-flex flex-column">
             <router-link to="/QuizPage" class="nav-link" :class="{ active: $route.path === '/QuizPage' }">
@@ -35,29 +36,31 @@
 
           <li class="nav-item">
             <router-link to="#" class="nav-link"> Github </router-link>
-            <p>https://github.com/</p>
+            <a href="https://github.com/aliciaosv/StudentCode" class="link">Länk till projektet</a>
           </li>
         </ul>
       </div>
-    </div>
+
   </nav>
 </template>
 
 <style scoped>
-.nav-link {
-  height: 40px;
-  font-size: larger;
-  font-weight: bolder;
-}
+  .nav-link {
+    height: 40px;
+    font-size: larger;
+    font-weight: bolder;
+  }
 
-.nav-item {
-  margin: 0 1rem;
-}
+  .nav-item {
+    margin: 0 1rem;
+  }
+  .link{
+    color:#5fb4f6;
+   color:#28a745;
+  }
+  li{
+    list-style:none
+  }
 
-.active {
-  background-color: #F5DCB4;
-  color: black;
-  border-radius: 2px;
-  transition: background-color 0.3s ease;
-}
+
 </style>

@@ -6,13 +6,13 @@ import FooterPart from "./components/FooterPart.vue"
 
 <template>
   <header class="d-flex">
-    <div class="d-flex logo"> <img src="./assets/quiz.svg" alt="logo" id="logo" /> </div>
+    <!-- <div class="d-flex logo"> <img src="./assets/quiz.svg" alt="logo" id="logo" /> </div> -->
     <div class="d-flex flex-column justify-content-center align-items-center mx-auto ">
-      <h1 class="justify-content-center" style="color:#28a745;">StudentCode</h1>
-      <h2 class="mx-auto" style="color:#204764;">Don't cheat - Repeat</h2>
+      <h1 class="my-2 justify-content-center" style="color:#28a745;">StudentCode</h1>
+      <h2 class="mx-auto" style="color:#204764; font-style:italic">Don't cheat - Repeat!</h2>
     </div>
     <!-- <div class="logo" style="width:150px; color:white">.</div> -->
-    <div class="d-flex logo"> <img src="./assets/quiz.svg" alt="logo" id="logo" /> </div>
+    <!-- <div class="d-flex logo"> <img src="./assets/quiz.svg" alt="logo" id="logo" /> </div> -->
   </header>
   <NavBar />
 
@@ -34,8 +34,8 @@ import FooterPart from "./components/FooterPart.vue"
 .logo {
   margin: 1.5rem;
 }
-
-footer {
-  font-size: smaller;
+h1{
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bold;
 }
 </style>
