@@ -74,7 +74,7 @@
   padding: 10px;
 }
 h4{
-  color: #092235;
+  color: #153349;
   margin-top: 2rem;
 }
 </style>

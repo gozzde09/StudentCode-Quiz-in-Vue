@@ -56,7 +56,7 @@ export default {
 }
 
 h1, h3 {
-  color: #204764;
+  color: #204560;
   margin-top: 2rem;
 }
 
