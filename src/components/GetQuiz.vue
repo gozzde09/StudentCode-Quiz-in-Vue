@@ -25,6 +25,13 @@ function isSelected(key) {
   return this.selectedAnswers === key;
 }
 const nextQuestion = () => {
+
+
+  // currentQuestion.answers.forEach((answer, key) => {
+  //   const isCorrect = isSelected(key) && selectedAnswers === currentQuestion.correct_answer
+  //   answer.isCorrect = isCorrect
+  // });
+
   currentQuestionIndex.value++;
   selectedAnswers.value = "";
   progress.value += 20
@@ -74,16 +81,19 @@ function lastLetter(word) {
 
     <h2 class="center">{{ currentQuestion.question }}</h2>
 
-    <div v-for="(  answer, key  ) in    currentQuestion.answers   " :key="key" class="center" style="margin-top: 40px;">
+    <div v-for="(answer, key) in currentQuestion.answers" :key="key" class="center" style="margin-top: 40px;">
       <button v-if="answer" class="alternatives"
+
         :class="{ 'green': isSelected(key) && selectedAnswers === currentQuestion.correct_answer, 'red': isSelected(key) && selectedAnswers !== currentQuestion.correct_answer }"
         @click="selectAnswer(key)" :active="isSelected(key)">
-        <p class="circle" >{{ lastLetter(key) }}</p>
-        <h3>{{ answer }}></h3>
+        <p class="circle">{{ lastLetter(key) }}</p>
+        <h3>{{ answer }}</h3>
       </button>
     </div>
 
     <!-- <div class="center">
+      :class="{ 'green': isSelected(key) && selectedAnswers === currentQuestion.correct_answer, 'red': isSelected(key) && selectedAnswers !== currentQuestion.correct_answer }"
+      :class="{ 'green': answer.isCorrect, 'red': !answer.isCorrect }"
       <button @click="nextQuestion" class="continue">Continue</button>
     </div> -->
 

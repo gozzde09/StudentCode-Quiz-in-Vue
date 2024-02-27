@@ -1,10 +1,11 @@
 <script setup>
 import { useRoute } from 'vue-router'
-
+import GetQuiz from '../components/GetQuiz.vue';
 const route = useRoute()
 </script>
 
 <template>
+  <GetQuiz/>
   <div class="cards">
     <div class="row justify-content-center">
       <div class="col-md-6">
