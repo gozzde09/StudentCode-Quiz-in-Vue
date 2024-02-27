@@ -8,21 +8,9 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     BButton: typeof import('bootstrap-vue-next')['BButton']
-    BCollapse: typeof import('bootstrap-vue-next')['BCollapse']
-    BDropdownItem: typeof import('bootstrap-vue-next')['BDropdownItem']
-    BNav: typeof import('bootstrap-vue-next')['BNav']
-    BNavbarNav: typeof import('bootstrap-vue-next')['BNavbarNav']
-    BNavbarToggle: typeof import('bootstrap-vue-next')['BNavbarToggle']
-    BNavItem: typeof import('bootstrap-vue-next')['BNavItem']
-    BNavItemDropdown: typeof import('bootstrap-vue-next')['BNavItemDropdown']
-    copy: typeof import('./src/components/Quiz copy.vue')['default']
-    Footer: typeof import('./src/components/Footer.vue')['default']
-    Home: typeof import('./src/components/Home.vue')['default']
-    JS: typeof import('./src/components/JS.vue')['default']
-    MainPage: typeof import('./src/components/MainPage.vue')['default']
+    FooterPart: typeof import('./src/components/FooterPart.vue')['default']
+    GetQuiz: typeof import('./src/components/GetQuiz.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
-    Prov: typeof import('./src/components/Prov.vue')['default']
-    Quiz: typeof import('./src/components/Quiz.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

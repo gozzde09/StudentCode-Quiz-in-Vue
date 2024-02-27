@@ -2,44 +2,47 @@
 import { ref, onMounted, computed } from 'vue'
 import axios from 'axios'
 const quizData = ref(null)
-const currentQuestionIndex = ref(0);
-const selectedAnswers = ref("");
+const currentQuestionIndex = ref(0)
+const selectedAnswers = ref('')
 const progress = ref(0)
+const revealAnswer = ref(false)
 
 onMounted(async () => {
   try {
-    const result = await axios.get('https://quizapi.io/api/v1/questions?apiKey=Fn3mWDcTNToCVxnnLtiH2OXe9XSGTcpUFpl3SUUq&limit=5&tags=html')
+    const result = await axios.get(
+      'https://quizapi.io/api/v1/questions?apiKey=Fn3mWDcTNToCVxnnLtiH2OXe9XSGTcpUFpl3SUUq&limit=5&tags=html'
+    )
     quizData.value = result.data
-    console.log((quizData.value.length));
+    console.log(quizData.value.length)
   } catch (error) {
     console.log(error)
   }
 })
 const currentQuestion = computed(() => {
-  return quizData.value[currentQuestionIndex.value];
-});
+  return quizData.value[currentQuestionIndex.value]
+})
+
 function selectAnswer(key) {
-  this.selectedAnswers = key;
-};
-function isSelected(key) {
-  return this.selectedAnswers === key;
+  selectedAnswers.value = key
 }
+function isSelected(key) {
+  return selectedAnswers.value === key
+}
+
 const nextQuestion = () => {
-
-
-  // currentQuestion.answers.forEach((answer, key) => {
-  //   const isCorrect = isSelected(key) && selectedAnswers === currentQuestion.correct_answer
-  //   answer.isCorrect = isCorrect
-  // });
-
-  currentQuestionIndex.value++;
-  selectedAnswers.value = "";
-  progress.value += 20
-};
-
-const prevQuestion = () => {
-  currentQuestionIndex.value--;
-  selectedAnswers.value = "";
+  revealAnswer.value = true
+  setTimeout(() => {
+    if (selectedAnswers.value === "") {
+      const correctAnswer = currentQuestion.value.correct_answer;
+      selectAnswer(correctAnswer);
+      selectedAnswers.value = correctAnswer;
+      console.log(correctAnswer);
+    }
+    currentQuestionIndex.value++;
+    selectedAnswers.value = '';
+    progress.value += 400/quizData.value.length;
+    revealAnswer.value = false
+  }, 2000)
 };
 
 const show = ref(false)
@@ -48,8 +51,8 @@ function clickk() {
 }
 
 function lastLetter(word) {
-  let letter = word.slice(-1).toUpperCase();
-  return letter;
+  let letter = word.slice(-1).toUpperCase()
+  return letter
 }
 </script>
 
@@ -64,46 +67,44 @@ function lastLetter(word) {
     </div>
 
     <div class="flex">
-      <h1 class="mx-auto"> {{ currentQuestion.tags[0].name }}</h1>
-      <button @click="clickk" style="background-color:white">X</button> <!--modal-->
+      <h2 class="mx-auto">Category: {{ currentQuestion.tags[0].name }}</h2>
+      <button @click="clickk" style="background-color: white">X</button>
+      <!--modal-->
     </div>
 
-    <div class="center" style="display: flex;">
-      <div class="progressBar">
-        <div class="valueProgress" :style="{ width: progress + '%' }"></div>
+    <div class="mx-auto d-flex flex-column">
+      <div class="progress">
+        <div class="progress-bar bg-success" role="progressbar" :style="{ width: progress + 'px' }" aria-valuenow="25"
+          aria-valuemin="0" aria-valuemax="100">
+          {{ currentQuestionIndex }} /{{ quizData.length }}</div>
       </div>
-      <p>{{ currentQuestionIndex + 1 }}/{{ quizData.length }}</p>
-
     </div>
-    <h2 class="center" v-if="selectedAnswers === currentQuestion.correct_answer">
+    <!-- <h2 class="center" v-if="selectedAnswers === currentQuestion.correct_answer">
       <strong> Correct Answer! </strong>
-    </h2>
-
-    <h2 class="center">{{ currentQuestion.question }}</h2>
-
-    <div v-for="(answer, key) in currentQuestion.answers" :key="key" class="center" style="margin-top: 40px;">
-      <button v-if="answer" class="alternatives"
-
-        :class="{ 'green': isSelected(key) && selectedAnswers === currentQuestion.correct_answer, 'red': isSelected(key) && selectedAnswers !== currentQuestion.correct_answer }"
-        @click="selectAnswer(key)" :active="isSelected(key)">
+    </h2> -->
+    <h2 class="mx-auto my-3" style="max-width:60%">{{ currentQuestion.question }}</h2>
+    <div v-for="(answer, key) in currentQuestion.answers" :key="key" class="d-flex mt-3">
+      <button v-if="answer" class="mx-auto alternatives" :class="{
+        green:
+          revealAnswer && isSelected(key) &&
+          selectedAnswers === currentQuestion.correct_answer,
+        red:
+          revealAnswer && isSelected(key) &&
+          selectedAnswers !== currentQuestion.correct_answer,
+        yellow: revealAnswer === false && isSelected(key),
+      }" @click="selectAnswer(key)" :active="isSelected(key)">
         <p class="circle">{{ lastLetter(key) }}</p>
         <h3>{{ answer }}</h3>
       </button>
     </div>
-
-    <!-- <div class="center">
-      :class="{ 'green': isSelected(key) && selectedAnswers === currentQuestion.correct_answer, 'red': isSelected(key) && selectedAnswers !== currentQuestion.correct_answer }"
-      :class="{ 'green': answer.isCorrect, 'red': !answer.isCorrect }"
-      <button @click="nextQuestion" class="continue">Continue</button>
-    </div> -->
-
-    <div class="d-flex justify-content-around m-2">
+    <BButton class="mx-auto px-4 my-2 next" style="max-width:75%" variant="success" @click="nextQuestion">Continue</BButton>
+    <!-- <div class="d-flex justify-content-around m-2">
       <BButton class="m-2" variant="success" @click="prevQuestion" :disabled="currentQuestionIndex === 0">Previous
         Question</BButton>
       <BButton class="m-2" variant="success" @click="nextQuestion"
         :disabled="currentQuestionIndex === quizData.length - 1">
         Next Question</BButton>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -131,25 +132,22 @@ function lastLetter(word) {
   background-color: #dc3545;
 }
 
+.yellow {
+  background-color: #caac29;
+}
+
 .correct {
   background-color: #28a745;
   /* border-color: rgb(1, 88, 1);
   border-width: 4px; */
-  border: 2px solid rgb(1, 88, 1)
+  border: 2px solid rgb(1, 88, 1);
 }
 
 .wrong {
   background-color: #dc3545;
-  border: 2px solid rgb(102, 0, 0)
+  border: 2px solid rgb(102, 0, 0);
 }
 
-.center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
 
 .my-modal {
   /* display: none; */
@@ -171,22 +169,13 @@ function lastLetter(word) {
   left: 250;
 }
 
-.progressBar {
-  width: 350px;
+ .progress {
+  width:300px;
   height: 30px;
-  border: 2px solid #28a745;
   border-radius: 10px;
   overflow: hidden;
 }
 
-.valueProgress {
-  /* width: 10%; */
-  height: 100%;
-  background-color: rgb(1, 141, 1);
-
-  /* background: linear-gradient(to right, #e5405e 0%, #ffdb3a 45%, #3fffa2 100%); */
-  /* border-radius: 7px; */
-}
 
 .circle {
   /* border: 1px solid black; */
@@ -211,27 +200,20 @@ function lastLetter(word) {
   font-weight: semi-bold;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
-  background-color:#EDE8E3;
+  background-color: #ede8e3;
 }
 
 .container {
   margin: 0 auto;
-  min-height: 700px;
-  min-width: 370px;
   border-radius: 10px;
   position: relative;
-background-color: #eaded2;
-
+  background-color: #f1dfc1;
 }
 
 .alternatives {
   width: 300px;
-
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 20px;
   border-radius: 20px;
   box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
   /* Vertically center the content */
@@ -256,7 +238,6 @@ background-color: #eaded2;
   align-items: center;
   padding-top: 10px;
   padding-bottom: 10px;
-
 }
 
 h1 {
@@ -266,7 +247,7 @@ h1 {
 
 h2 {
   font-size: 1.4em;
-  color:#204764
+  color: #204764;
 }
 
 .flex button {
@@ -281,20 +262,10 @@ h2 {
   font-size: 16px;
   font-weight: semi-bold;
 }
-
-.continue {
-  width: 200px;
-  position: absolute;
-  bottom: 10px;
-  border-radius: 10px;
-  background-color: rgb(54, 54, 222);
-  color: white;
-  padding: 10px 0;
+.next {
+  background-color: #204764 !important;
+  color: #ffffff !important;
+  padding: 10px;
+  margin-bottom:1rem !important;
 }
-
-/* @media only screen and (min-width: 800px) {
-  .continue {
-    display: none;
-  }
-} */
 </style>
