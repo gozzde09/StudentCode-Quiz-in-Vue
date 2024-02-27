@@ -1,7 +1,3 @@
-<script>
-// import GetQuiz from '../components/GetQuiz.vue';
-
-</script>
 <template>
   <div class="d-flex flex-column mx-auto justify-content-evenly">
     <h1 class="mx-auto my-3">Welcome!</h1>

@@ -59,7 +59,7 @@
     setTimeout(() => {
       currentQuestionIndex.value++
       selectedAnswer.value = ''
-      progress.value += 300 / quizData.value.length
+      progress.value += 400 / quizData.value.length
       revealAnswer.value = false
     }, 3000)
     if (currentQuestionIndex.value === quizData.value.length - 1) {
@@ -67,6 +67,7 @@
       buttonText.value = 'DONE'
     }
   }
+
   //Stänga quiz
   const show = ref(false)
   function clickk() {
@@ -84,8 +85,12 @@
     </div>
 
     <div class="flex">
-      <h1 class="mx-auto">Category: {{ currentQuestion.tags[0].name }}</h1>
-      <button @click="clickk" style="background-color: white">X</button>
+      <h2 class="mx-auto my-2" style="color: #204764; font-weight: bolder">
+        Category: {{ currentQuestion.tags[0].name }}
+      </h2>
+      <button class="circle" @click="clickk" style="background-color: white">
+        X
+      </button>
       <!--Öppnar modal-->
     </div>
 
@@ -104,7 +109,7 @@
         </div>
       </div>
     </div>
-<!-- FRÅGA -->
+    <!-- FRÅGA -->
     <h2 class="mx-auto my-3" style="max-width: 60%">
       {{ currentQuestionIndex + 1 }}. {{ currentQuestion.question }}
     </h2>
@@ -112,7 +117,7 @@
     <div
       v-for="(answer, key) in currentQuestion.answers"
       :key="key"
-      class="d-flex mt-3"
+      class="d-flex mt-3 flex-wrap"
     >
       <!-- BUTTON BLIR INTE RED!!!. Fixa färg till reveal i JS? -->
       <button
@@ -120,14 +125,15 @@
         class="mx-auto alternatives"
         :class="{
           reveal: !revealAnswer && isSelected(key),
-          correct: revealAnswer && isSelected(key) && getCorrectAnswer(),
-          wrong: revealAnswer && isSelected(key) && !getCorrectAnswer()
+          wrong:
+            revealAnswer && isSelected(key) && getCorrectAnswer() === false,
+          correct: revealAnswer && isSelected(key) && getCorrectAnswer()
         }"
         @click="selectAnswer(key)"
         :active="isSelected(key)"
       >
         <p class="circle">{{ lastLetter(key) }}</p>
-        <h3>{{ answer }}</h3>
+        <p class="d-flex">{{ answer }}</p>
       </button>
     </div>
     <BButton
@@ -143,20 +149,25 @@
 </template>
 <style scoped>
   .green {
-    background-color:#198754;
+    background-color: #198754;
   }
-.correct {
+
+  .correct {
     border: 6px solid #198754;
   }
+
   .red {
     background-color: #dc3545;
   }
- .wrong {
+
+  .wrong {
     border: 6px solid #dc3545;
   }
+
   .reveal {
     background-color: #caac29;
   }
+
   .my-modal {
     z-index: 3;
     width: 400px;
@@ -166,7 +177,7 @@
   }
 
   .progress {
-    width: 300px;
+    width: 400px;
     height: 30px;
     border-radius: 10px;
     overflow: hidden;
@@ -178,12 +189,18 @@
     width: 35px;
     cursor: pointer;
     border-radius: 100%;
-    color: black;
-    font-size: 16px;
     font-weight: semi-bold;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     background-color: #ede8e3;
+  }
+
+  p {
+    padding: 5px;
+    cursor: pointer;
+    font-weight: semi-bold;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
   .container {
@@ -192,18 +209,13 @@
     position: relative;
     background-color: #f1dfc1;
   }
+
   .alternatives {
     width: 300px;
     display: flex;
     align-items: center;
     border-radius: 20px;
-    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
-  }
-
-  .alternatives h3 {
-    margin: 0;
-    font-size: 1rem;
-    /* Remove default margin for <h3> */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   }
 
   .alternatives .circle {
@@ -218,25 +230,11 @@
     padding-top: 10px;
     padding-bottom: 10px;
   }
-  h1 {
-    margin: 0;
-    padding: 0;
-  }
+
   h2 {
     font-size: 1.4em;
   }
 
-  .flex button {
-    border: 1px solid black;
-    padding: 5px;
-    width: 35px;
-    cursor: pointer;
-    background-color: rgb(213, 213, 213);
-    border-radius: 100%;
-    color: black;
-    font-size: 16px;
-    font-weight: semi-bold;
-  }
   .nextButton {
     background-color: #204764 !important;
     color: #ffffff !important;

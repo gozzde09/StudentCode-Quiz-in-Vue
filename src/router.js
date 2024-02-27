@@ -2,9 +2,6 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import HomePage from "./pages/HomePage.vue";
 import StartQuiz from './pages/StartQuiz.vue'
 import QuizPage from "./pages/QuizPage.vue"
-import HtmlPage from './pages/HtmlPage.vue'
-import JavascriptPage from './pages/JavascriptPage.vue'
-import PhpPage from './pages/PhpPage.vue'
 import MyResults from './pages/MyResults.vue'
 import GetQuiz from './components/GetQuiz.vue'
 import AboutPage from './pages/AboutPage.vue'
@@ -31,21 +28,6 @@ export default createRouter({
     {
       component: GetQuiz,
       path: '/GetQuiz'
-    },
-    {
-      component: HtmlPage,
-      name: 'Html-quiz',
-      path: '/HtmlPage'
-    },
-    {
-      component: PhpPage,
-      name: 'Php-quiz',
-      path: '/PhpPage'
-    },
-    {
-      component: JavascriptPage,
-      name: 'JS-quiz',
-      path: '/JavascriptPage'
     },
     {
       component: MyResults,
