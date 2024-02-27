@@ -40,7 +40,7 @@ const nextQuestion = () => {
     }
     currentQuestionIndex.value++;
     selectedAnswers.value = '';
-    progress.value += 20;
+    progress.value += 400/quizData.value.length;
     revealAnswer.value = false
   }, 2000)
 };
@@ -67,14 +67,14 @@ function lastLetter(word) {
     </div>
 
     <div class="flex">
-      <h1 class="mx-auto">Category: {{ currentQuestion.tags[0].name }}</h1>
+      <h2 class="mx-auto">Category: {{ currentQuestion.tags[0].name }}</h2>
       <button @click="clickk" style="background-color: white">X</button>
       <!--modal-->
     </div>
 
     <div class="mx-auto d-flex flex-column">
       <div class="progress">
-        <div class="progress-bar bg-success" role="progressbar" :style="{ width: progress + '%' }" aria-valuenow="25"
+        <div class="progress-bar bg-success" role="progressbar" :style="{ width: progress + 'px' }" aria-valuenow="25"
           aria-valuemin="0" aria-valuemax="100">
           {{ currentQuestionIndex }} /{{ quizData.length }}</div>
       </div>
