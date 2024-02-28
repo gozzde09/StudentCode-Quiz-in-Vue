@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import ErrorPage from './pages/ErrorPage.vue'
 import HomePage from './pages/HomePage.vue'
 import StartQuiz from './pages/StartQuiz.vue'
 import QuizPage from './pages/QuizPage.vue'
@@ -12,6 +13,10 @@ export default createRouter({
     {
       component: HomePage,
       path: '/'
+    },
+    {
+      component: ErrorPage,
+      path: '/error'
     },
     {
       component: QuizPage,
@@ -35,7 +40,7 @@ export default createRouter({
     },
     {
       component: GetQuiz,
-       path: '/:category/:level/:amount'
+      path: '/:category/:level/:amount'
       // path: '/category/:category/level/:difficulty/amount/:amount'
     }
   ]

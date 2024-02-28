@@ -1,6 +1,7 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
+import axios from 'axios';
 
 const router = useRouter()
 
@@ -27,13 +28,27 @@ const amounts = [
   { id: 'q20', value: '20', label: '20' }
 ]
 
-const startQuiz = () => {
+const startQuiz = async () => {
   if (!category.value || !difficulty.value || !questionAmount.value) {
     alert('Please select topic, difficulty, and question amount.')
     return
   }
-  router.push(`/${category.value}/${difficulty.value}/${questionAmount.value}`)
+
+  try {
+    const response = await axios.get(`https://quizapi.io/api/v1/questions?apiKey=Fn3mWDcTNToCVxnnLtiH2OXe9XSGTcpUFpl3SUUq&limit=${questionAmount.value}&tags=${category.value}&difficulty=${difficulty.value}`)
+    console.log(response.data)
+  } catch (error) {
+    console.error('There was an error lol!', error)
+    router.push('/error')
+  }
 }
+// const startQuiz = () => {
+//   if (!category.value || !difficulty.value || !questionAmount.value) {
+//     alert('Please select topic, difficulty, and question amount.')
+//     return
+//   }
+//   router.push(`/${category.value}/${difficulty.value}/${questionAmount.value}`)
+// }
 </script>
 
 <template>
