@@ -1,9 +1,11 @@
 <script setup>
-import { ref,computed } from 'vue'
+import { ref, computed } from 'vue'
 import axios from 'axios'
-
+import { useRouter } from 'vue-router'
+const router = useRouter()
 import { useRoute } from 'vue-router'
 const route = useRoute()
+
 const category = ref(route.params.category)
 const level = ref(route.params.level)
 const amount = ref(route.params.amount)
@@ -65,6 +67,7 @@ function lastLetter(word) {
 //Nästa fråga med progress bar
 const nextQuestion = () => {
   revealAnswer.value = true
+
   if (selectedAnswer.value !== getCorrectAnswer()) {
     selectedAnswer.value = getCorrectAnswer()
     // console.log(`Correct answer : ${getCorrectAnswer()}`)
@@ -74,7 +77,7 @@ const nextQuestion = () => {
     selectedAnswer.value = ''
     progress.value += 400 / quizData.value.length
     revealAnswer.value = false
-  }, 3000)
+  }, 2000)
   if (currentQuestionIndex.value === quizData.value.length - 1) {
     buttonDisabled.value = true
     buttonText.value = 'DONE'
@@ -83,41 +86,53 @@ const nextQuestion = () => {
 
 //Stänga quiz
 const show = ref(false)
-function clickk() {
+function close() {
   show.value = !show.value
+}
+const goBack = () => {
+  router.push('/QuizStart')
 }
 </script>
 
 <template>
-  <!-- "ROUTE.query" + {{route.query}};
-  "query" + {{query}}; -->
+  <!-- MODAL- PLACERA DEN PÅ FRÅGORNA? ? Button färger? Skriv gärna mer innehåll i modal :) -->
+  <div v-if="show" class="my-modal mx-auto d-flex flex-column flex-wrap" style="max-width: 40%">
+    <div class="flex">
+      <h2 class="mx-auto my-2" style="color: #204764; font-weight: bolder">Are you sure?</h2>
+      <button class="circle m-2" @click="close" style="background-color: white">
+        X
+      </button>
+    </div>
+    <div class="flex flex-wrap justify-content-between">
+      <button type="button" class="btn backBtn" @click="close">
+        Back to the quiz!
+      </button>
+      <button type="button" class="btn closeBtn" @click="goBack">
+        Close this quiz!
+      </button>
+    </div>
+  </div>
   <div v-if="quizData && currentQuestion" class="container d-flex flex-column">
     <!-- GODKÄNNA ATT STÄNGA QUIZ-->
-    <!-- RESPONSIV? -->
-    <div v-if="show" class="my-modal mx-auto flex">
-      <h2 class="mx-auto">Are you sure?</h2>
-      <button class="circle" @click="clickk">X</button>
-    </div>
-
+    <!-- RESPONSIVET?? -->
     <div class="flex">
       <h2 class="mx-auto my-2" style="color: #204764; font-weight: bolder">
         Category: {{ currentQuestion.tags[0].name }}
+        <span class="level mx-2" style="display:inline-block" :class="{
+          medium: currentQuestion.difficulty === 'Medium',
+          hard: currentQuestion.difficulty === 'Hard',
+          easy: currentQuestion.difficulty === 'Easy'
+        }">.</span>
       </h2>
-      <h2 class="mx-auto my-2" style="color: #204764; font-weight: bolder" >
+      <!-- <h2 class="mx-auto my-2" style="color: #204764; font-weight: bolder" >
         Difficulty: {{ currentQuestion.difficulty }}
-      </h2>
-      <!-- VI KAN TILLÄGGA FÄRG FÖR LEVEL -->
-  <!-- :class="{
-          reveal: currentQuestion.difficulty ==='Medium',
-          red: currentQuestion.difficulty === 'Hard',
-          green: currentQuestion.difficulty==='Easy' }" -->
-
-      <button class="circle" @click="clickk" style="background-color: white">
+      </h2> -->
+      <!-- VI KAN TILLÄGGA FÄRG FÖR LEVEL PÅ BÄTTRE SÄTT -->
+      <button class="circle" @click="close" style="background-color: white">
         X
       </button>
       <!--Öppnar modal-->
     </div>
-
     <!-- ProgressBar -->
     <div class="mx-auto d-flex flex-column">
       <div class="progress">
@@ -136,13 +151,13 @@ function clickk() {
       <!-- BUTTON BLIR INTE RED!!!. Fixa färg till reveal i JS? -->
       <button v-if="answer" class="mx-auto alternatives" :class="{
         reveal: !revealAnswer && isSelected(key),
-        wrong:
-          revealAnswer && isSelected(key) && getCorrectAnswer() === false,
-        correct: revealAnswer && isSelected(key) && getCorrectAnswer()
+        correct: revealAnswer && isSelected(key) && getCorrectAnswer(),
+        wrong: revealAnswer && isSelected(key) && !getCorrectAnswer(),
       }" @click="selectAnswer(key)" :active="isSelected(key)">
         <p class="circle">{{ lastLetter(key) }}</p>
         <p class="d-flex">{{ answer }}</p>
       </button>
+
     </div>
     <BButton class="mx-auto px-4 my-2 nextButton" style="max-width: 75%" variant="success" @click="nextQuestion"
       :disabled="buttonDisabled">
@@ -155,6 +170,11 @@ function clickk() {
   background-color: #198754;
 }
 
+.easy {
+  background-color: #198754;
+  color: #198754;
+}
+
 .correct {
   border: 6px solid #198754;
 }
@@ -163,20 +183,32 @@ function clickk() {
   background-color: #dc3545;
 }
 
+.hard {
+  background-color: #dc3545;
+  color: #dc3545;
+}
+
 .wrong {
   border: 6px solid #dc3545;
 }
 
 .reveal {
-  background-color: #caac29;
+  background-color: #F5E76C;
 }
+
+.medium {
+  background-color: #F5E76C;
+  color: #F5E76C;
+}
+
 
 .my-modal {
   z-index: 3;
-  width: 400px;
-  height: 300px;
-  background-color: #caac29;
-  margin-bottom: -400px;
+  width: 600px;
+  background-color: #f5e8d2;
+  margin: 1rem auto;
+  border-radius: 20px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .progress {
@@ -192,10 +224,14 @@ function clickk() {
   width: 35px;
   cursor: pointer;
   border-radius: 100%;
-  font-weight: semi-bold;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
-  background-color: #ede8e3;
+  background-color: #f5e8d2;
+}
+
+.level {
+  border-radius: 100%;
+  width: 25px;
 }
 
 p {
@@ -207,10 +243,12 @@ p {
 }
 
 .container {
-  margin: 0 auto;
+  margin: 1rem auto;
   border-radius: 10px;
   position: relative;
-  background-color: #f1dfc1;
+  background-color: #f5e8d2;
+  border-radius: 20px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .alternatives {
@@ -243,5 +281,17 @@ h2 {
   color: #ffffff !important;
   padding: 10px;
   margin-bottom: 1rem !important;
+}
+
+.backBtn {
+  background-color: #198754 !important;
+  color: white !important;
+  margin: 1rem auto;
+}
+
+.closeBtn {
+  background-color: #dc3545 !important;
+  color: white !important;
+  margin: 1rem auto;
 }
 </style>

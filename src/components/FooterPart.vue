@@ -5,8 +5,8 @@
         <li class="nav-item">
           <router-link to="/About" class="nav-link">About Us</router-link>
           <p>
-            Read about our team! We are four students studying web development
-            at IT-Högskolan.
+            We are four students studying web development
+            at IT-Högskolan. Read about more our team!
           </p>
         </li>
         <li class="nav-item">
@@ -50,11 +50,13 @@
   }
 
   .link {
-    color: #5fb4f6;
     color: #28a745;
   }
 
   li {
     list-style: none;
+  }
+  p{
+    margin:0 auto
   }
 </style>

@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import ErrorPage from './pages/ErrorPage.vue'
 import HomePage from './pages/HomePage.vue'
-import StartQuiz from './pages/StartQuiz.vue'
+import QuizStart from './pages/QuizStart.vue'
 import QuizPage from './pages/QuizPage.vue'
 import MyResults from './pages/MyResults.vue'
 import GetQuiz from './components/GetQuiz.vue'
@@ -27,8 +27,8 @@ export default createRouter({
       path: '/about'
     },
     {
-      component: StartQuiz,
-      path: '/StartQuiz'
+      component: QuizStart,
+      path: '/QuizStart'
     },
     // {
     //   component: GetQuiz,
@@ -40,7 +40,7 @@ export default createRouter({
     },
     {
       component: GetQuiz,
-      path: '/:category/:level/:amount'
+      path: '/QuizPage/:category/:level/:amount'
       // path: '/category/:category/level/:difficulty/amount/:amount'
     }
   ]

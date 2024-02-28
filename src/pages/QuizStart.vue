@@ -28,12 +28,12 @@ import axios from 'axios';
     { id: 'q20', value: '20', label: '20' }
   ]
 
-const startQuiz = async () => {
+const QuizStart = async () => {
   if (!category.value || !difficulty.value || !questionAmount.value) {
     alert('Please select topic, difficulty, and question amount.')
     return
   }
-
+  router.push(`QuizPage/${category.value}/${difficulty.value}/${questionAmount.value}`)
   try {
     const response = await axios.get(`https://quizapi.io/api/v1/questions?apiKey=Fn3mWDcTNToCVxnnLtiH2OXe9XSGTcpUFpl3SUUq&limit=${questionAmount.value}&tags=${category.value}&difficulty=${difficulty.value}`)
     console.log(response.data)
@@ -42,7 +42,7 @@ const startQuiz = async () => {
     router.push('/error')
   }
 }
-// const startQuiz = () => {
+// const QuizStart = () => {
 //   if (!category.value || !difficulty.value || !questionAmount.value) {
 //     alert('Please select topic, difficulty, and question amount.')
 //     return
@@ -52,18 +52,18 @@ const startQuiz = async () => {
 </script>
 
 <template>
-  <div class="container text-center my-4">
-    <header class="row justify-content-center" id="the-jumbo">
-      <div class="col-md-6">
+<div class="d-flex flex-column justify-content-center text-center">
+    <h4 class="display-4 mx-auto my-3">Alright, let's get started!</h4>
+    <div class="mx-auto row justify-content-center">
+      <div class="col-md-12">
         <div class="jumbotron">
-          <h4 class="display-5">Alright, let's get started!</h4>
           <p class="lead">
             Before you begin, pick the topic, difficulty and the amount of
             questions you want in your quiz.
           </p>
         </div>
       </div>
-    </header>
+    </div>
 
     <div class="container justify-content-center my-3">
       <h6 class="display-6">Choose a topic</h6>
@@ -124,8 +124,8 @@ const startQuiz = async () => {
 
     <button
       type="button"
-      class="btn btn-secondary btn-lg startBtn"
-      @click="startQuiz"
+      class="btn btn-secondary btn-lg startBtn mx-auto my-4"
+      @click="QuizStart"
     >
       Start Quiz!
     </button>
@@ -143,7 +143,8 @@ const startQuiz = async () => {
   }
   h4 {
     color: #204764;
-  }
+    font-weight:400;
+}
   .startBtn {
     background-color: #204764 !important;
     background-color: #198754 !important;

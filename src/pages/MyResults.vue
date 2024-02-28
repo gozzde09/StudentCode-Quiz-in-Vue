@@ -1,15 +1,18 @@
 <template>
-  <div class="row justify-content-center" id="the-jumbo">
-    <div class="col-md-10">
-      <div class="jumbotron">
-        <h1>RESULTS!</h1>
-  
+  <div class="d-flex flex-column mx-auto justify-content-evenly">
+      <h1 class="display-4 mx-auto my-3">Your Results!</h1>
+      <div class="mx-auto row justify-content-center">
+        <div class="col-md-10">
+          <div class="jumbotron">
+            <p class="lead"></p>
+            <p class="lead"></p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
   <div class="row justify-content-center" id="result-container">
-    <div class="col-md-2"> 
+    <div class="col-md-2">
       <div class="row justify-content-center">
         <div class="col-sm-20" v-for="result in results" :key="result.quiz">
           <div class="card">
@@ -40,14 +43,11 @@ export default {
 </script>
 
 <style scoped>
-#the-jumbo {
-  margin: auto;
-}
 
 .card {
   padding: 10px;
   margin-bottom: 10px;
-  max-width: 350px; 
+  max-width: 350px;
 }
 
 .card-body {
@@ -55,9 +55,9 @@ export default {
   padding: 10px;
 }
 
-h1, h3 {
-  color: #204560;
-  margin-top: 2rem;
+h1 {
+  color: rgb(21, 52, 76);
+  font-weight:400;
 }
 
 .card-title {

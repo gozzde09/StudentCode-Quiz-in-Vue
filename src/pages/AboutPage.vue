@@ -1,11 +1,11 @@
 <template>
   <div class="d-flex flex-column mx-auto justify-content-evenly">
-    <h1 class="mx-auto my-3">Hello!</h1>
+    <h1 class="display-4 mx-auto my-3">Hello!</h1>
     <div class="mx-auto row justify-content-center">
-      <div class="col-md-7">
+      <div class="col-md-8">
         <div class="jumbotron">
            <h5 class="mx-auto">We are four students studying web development at IT-Högskolan.</h5>
-          <p>StudentCode are dedicated to offering engaging and entertaining quizzes for students,
+          <p class="lead">StudentCode are dedicated to offering engaging and entertaining quizzes for students,
               which take you on a journey through the world of code. Discover our assortment of quizzes
               to deepen your knowledge and have fun at the same time!</p>
           <h5> Links to our LinkedIn profiles: </h5>
@@ -37,6 +37,7 @@
 }
 h1 {
   color: rgb(21, 52, 76);
-  font-weight: bold;
+  font-weight:400;
 }
+
 </style>
