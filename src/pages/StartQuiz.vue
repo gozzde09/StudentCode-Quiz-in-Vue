@@ -1,7 +1,26 @@
 <script setup>
-import { useRoute } from 'vue-router'
+// import { useRoute } from 'vue-router'
+// const route = useRoute()
+import { ref } from 'vue'
+import axios from 'axios'
 
-const route = useRoute()
+const topic = ref('')
+const difficulty = ref('')
+const questionAmount = ref(0)
+
+const startQuiz = async () => {
+  if (!topic.value || !difficulty.value || !questionAmount.value) {
+    alert('Please select topic, difficulty and question amount you want in your quiz.')
+    return
+  }
+
+  try {
+    const response = await axios.get(`https://quizapi.io/api/v1/questions?apiKey=Fn3mWDcTNToCVxnnLtiH2OXe9XSGTcpUFpl3SUUq&limit=${questionAmount.value}&tags=${topic.value}&difficulty=${difficulty.value}`)
+  } catch (error) {
+    console.error('Något strular...', error)
+    alert('There was an error. Please try again.')
+  }
+}
 </script>
 
 <template>
@@ -64,7 +83,7 @@ const route = useRoute()
         <label class="btn btn-outline-secondary" for="q20">20</label>
       </div>
     </div>
-    <button type="button" class="btn btn-secondary btn-lg">Start Quiz!</button>
+    <button type="button" class="btn btn-secondary btn-lg" @click="startQuiz">Start Quiz!</button>
 
   </div>
 </template>
