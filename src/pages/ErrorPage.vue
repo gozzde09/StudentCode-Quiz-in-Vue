@@ -14,7 +14,7 @@ const goBack = () => {
     <div class="mx-auto row justify-content-center">
       <div class="col-md-10">
         <div class="jumbotron">
-          <p class="lead">It seems like the page you're looking for can't be found. Try again later or pick anouther
+          <p class="lead">It seems like the page you're looking for can't be found. Try again later or pick another
             difficulty/topic/question amount</p>
         </div>
       </div>
