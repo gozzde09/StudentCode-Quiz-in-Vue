@@ -1,17 +1,39 @@
 <script setup>
-  import { useRouter } from 'vue-router'
-  import { ref } from 'vue'
-  const router = useRouter()
-  const category = ref('') // Default
-  const level = ref('') // Default
-  const amount = ref() // Default
-  const startQuiz = () => {
-    // console.log('Selected Category:', category.value)
-    // console.log('Selected Level:', level.value)
-    // console.log('Selected Amount:', amount.value)
-    //start the quiz with the selected category, level, and amount
-    router.push(`/${category.value}/${level.value}/${amount.value}`)
+import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+
+const router = useRouter()
+
+const category = ref('')
+const difficulty = ref('')
+const questionAmount = ref('')
+
+const topics = [
+  { id: 'html', value: 'html', label: 'HTML' },
+  { id: 'javascript', value: 'javascript', label: 'JavaScript' },
+  { id: 'php', value: 'php', label: 'PHP' },
+  { id: 'wordpress', value: 'wordpress', label: 'Wordpress' }
+]
+const levels = [
+  { id: 'easy', value: 'easy', label: 'Easy' },
+  { id: 'medium', value: 'medium', label: 'Medium' },
+  { id: 'hard', value: 'hard', label: 'Hard' }
+]
+
+const amounts = [
+  { id: 'q5', value: '5', label: '5' },
+  { id: 'q10', value: '10', label: '10' },
+  { id: 'q15', value: '15', label: '15' },
+  { id: 'q20', value: '20', label: '20' }
+]
+
+const startQuiz = () => {
+  if (!category.value || !difficulty.value || !questionAmount.value) {
+    alert('Please select topic, difficulty, and question amount.')
+    return
   }
+  router.push(`/${category.value}/${difficulty.value}/${questionAmount.value}`)
+}
 </script>
 
 <template>
@@ -27,156 +49,57 @@
         </div>
       </div>
     </header>
-    <!-- Topic -->
+
     <div class="container justify-content-center mb-3">
       <h6 class="display-6">Choose a topic</h6>
       <div class="btn-group" role="group" aria-label="Topic">
-        <input
-          v-model="category"
-          type="radio"
-          class="btn-check"
-          name="topic"
-          id="html"
-          value="html"
-        />
-        <label class="btn btn-outline-secondary" for="html">Html</label>
-
-        <input
-          v-model="category"
-          type="radio"
-          class="btn-check"
-          name="topic"
-          id="javascript"
-          value="javascript"
-        />
-        <label class="btn btn-outline-secondary" for="javascript"
-          >JavaScript</label
-        >
-
-        <input
-          v-model="category"
-          type="radio"
-          class="btn-check"
-          name="topic"
-          id="php"
-          value="php"
-        />
-        <label class="btn btn-outline-secondary" for="php">PHP</label>
-
-        <input
-          v-model="category"
-          type="radio"
-          class="btn-check"
-          name="topic"
-          id="wordpress"
-          value="wordpress"
-        />
-        <label class="btn btn-outline-secondary" for="wordpress"
-          >Wordpress</label
-        >
+        <template v-for="topic in topics">
+          <input v-model="category" type="radio" class="btn-check" :name="'topic'" :id="topic.id" :value="topic.value" />
+          <label class="btn btn-outline-secondary" :for="topic.id">{{ topic.label }}</label>
+        </template>
       </div>
     </div>
-    <!-- Difficulty -->
+
     <div class="container justify-content-center mb-3">
       <h6 class="display-6">Choose difficulty</h6>
       <div class="btn-group" role="group" aria-label="Difficulty">
-        <input
-          v-model="level"
-          type="radio"
-          class="btn-check"
-          name="level"
-          id="easy"
-          value="easy"
-        />
-        <label class="btn btn-outline-secondary" for="easy">Easy</label>
-
-        <input
-          v-model="level"
-          type="radio"
-          class="btn-check"
-          name="level"
-          id="medium"
-          value="medium"
-        />
-        <label class="btn btn-outline-secondary" for="medium">Medium</label>
-
-        <input
-          v-model="level"
-          type="radio"
-          class="btn-check"
-          name="level"
-          id="hard"
-          value="hard"
-        />
-        <label class="btn btn-outline-secondary" for="hard">Hard</label>
+        <template v-for="level in levels">
+          <input v-model="difficulty" type="radio" class="btn-check" :name="'level'" :id="level.id"
+            :value="level.value" />
+          <label class="btn btn-outline-secondary" :for="level.id">{{ level.label }}</label>
+        </template>
       </div>
     </div>
-    <!-- Antal frågor -->
+
     <div class="container justify-content-center mb-3">
       <h6 class="display-6">Choose amount of questions</h6>
       <div class="btn-group" role="group" aria-label="Question amount">
-        <input
-          v-model="amount"
-          type="radio"
-          class="btn-check"
-          name="questionAmount"
-          id="q5"
-          value="5"
-        />
-        <label class="btn btn-outline-secondary" for="q5">5</label>
-
-        <input
-          v-model="amount"
-          type="radio"
-          class="btn-check"
-          name="questionAmount"
-          id="q10"
-          value="10"
-        />
-        <label class="btn btn-outline-secondary" for="q10">10</label>
-
-        <input
-          v-model="amount"
-          type="radio"
-          class="btn-check"
-          name="questionAmount"
-          id="q15"
-          value="15"
-        />
-        <label class="btn btn-outline-secondary" for="q15">15</label>
-
-        <input
-          v-model="amount"
-          type="radio"
-          class="btn-check"
-          name="questionAmount"
-          id="q20"
-          value="20"
-        />
-        <label class="btn btn-outline-secondary" for="q20">20</label>
+        <template v-for="amount in amounts">
+          <input v-model="questionAmount" type="radio" class="btn-check" :name="'questionAmount'" :id="amount.id"
+            :value="amount.value" />
+          <label class="btn btn-outline-secondary" :for="amount.id">{{ amount.label }}</label>
+        </template>
       </div>
     </div>
-    <button
-      type="button"
-      class="btn btn-secondary btn-lg startBtn"
-      @click="startQuiz"
-    >
+
+    <button type="button" class="btn btn-secondary btn-lg startBtn" @click="startQuiz">
       Start Quiz!
     </button>
   </div>
 </template>
 
 <style scoped>
-  .btn-check:checked + .btn,
-  :not(.btn-check) + .btn:active,
-  .btn:first-child:active,
-  .btn.active,
-  .btn.show {
-    background-color: #204764 !important;
-    border-color: #204764 !important;
-  }
-  .startBtn {
-    background-color: #204764 !important;
-    background-color: #198754 !important;
-  }
+.btn-check:checked+.btn,
+:not(.btn-check)+.btn:active,
+.btn:first-child:active,
+.btn.active,
+.btn.show {
+  background-color: #204764 !important;
+  border-color: #204764 !important;
+}
+
+.startBtn {
+  background-color: #204764 !important;
+  background-color: #198754 !important;
+}
 </style>
