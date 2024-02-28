@@ -1,5 +1,5 @@
 <template>
-  <div class="row justify-content-center" id="the-jumbo">
+  <div class="d-flex row justify-content-center" id="the-jumbo">
     <div class="col-md-10">
       <div class="jumbotron">
         <h4 class="display-4">Are you ready to learn?</h4>
@@ -9,12 +9,12 @@
     </div>
   </div>
 
-  <div class="d-flex justify-content-center container mb-4">
+  <div class="d-flex flex-column mx-auto container mb-4">
     <div class="row">
-      <div class="col-sm-6">
+      <div class="d-flex flex-column mx-auto col-sm-5">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Html</h5>
+            <h5 class="card-title">HTML</h5>
             <p class="card-text">The HTML quiz offers a comprehensive assessment of HTML knowledge, covering topics such
               as tags, attributes, and structure, providing an excellent opportunity for learners to test their
               understanding of web development fundamentals.</p>
@@ -22,7 +22,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-6">
+      <div class=" d-flex flex-column mx-auto col-sm-5">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">JavaScript</h5>
@@ -33,7 +33,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-6">
+      <div class="d-flex flex-column mx-auto col-sm-5">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">PHP</h5>
@@ -44,7 +44,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-6">
+      <div class="d-flex flex-column mx-auto col-sm-5">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Wordpress</h5>
@@ -67,6 +67,7 @@
 .card {
   padding: 10px;
   margin-bottom: 15px;
+  background-color: #EDE8E3;
 }
 
 .card-body {
@@ -76,5 +77,11 @@
 h4{
   color: #15374f;
   margin-top: 2rem;
+}
+.btn {
+  background-color: #163b56 !important;
+  color: #ffffff !important;
+  padding: 10px;
+  border-radius: 20px;
 }
 </style>

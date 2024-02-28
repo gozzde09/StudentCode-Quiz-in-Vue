@@ -1,13 +1,12 @@
 <script setup>
-import { ref, watch, computed } from 'vue'
+import { ref,computed } from 'vue'
 import axios from 'axios'
 
-import { useRoute } from 'vue-router';
-const route = useRoute();
-const category = ref(route.params.category);
-const level = ref(route.params.level);
-const amount = ref(route.params.amount);
-// const query = ref({ category, level, amount })
+import { useRoute } from 'vue-router'
+const route = useRoute()
+const category = ref(route.params.category)
+const level = ref(route.params.level)
+const amount = ref(route.params.amount)
 
 const quizData = ref(null)
 const currentQuestionIndex = ref(0)
@@ -19,9 +18,11 @@ const buttonText = ref('Continue')
 
 const getQuiz = async (category, level, amount) => {
   try {
-    const result = await axios.get(`https://quizapi.io/api/v1/questions?apiKey=Fn3mWDcTNToCVxnnLtiH2OXe9XSGTcpUFpl3SUUq&limit=${amount.value}&tags=${category.value}&difficulty=${level.value}`)
+    const result = await axios.get(
+      `https://quizapi.io/api/v1/questions?apiKey=Fn3mWDcTNToCVxnnLtiH2OXe9XSGTcpUFpl3SUUq&limit=${amount.value}&tags=${category.value}&difficulty=${level.value}`
+    )
     quizData.value = result.data
-    console.log((quizData.value.length)); //! NÅGRA ÄMNEN HAR INTE ALLA SVÅRIGHETER
+    console.log(quizData.value.length) //! NÅGRA ÄMNEN HAR INTE ALLA SVÅRIGHETER
   } catch (error) {
     console.log(error)
   }
@@ -29,16 +30,11 @@ const getQuiz = async (category, level, amount) => {
 const currentQuestion = computed(() => {
   return quizData.value[currentQuestionIndex.value]
 })
-// console.log(query);
 getQuiz(category, level, amount)
-// watch(() => category, level, amount, () => {
-//   console.log("query" + route.query);
-//     console.log("query" + query.value);
-//   getQuiz(category, level, amount);
-// });
-console.log("route.params.category " + category.value);
-console.log("route.params.level " + level.value);
-console.log("route.params.amount " + amount.value);
+
+console.log('route.params.category ' + category.value)
+console.log('route.params.level ' + level.value)
+console.log('route.params.amount ' + amount.value)
 
 //Välja svar
 function selectAnswer(key) {
@@ -107,10 +103,15 @@ function clickk() {
       <h2 class="mx-auto my-2" style="color: #204764; font-weight: bolder">
         Category: {{ currentQuestion.tags[0].name }}
       </h2>
-      <h2 class="mx-auto my-2" style="color: #204764; font-weight: bolder">
+      <h2 class="mx-auto my-2" style="color: #204764; font-weight: bolder" >
         Difficulty: {{ currentQuestion.difficulty }}
       </h2>
       <!-- VI KAN TILLÄGGA FÄRG FÖR LEVEL -->
+  <!-- :class="{
+          reveal: currentQuestion.difficulty ==='Medium',
+          red: currentQuestion.difficulty === 'Hard',
+          green: currentQuestion.difficulty==='Easy' }" -->
+
       <button class="circle" @click="clickk" style="background-color: white">
         X
       </button>
