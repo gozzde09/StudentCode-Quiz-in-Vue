@@ -10,7 +10,11 @@ main {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  background-color: #f1dfc1;
+  /* background-color: #f1dfc1; */
+  background-color: #EBECF5;
+  background-color: #F4F3F6;
+  background-color: #EDE8E3;
+  background-color: #EDE8DC;
 }
 
 #app {
@@ -19,9 +23,17 @@ main {
   min-height: 100vh;
   font-family: 'Poppins', Helvetica, sans-serif;
 }
-
+.blueBtn {
+  background-color: #204764 !important;
+  color:white !important;
+}
+.rubrik {
+  color: #204764;
+  font-weight:400;
+}
 footer {
   font-size: 0.9rem;
+  background-color: #F4F3F6;
 }
 
 @media only screen and (max-width: 530px) {

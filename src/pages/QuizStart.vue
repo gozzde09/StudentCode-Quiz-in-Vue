@@ -16,9 +16,9 @@ import axios from 'axios';
     { id: 'wordpress', value: 'wordpress', label: 'Wordpress' }
   ]
   const levels = [
-    { id: 'easy', value: 'easy', label: 'Easy' },
-    { id: 'medium', value: 'medium', label: 'Medium' },
-    { id: 'hard', value: 'hard', label: 'Hard' }
+  { id: 'easy', value: 'easy', label: 'Easy', color: '#198754' },
+  { id: 'medium', value: 'medium', label: 'Medium', color: '#ebdc4d' },
+  { id: 'hard', value: 'hard', label: 'Hard', color: '#dc3545' }
   ]
 
   const amounts = [
@@ -35,25 +35,18 @@ const QuizStart = async () => {
   }
   router.push(`QuizPage/${category.value}/${difficulty.value}/${questionAmount.value}`)
   try {
-    const response = await axios.get(`https://quizapi.io/api/v1/questions?apiKey=Fn3mWDcTNToCVxnnLtiH2OXe9XSGTcpUFpl3SUUq&limit=${questionAmount.value}&tags=${category.value}&difficulty=${difficulty.value}`)
-    console.log(response.data)
+    await axios.get(`https://quizapi.io/api/v1/questions?apiKey=Fn3mWDcTNToCVxnnLtiH2OXe9XSGTcpUFpl3SUUq&limit=${questionAmount.value}&tags=${category.value}&difficulty=${difficulty.value}`)
   } catch (error) {
     console.error('There was an error lol!', error)
     router.push('/error')
   }
 }
-// const QuizStart = () => {
-//   if (!category.value || !difficulty.value || !questionAmount.value) {
-//     alert('Please select topic, difficulty, and question amount.')
-//     return
-//   }
-//   router.push(`/${category.value}/${difficulty.value}/${questionAmount.value}`)
-// }
+
 </script>
 
 <template>
 <div class="d-flex flex-column justify-content-center text-center">
-    <h4 class="display-4 mx-auto my-3">Alright, let's get started!</h4>
+    <h4 class="display-4 mx-auto my-3 rubrik">Alright, let's get started!</h4>
     <div class="mx-auto row justify-content-center">
       <div class="col-md-12">
         <div class="jumbotron">
@@ -66,7 +59,7 @@ const QuizStart = async () => {
     </div>
 
     <div class="container justify-content-center my-3">
-      <h6 class="display-6">Choose a topic</h6>
+      <h2>Choose a topic</h2>
       <div class="btn-group" role="group" aria-label="Topic">
         <template v-for="topic in topics" :key="topic.id">
           <input
@@ -85,18 +78,18 @@ const QuizStart = async () => {
     </div>
 
     <div class="container justify-content-center mb-3">
-      <h6 class="display-6">Choose difficulty</h6>
+      <h2>Choose difficulty</h2>
       <div class="btn-group" role="group" aria-label="Difficulty">
         <template v-for="level in levels" :key="level.id">
           <input
             v-model="difficulty"
             type="radio"
-            class="btn-check"
+          class="btn-check"
             :name="'level'"
             :id="level.id"
             :value="level.value"
           />
-          <label class="btn btn-outline-secondary" :for="level.id">{{
+          <label class="btn btn-outline-secondary level-btn" :for="level.id" :style="{ color: level.color }">{{
             level.label
           }}</label>
         </template>
@@ -104,7 +97,7 @@ const QuizStart = async () => {
     </div>
 
     <div class="container justify-content-center mb-3">
-      <h6 class="display-6">Choose amount of questions</h6>
+      <h2>Choose amount of questions</h2>
       <div class="btn-group" role="group" aria-label="Question amount">
         <template v-for="amount in amounts" :key="amount.id">
           <input
@@ -140,13 +133,9 @@ const QuizStart = async () => {
   .btn.show {
     background-color: #204764 !important;
     border-color: #204764 !important;
+    color: white !important;
   }
-  h4 {
-    color: #204764;
-    font-weight:400;
-}
   .startBtn {
-    background-color: #204764 !important;
     background-color: #198754 !important;
   }
 </style>

@@ -48,6 +48,7 @@ export default {
   padding: 10px;
   margin-bottom: 10px;
   max-width: 350px;
+  background-color: #F4F3F6;
 }
 
 .card-body {

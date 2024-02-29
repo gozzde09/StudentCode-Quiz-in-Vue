@@ -19,16 +19,13 @@ const goBack = () => {
       </div>
     </div>
   <div class="text-center">
-    <button type="button" class="btn btn-secondary btn-lg backBtn my-4" @click="goBack">
+    <button type="button" class="btn btn-secondary btn-lg blueBtn my-4" @click="goBack">
       Take me back!
     </button>
   </div>
 </template>
 
 <style scoped>
-.backBtn {
-  background-color: #204764 !important;
-}
 h1 {
   color: rgb(21, 52, 76);
   font-weight: 400;

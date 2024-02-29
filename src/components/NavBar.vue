@@ -108,9 +108,12 @@
 }
 
 .active {
-  background-color: #f1dfc1;
+  background-color: #f5eddf;
   color: black;
   border-radius: 2px;
   transition: background-color 0.3s ease;
+}
+nav{
+  background-color: #F4F3F6;
 }
 </style>

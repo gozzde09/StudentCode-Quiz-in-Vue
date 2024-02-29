@@ -117,12 +117,12 @@ const goBack = () => {
     <!-- RESPONSIVET?? -->
     <div class="flex">
       <h2 class="mx-auto my-2" style="color: #204764; font-weight: bolder">
-        Category: {{ currentQuestion.tags[0].name }}
+       {{ currentQuestion.tags[0].name }}
         <span class="level mx-2" style="display:inline-block" :class="{
           medium: currentQuestion.difficulty === 'Medium',
           hard: currentQuestion.difficulty === 'Hard',
           easy: currentQuestion.difficulty === 'Easy'
-        }">.</span>
+        }"></span>
       </h2>
       <!-- <h2 class="mx-auto my-2" style="color: #204764; font-weight: bolder" >
         Difficulty: {{ currentQuestion.difficulty }}
@@ -154,12 +154,15 @@ const goBack = () => {
         correct: revealAnswer && isSelected(key) && getCorrectAnswer(),
         wrong: revealAnswer && isSelected(key) && !getCorrectAnswer(),
       }" @click="selectAnswer(key)" :active="isSelected(key)">
-        <p class="circle">{{ lastLetter(key) }}</p>
+
+        <p v-if="revealAnswer && isSelected(key) && getCorrectAnswer()" class="d-flex"><img src="../assets/check.svg" alt="check-symbol"></p>
+        <p v-else class="circle">{{ lastLetter(key) }}</p>
+
         <p class="d-flex">{{ answer }}</p>
       </button>
 
     </div>
-    <BButton class="mx-auto px-4 my-2 nextButton" style="max-width: 75%" variant="success" @click="nextQuestion"
+    <BButton class="mx-auto px-4 my-2 blueBtn" style="max-width: 75%" variant="success" @click="nextQuestion"
       :disabled="buttonDisabled">
       {{ buttonText }}
     </BButton>
@@ -176,7 +179,7 @@ const goBack = () => {
 }
 
 .correct {
-  border: 6px solid #198754;
+  background-color: #198754;
 }
 
 .red {
@@ -197,15 +200,15 @@ const goBack = () => {
 }
 
 .medium {
-  background-color: #F5E76C;
-  color: #F5E76C;
+  background-color: #ebdc4d;
+  color: #ebdc4d;
 }
 
 
 .my-modal {
   z-index: 3;
   width: 600px;
-  background-color: #f5e8d2;
+  background-color: #f5eddf;
   margin: 1rem auto;
   border-radius: 20px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -216,6 +219,7 @@ const goBack = () => {
   height: 30px;
   border-radius: 10px;
   overflow: hidden;
+    background-color:  #F4F3F6;
 }
 
 .circle {
@@ -226,12 +230,15 @@ const goBack = () => {
   border-radius: 100%;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
-  background-color: #f5e8d2;
+  background-color: #f5eddf;
 }
 
 .level {
   border-radius: 100%;
-  width: 25px;
+  width: 20px;
+  height: 20px;
+  vertical-align:middle;
+  margin-bottom:0.2rem
 }
 
 p {
@@ -245,14 +252,14 @@ p {
 .container {
   margin: 1rem auto;
   border-radius: 10px;
-  position: relative;
-  background-color: #f5e8d2;
+  background-color: #f5eddf;
   border-radius: 20px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  max-width:75%;
 }
 
 .alternatives {
-  width: 300px;
+  width: 350px;
   display: flex;
   align-items: center;
   border-radius: 20px;
@@ -276,10 +283,7 @@ h2 {
   font-size: 1.4em;
 }
 
-.nextButton {
-  background-color: #204764 !important;
-  color: #ffffff !important;
-  padding: 10px;
+.blueBtn {
   margin-bottom: 1rem !important;
 }
 
