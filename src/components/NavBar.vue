@@ -113,7 +113,5 @@
   border-radius: 2px;
   transition: background-color 0.3s ease;
 }
-nav{
-  background-color: #F4F3F6;
-}
+
 </style>

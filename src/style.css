@@ -27,6 +27,8 @@ main {
   background-color: #204764 !important;
   color:white !important;
 }
+.blueBtn:hover{
+    opacity:0.9; }
 .rubrik {
   color: #204764;
   font-weight:400;

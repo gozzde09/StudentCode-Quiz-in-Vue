@@ -117,7 +117,8 @@ const goBack = () => {
     <!-- RESPONSIVET?? -->
     <div class="flex">
       <h2 class="mx-auto my-2" style="color: #204764; font-weight: bolder">
-       {{ currentQuestion.tags[0].name }}
+        {{ currentQuestion.tags[0].name }}
+        <!-- Difficulty: -->
         <span class="level mx-2" style="display:inline-block" :class="{
           medium: currentQuestion.difficulty === 'Medium',
           hard: currentQuestion.difficulty === 'Hard',
@@ -149,17 +150,18 @@ const goBack = () => {
     <!-- ALTERNATIV -->
     <div v-for="(answer, key) in currentQuestion.answers" :key="key" class="d-flex mt-3 flex-wrap">
       <!-- BUTTON BLIR INTE RED!!!. Fixa färg till reveal i JS? -->
-      <button v-if="answer" class="mx-auto alternatives" :class="{
+      <div v-if="answer" class="mx-auto alternatives" :class="{
+        default: !isSelected(key),
         reveal: !revealAnswer && isSelected(key),
         correct: revealAnswer && isSelected(key) && getCorrectAnswer(),
         wrong: revealAnswer && isSelected(key) && !getCorrectAnswer(),
       }" @click="selectAnswer(key)" :active="isSelected(key)">
 
-        <p v-if="revealAnswer && isSelected(key) && getCorrectAnswer()" class="d-flex"><img src="../assets/check.svg" alt="check-symbol"></p>
-        <p v-else class="circle">{{ lastLetter(key) }}</p>
-
+        <p v-if="revealAnswer && isSelected(key) && getCorrectAnswer()" class="icon"><img src="../assets/check.svg"
+            alt="check-symbol"></p>
+        <span v-else class="circle d-flex justify-content-center">{{ lastLetter(key) }}</span>
         <p class="d-flex">{{ answer }}</p>
-      </button>
+      </div>
 
     </div>
     <BButton class="mx-auto px-4 my-2 blueBtn" style="max-width: 75%" variant="success" @click="nextQuestion"
@@ -219,57 +221,64 @@ const goBack = () => {
   height: 30px;
   border-radius: 10px;
   overflow: hidden;
-    background-color:  #F4F3F6;
-}
-
-.circle {
-  border: 1px solid black;
-  padding: 5px;
-  width: 35px;
-  cursor: pointer;
-  border-radius: 100%;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  background-color: #f5eddf;
-}
-
-.level {
-  border-radius: 100%;
-  width: 20px;
-  height: 20px;
-  vertical-align:middle;
-  margin-bottom:0.2rem
-}
-
-p {
-  padding: 5px;
-  cursor: pointer;
-  font-weight: semi-bold;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.container {
-  margin: 1rem auto;
-  border-radius: 10px;
-  background-color: #f5eddf;
-  border-radius: 20px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  max-width:75%;
+  background-color: #F4F3F6;
 }
 
 .alternatives {
   width: 350px;
   display: flex;
   align-items: center;
+  cursor: pointer;
   border-radius: 20px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
 
-.alternatives .circle {
-  margin-right: 10px;
-  /* Add margin between the circle and the <h3> */
+.alternatives:hover,
+.circle:hover {
+  background-color: #e1dfe3;
 }
+
+.circle:hover {
+  background-color: #F5E76C !important;
+}
+
+.default {
+  background-color: #F4F3F6;
+}
+
+.circle {
+  border: 1px solid black;
+  width: 30px;
+
+  cursor: pointer;
+  border-radius: 100%;
+  background-color: #f5eddf;
+  margin: 0.4rem !important;
+  vertical-align: middle;
+}
+
+.level {
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-bottom: 0.2rem
+}
+
+.alternatives>p {
+  padding: 5px;
+  margin: 0.5rem 0;
+}
+
+.container {
+  margin: 2rem auto;
+  border-radius: 10px;
+  background-color: #f5eddf;
+  border-radius: 20px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  max-width: 65%;
+}
+
 
 .flex {
   display: flex;
@@ -284,7 +293,7 @@ h2 {
 }
 
 .blueBtn {
-  margin-bottom: 1rem !important;
+  margin-bottom: 2rem !important;
 }
 
 .backBtn {
@@ -297,5 +306,10 @@ h2 {
   background-color: #dc3545 !important;
   color: white !important;
   margin: 1rem auto;
+}
+
+.closeBtn:hover,
+.backBtn:hover {
+  opacity: 0.9;
 }
 </style>

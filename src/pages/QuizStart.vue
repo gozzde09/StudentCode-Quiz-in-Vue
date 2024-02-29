@@ -138,4 +138,6 @@ const QuizStart = async () => {
   .startBtn {
     background-color: #198754 !important;
   }
+  .startBtn:hover{
+    opacity:0.9; }
 </style>
