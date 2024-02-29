@@ -10,6 +10,8 @@
   const buttonText = ref('Continue')
   const optionsButtonDisabled = ref(false)
 
+
+
   //räkna poäng
   const done = ref('')
   const totalCorrectAnswers = ref(0)
@@ -36,8 +38,12 @@
 
     const correctAnswer = getCorrectAnswer();
 
+
+
     if (selected === correctAnswer) {
     totalCorrectAnswers.value++ // Öka det totala antalet rätt svar om det valda svaret är korrekt
+  }else {
+    console.log('incorrect answer')
   }
   }
   //Kontrollera om ett svaret matchar selectedAnswer
@@ -68,6 +74,7 @@
     if (selectedAnswer.value !== getCorrectAnswer()) {
       selectedAnswer.value = getCorrectAnswer()
       // console.log(`Correct answer : ${getCorrectAnswer()}`)
+
     }
 
     setTimeout(() => {
@@ -143,6 +150,8 @@
           reveal: !revealAnswer && isSelected(key),
           correct: revealAnswer && isSelected(key) && getCorrectAnswer(),
           wrong: revealAnswer && isSelected(key) && !getCorrectAnswer()
+
+
         }"
         @click="selectAnswer(key)"
         :active="isSelected(key)"
@@ -163,11 +172,21 @@
 
     <h4 v-if="done">Totalt antal rätt svar: {{ totalCorrectAnswers }}</h4>
   </div>
+  <!--komponent result
+        props
+        :correctAnswer="totalCorrectAnswers"
+        :currentIndex="currentQuestionIndex"
+      i result komponenten:
+      import {defineProps} from 'vue'
+      const {correctAnswer, currentIndex } = defineProps(['correctAnswer','currentIndex'])-->
+  <div v-else>
+    <h1>{{ totalCorrectAnswers }} / {{ currentQuestionIndex }}</h1>
+  </div>
 </template>
 <style scoped>
 .disableButton{
-  pointer-events: none; /* Disable pointer events to make the button non-clickable */
-  cursor: default; /* Set default cursor to indicate non-clickability */
+  pointer-events: none;
+  cursor: default;
 }
   .green {
     background-color:#198754;
