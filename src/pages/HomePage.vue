@@ -11,8 +11,7 @@
       </div>
     </div>
     <div class="d-flex">
-      <button class="btn blueBtn btn-secondary mx-auto">
-        <router-link to="/QuizPage" class="btn blueBtn mx-auto">Go to quizzes!</router-link> </button>
+      <router-link to="/QuizPage" class="mx-auto btn blueBtn btn-lg">Go to quizzes!</router-link>
     </div>
   </div>
 </template>

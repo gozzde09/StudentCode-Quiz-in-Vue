@@ -10,11 +10,7 @@ main {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  /* background-color: #f1dfc1; */
-  background-color: #EBECF5;
-  background-color: #F4F3F6;
-  background-color: #EDE8E3;
-  background-color: #EDE8DC;
+  background-color: #ede8dc;
 }
 
 #app {
@@ -25,23 +21,29 @@ main {
 }
 .blueBtn {
   background-color: #204764 !important;
-  color:white !important;
+  color: white !important;
 }
-.blueBtn:hover{
-    opacity:0.9; }
+.btn {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset !important;
+}
+.blueBtn:hover {
+  opacity: 0.9;
+}
 .rubrik {
   color: #204764;
-  font-weight:400;
+  font-weight: 400;
 }
 footer {
   font-size: 0.9rem;
-  background-color: #F4F3F6;
+  background-color: #f4f3f6;
 }
 
 @media only screen and (max-width: 530px) {
   #app {
     font-size: 0.8rem;
-    margin:0 auto;
+    margin: 0 auto;
   }
   .lead {
     font-size: 1rem !important;

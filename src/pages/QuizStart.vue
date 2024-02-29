@@ -17,8 +17,8 @@ import axios from 'axios';
   ]
   const levels = [
   { id: 'easy', value: 'easy', label: 'Easy', color: '#198754' },
-  { id: 'medium', value: 'medium', label: 'Medium', color: '#ebdc4d' },
-  { id: 'hard', value: 'hard', label: 'Hard', color: '#dc3545' }
+  { id: 'medium', value: 'medium', label: 'Medium', color: '#FFB429' },
+  { id: 'hard', value: 'hard', label: 'Hard', color: '#FF544D' }
   ]
 
   const amounts = [

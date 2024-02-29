@@ -35,7 +35,6 @@
       </div>
     </div>
   </nav>
-
   <!-- <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-xxl">
       toggle for mobile -->
@@ -113,5 +112,4 @@
   border-radius: 2px;
   transition: background-color 0.3s ease;
 }
-
 </style>
