@@ -1,271 +1,378 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue'
-import axios from 'axios'
-const quizData = ref(null)
-const currentQuestionIndex = ref(0)
-const selectedAnswers = ref('')
-const progress = ref(0)
-const revealAnswer = ref(false)
+  import { ref, computed } from 'vue'
+  import axios from 'axios'
+  import { useRouter } from 'vue-router'
+  const router = useRouter()
+  import { useRoute } from 'vue-router'
+  const route = useRoute()
 
-onMounted(async () => {
-  try {
-    const result = await axios.get(
-      'https://quizapi.io/api/v1/questions?apiKey=Fn3mWDcTNToCVxnnLtiH2OXe9XSGTcpUFpl3SUUq&limit=5&tags=html'
-    )
-    quizData.value = result.data
-    console.log(quizData.value.length)
-  } catch (error) {
-    console.log(error)
+  const category = ref(route.params.category)
+  const level = ref(route.params.level)
+  const amount = ref(route.params.amount)
+
+  const quizData = ref(null)
+  const currentQuestionIndex = ref(0)
+  const selectedAnswer = ref('')
+  const progress = ref(0)
+  const revealAnswer = ref(false)
+  const buttonDisabled = ref(false)
+  const buttonText = ref('Continue')
+
+  const getQuiz = async (category, level, amount) => {
+    try {
+      const result = await axios.get(
+        `https://quizapi.io/api/v1/questions?apiKey=Fn3mWDcTNToCVxnnLtiH2OXe9XSGTcpUFpl3SUUq&limit=${amount.value}&tags=${category.value}&difficulty=${level.value}`
+      )
+      quizData.value = result.data
+      console.log(quizData.value.length) //! NÅGRA ÄMNEN HAR INTE ALLA SVÅRIGHETER
+    } catch (error) {
+      console.log(error)
+    }
   }
-})
-const currentQuestion = computed(() => {
-  return quizData.value[currentQuestionIndex.value]
-})
+  const currentQuestion = computed(() => {
+    return quizData.value[currentQuestionIndex.value]
+  })
+  getQuiz(category, level, amount)
 
-function selectAnswer(key) {
-  selectedAnswers.value = key
-}
-function isSelected(key) {
-  return selectedAnswers.value === key
-}
+  // console.log('route.params.category ' + category.value)
+  // console.log('route.params.level ' + level.value)
+  // console.log('route.params.amount ' + amount.value)
+  //A-B-C-D
+  function getLetter(word) {
+    const letter = word.split('_')[1].toUpperCase()
+    return letter
+  }
+  //Välja svar
+  function selectAnswer(key) {
+    // console.log(key); //answer_a
+    const selected = getLetter(key)
+    console.log('Selected answer ' + selected)
+    selectedAnswer.value = selected
+    return selected
+  }
+  //Kontrollera om ett svar är valt
+  function isSelected(key) {
+    // console.log(key); //answer_a
+    const isSelectedAnswer = getLetter(key)
+    return selectedAnswer.value === isSelectedAnswer //True eller false
+  }
 
-const nextQuestion = () => {
-  revealAnswer.value = true
-  setTimeout(() => {
-    // if (selectedAnswers.value === "") {
-    //   const correctAnswer = currentQuestion.value.correct_answer;
-    //   selectAnswer(correctAnswer);
-    //   selectedAnswers.value = correctAnswer;
-    //   console.log(correctAnswer);
-    // }
-    currentQuestionIndex.value++;
-    selectedAnswers.value = '';
-    progress.value += 400/quizData.value.length;
-    revealAnswer.value = false
-  }, 1000)
-};
+  //Hämta rätt svar med en bokstav
+  const getCorrectAnswer = () => {
+    for (const key in currentQuestion.value.correct_answers) {
+      if (currentQuestion.value.correct_answers[key] === 'true') {
+        // console.log(key); //answer_a_correct
+        const answer = getLetter(key)
+        console.log('Correct answer ' + answer)
+        return answer
+      }
+    }
+  }
+  //Nästa fråga med progress bar
+  function nextQuestion() {
+    revealAnswer.value = true
+    console.log(selectedAnswer.value)
+    if ( selectedAnswer.value !== getCorrectAnswer()) {
+      selectedAnswer.value = getCorrectAnswer()
+    }
+    setTimeout(() => {
+      currentQuestionIndex.value++
+      selectedAnswer.value = ''
+      progress.value += 400 / quizData.value.length
+      revealAnswer.value = false
+    }, 2000)
+    if (currentQuestionIndex.value === quizData.value.length - 1) {
+      buttonDisabled.value = true
+      buttonText.value = 'DONE'
+    }
+  }
 
-const show = ref(false)
-function clickk() {
-  show.value = !show.value
-}
-
-function lastLetter(word) {
-  let letter = word.slice(-1).toUpperCase()
-  return letter
-}
+  //Stänga quiz
+  const show = ref(false)
+  function handleModal() {
+    show.value = !show.value
+  }
+  const goBack = () => {
+    router.push('/QuizStart')
+  }
 </script>
 
 <template>
-  <!-- <div v-if="show" class="overlay">
-    GODKÄNNA ATT STÄNGA QUIZ
-     <button @click="clickk" :class="{ active: show }">Toggle Overlay</button>
-  </div> -->
-  <div v-if="quizData" class="container d-flex flex-column">
-    <div v-if="show" class="my-modal mx-auto">
-      <button class="circle" @click="clickk">close</button>
-    </div>
-
+  <!-- RESPONSIVET?? -->
+  <!-- MODAL- Skriv gärna mer innehåll i modal :) -->
+  <!-- GODKÄNNA ATT STÄNGA QUIZ-->
+  <div
+    v-if="show"
+    class="my-modal mx-auto d-flex flex-column flex-wrap"
+    style="max-width: 40%"
+  >
     <div class="flex">
-      <h2 class="mx-auto">Category: {{ currentQuestion.tags[0].name }}</h2>
-      <button @click="clickk" style="background-color: white">X</button>
-      <!--modal-->
-    </div>
-
-    <div class="mx-auto d-flex flex-column">
-      <div class="progress">
-        <div class="progress-bar bg-success" role="progressbar" :style="{ width: progress + 'px' }" aria-valuenow="25"
-          aria-valuemin="0" aria-valuemax="100">
-          {{ currentQuestionIndex }} /{{ quizData.length }}</div>
-      </div>
-    </div>
-    <!-- <h2 class="center" v-if="selectedAnswers === currentQuestion.correct_answer">
-      <strong> Correct Answer! </strong>
-    </h2> -->
-    <h2 class="mx-auto my-3" style="max-width:60%">{{ currentQuestion.question }}</h2>
-    <div v-for="(answer, key) in currentQuestion.answers" :key="key" class="d-flex mt-3">
-      <button v-if="answer" class="mx-auto alternatives" :class="{
-        green:
-          revealAnswer && isSelected(key) &&
-          selectedAnswers === currentQuestion.correct_answer,
-        red:
-          revealAnswer && isSelected(key) &&
-          selectedAnswers !== currentQuestion.correct_answer,
-        yellow: revealAnswer === false && isSelected(key),
-      }" @click="selectAnswer(key)" :active="isSelected(key)">
-        <p class="circle">{{ lastLetter(key) }}</p>
-        <h3>{{ answer }}</h3>
+      <h2 class="mx-auto my-2" style="color: #204764; font-weight: bolder">
+        Are you sure?
+      </h2>
+      <button
+        class="circle mx-auto"
+        @click="handleModal"
+        style="background-color: white"
+      >
+        X
       </button>
     </div>
-    <BButton :disabled="selectedAnswers === ''" class="mx-auto px-4 my-2 next" style="max-width:75%" variant="success" @click="nextQuestion">Continue</BButton>
-    <!-- <div class="d-flex justify-content-around m-2">
-      <BButton class="m-2" variant="success" @click="prevQuestion" :disabled="currentQuestionIndex === 0">Previous
-        Question</BButton>
-      <BButton class="m-2" variant="success" @click="nextQuestion"
-        :disabled="currentQuestionIndex === quizData.length - 1">
-        Next Question</BButton>
-    </div> -->
+    <div class="flex flex-wrap justify-content-between">
+      <button type="button" class="btn backBtn" @click="handleModal">
+        Back to the quiz!
+      </button>
+      <button type="button" class="btn closeBtn" @click="goBack">
+        Close this quiz!
+      </button>
+    </div>
+  </div>
+  <div v-if="quizData && currentQuestion" class="container d-flex flex-column">
+    <div class="flex">
+      <!-- Difficulty: -->
+      <div class="levels mx-1">
+        <span
+          class="level mx-1 easy"
+          style="display: inline-block"
+          :style="{ opacity: currentQuestion.difficulty === 'Easy' ? 1 : 0.3 }"
+        />
+        <span
+          class="level mx-1 medium"
+          style="display: inline-block"
+          :style="{
+            opacity: currentQuestion.difficulty === 'Medium' ? 1 : 0.3
+          }"
+        />
+        <span
+          class="level mx-1 hard"
+          style="display: inline-block"
+          :style="{ opacity: currentQuestion.difficulty === 'Hard' ? 1 : 0.3 }"
+        />
+      </div>
+      <h2 class="mx-auto my-2" style="color: #204764; font-weight: bolder">
+        {{ currentQuestion.tags[0].name }}
+      </h2>
+
+      <button
+        class="circle"
+        @click="handleModal"
+        style="background-color: white"
+      >
+        X
+      </button>
+      <!--Öppnar modal-->
+    </div>
+    <!-- ProgressBar -->
+    <div class="mx-auto d-flex flex-column">
+      <div class="progress">
+        <div
+          class="progress-bar bg-success"
+          role="progressbar"
+          :style="{ width: progress + 'px' }"
+          aria-valuenow="25"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          {{ currentQuestionIndex }} /{{ quizData.length }}
+        </div>
+      </div>
+    </div>
+    <!-- FRÅGA -->
+    <h2 class="mx-auto my-3" style="max-width: 60%">
+      {{ currentQuestionIndex + 1 }}. {{ currentQuestion.question }}
+    </h2>
+    <!-- ALTERNATIV -->
+    <div
+      v-for="(answer, key) in currentQuestion.answers"
+      :key="key"
+      class="d-flex mt-3 flex-wrap"
+    >
+      <!-- BUTTON BLIR INTE RED!!!. TITTA FUNKTIONEN I NEXT-QUESTION  -->
+      <!-- SKAPA EN FUNKTION SOM KONTROLLERAR SVARET MED PARAMETER OCH RETURNERAR FALSE-TRUE -->
+      <div
+        v-if="answer"
+        class="mx-auto alternatives"
+        :class="{
+          default: !isSelected(key),
+          reveal: !revealAnswer && isSelected(key),
+          correct:
+            revealAnswer &&
+            isSelected(key) &&
+            selectAnswer(key) === getCorrectAnswer(),
+          wrong:
+            revealAnswer &&
+            isSelected(key) &&
+            selectAnswer(key) !== getCorrectAnswer()
+        }"
+        @click="selectAnswer(key)"
+        :active="isSelected(key)"
+      >
+        <p
+          v-if="revealAnswer && isSelected(key) && getCorrectAnswer()"
+          class="icon"
+        >
+          <img src="../assets/check.svg" alt="check-symbol" />
+        </p>
+        <span v-else class="circle d-flex justify-content-center">{{
+          getLetter(key)
+        }}</span>
+        <p class="d-flex">{{ answer }}</p>
+      </div>
+    </div>
+    <BButton
+      class="mx-auto px-4 my-2 blueBtn"
+      style="max-width: 75%"
+      variant="success"
+      @click="nextQuestion()"
+      :disabled="buttonDisabled"
+    >
+      {{ buttonText }}
+    </BButton>
   </div>
 </template>
-
 <style scoped>
-/* .overlay {
-  position: absolute;
-  width: 99vw;
-  height: 110vh;
-  background-color: blue;
-  z-index: 100;
+  .easy {
+    background-color: #198754;
+  }
 
-} */
+  .correct {
+    background-color: #198754;
+  }
 
-.overlay {
-  width: 100vw;
-  height: 100vh;
-  background-color: aquamarine;
-}
+  .hard {
+    background-color: #ff544d;
+  }
 
-.green {
-  background-color: #28a745;
-}
+  .wrong {
+    border: 6px solid #ff544d;
+  }
 
-.red {
-  background-color: #dc3545;
-}
+  .reveal {
+    background-color: #f5e76c;
+  }
 
-.yellow {
-  background-color: #caac29;
-}
+  .medium {
+    background-color: #ffb429;
+  }
 
-.correct {
-  background-color: #28a745;
-  /* border-color: rgb(1, 88, 1);
-  border-width: 4px; */
-  border: 2px solid rgb(1, 88, 1);
-}
+  .my-modal {
+    z-index: 3;
+    width: 600px;
+    background-color: #f5eddf;
+    margin: 1rem auto;
+    border-radius: 20px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+      rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset !important;
+  }
 
-.wrong {
-  background-color: #dc3545;
-  border: 2px solid rgb(102, 0, 0);
-}
+  .progress {
+    width: 400px;
+    height: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #f4f3f6;
+  }
 
+  .container {
+    margin: 2rem auto;
+    border-radius: 10px;
+    background-color: #f5eddf;
+    border-radius: 20px;
+    max-width: 65%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+      rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset !important;
+  }
 
-.my-modal {
-  /* display: none; */
-  /* Hidden by default */
-  position: fixed;
-  /* Stay in place */
-  z-index: 3;
-  /* Sit on top */
-  /* left: 150;
-  /* top: 150; */
-  width: 400px;
-  /* Full width */
-  height: 300px;
-  /* Full height */
-  background-color: rgb(141, 10, 10);
-  margin: 0 auto;
-  margin-bottom: -400px;
-  top: 250;
-  left: 250;
-}
+  .levels {
+    border: 1px solid #204764;
+    border-radius: 5px;
+  }
 
- .progress {
-  width:300px;
-  height: 30px;
-  border-radius: 10px;
-  overflow: hidden;
-}
+  .default {
+    background-color: #f4f3f6;
+  }
 
+  .alternatives {
+    width: 50%;
+    box-sizing: border-box;
+    /*Jämlika knappar*/
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 20px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+      rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset !important;
+  }
 
-.circle {
-  /* border: 1px solid black; */
-  /* border-radius: 100%; */
-  /* text-align: center;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 20px;
-  padding: 0; */
-  /* border: none; */
-  border: 1px solid black;
-  padding: 5px;
-  width: 35px;
-  cursor: pointer;
-  /* background-color: rgb(213, 213, 213); */
-  border-radius: 100%;
-  color: black;
-  font-size: 16px;
-  font-weight: semi-bold;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  background-color: #ede8e3;
-}
+  .circle {
+    border: 1px solid black;
+    min-width: 30px;
+    cursor: pointer;
+    border-radius: 100%;
+    background-color: #f5eddf;
+    margin: 0.4rem !important;
+    vertical-align: middle;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+      rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset !important;
+  }
 
-.container {
-  margin: 0 auto;
-  border-radius: 10px;
-  position: relative;
-  background-color: #f1dfc1;
-}
+  .level {
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-bottom: 0.2rem;
+  }
 
-.alternatives {
-  width: 300px;
-  display: flex;
-  align-items: center;
-  border-radius: 20px;
-  box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
-  /* Vertically center the content */
-  /* padding: 10px; */
-  /* Add padding between the elements */
-}
+  .alternatives:hover,
+  .circle:hover {
+    background-color: #e1dfe3;
+  }
 
-.alternatives h3 {
-  margin: 0;
-  font-size: 1rem;
-  /* Remove default margin for <h3> */
-}
+  .circle:hover {
+    background-color: #f5e76c !important;
+  }
 
-.alternatives .circle {
-  margin-right: 10px;
-  /* Add margin between the circle and the <h3> */
-}
+  .alternatives > p {
+    padding: 5px;
+    margin: 0.5rem 0;
+  }
 
-.flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
+  .flex {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 
-h1 {
-  margin: 0;
-  padding: 0;
-}
+  h2 {
+    font-size: 1.4em;
+  }
 
-h2 {
-  font-size: 1.4em;
-  color: #204764;
-}
+  .blueBtn {
+    margin-bottom: 2rem !important;
+  }
 
-.flex button {
-  /* border: none; */
-  border: 1px solid black;
-  padding: 5px;
-  width: 35px;
-  cursor: pointer;
-  background-color: rgb(213, 213, 213);
-  border-radius: 100%;
-  color: black;
-  font-size: 16px;
-  font-weight: semi-bold;
-}
-.next {
-  background-color: #204764 !important;
-  color: #ffffff !important;
-  padding: 10px;
-  margin-bottom:1rem !important;
-}
+  .backBtn {
+    background-color: #198754 !important;
+    color: white !important;
+    margin: 1rem auto;
+  }
+
+  .closeBtn {
+    background-color: #ff544d !important;
+    color: white !important;
+    margin: 1rem auto;
+  }
+
+  .closeBtn:hover,
+  .backBtn:hover {
+    opacity: 0.9;
+  }
 </style>
