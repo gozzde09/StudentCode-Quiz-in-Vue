@@ -210,8 +210,9 @@ const goHomePage = () => {
     </h2>
     <!-- ALTERNATIV -->
     <div v-for="(answer, key) in currentQuestion.answers" :key="key" class="d-flex mt-3">
-      <button v-if="answer" class="mx-auto alternatives" :class="{
+      <div v-if="answer" class="mx-auto alternatives" :class="{
         disableButton: optionsButtonDisabled,
+        default:!isSelected(key),
         reveal: !revealAnswer && isSelected(key),
         correct: revealAnswer && isSelected(key) && getCorrectAnswer(),
         wrong: revealAnswer && !isSelected(key) && key === isAnswerIncorrect && isAnswerIncorrect2
@@ -223,7 +224,7 @@ const goHomePage = () => {
           getLetter(key)
         }}</span>
         <p>{{ answer }}</p>
-      </button>
+      </div>
     </div>
     <span class="d-flex justify-content-center">{{ countDown }}</span>
     <BButton class="mx-auto px-4 my-2 blueBtn" style="max-width: 75%" variant="success" @click="nextQuestion()"
@@ -262,7 +263,9 @@ const goHomePage = () => {
   pointer-events: none;
   cursor: default;
 }
-
+.default {
+  background-color: #f4f3f6;
+}
 .easy {
   background-color: #198754;
 }
@@ -293,7 +296,6 @@ const goHomePage = () => {
   background-color: #f5eddf;
   margin: 1rem auto;
   border-radius: 20px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset !important;
