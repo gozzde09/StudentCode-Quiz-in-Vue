@@ -30,10 +30,6 @@ export default createRouter({
       component: QuizStart,
       path: '/QuizStart'
     },
-    // {
-    //   component: GetQuiz,
-    //   path: '/GetQuiz'
-    // },
     {
       component: MyResults,
       path: '/MyResults'
