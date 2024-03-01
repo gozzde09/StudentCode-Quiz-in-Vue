@@ -18,7 +18,12 @@
             <p class="card-text">The HTML quiz offers a comprehensive assessment of HTML knowledge, covering topics such
               as tags, attributes, and structure, providing an excellent opportunity for learners to test their
               understanding of web development fundamentals.</p>
-            <router-link to="/GetQuiz" class="btn btn-primary">Go to quiz</router-link>
+
+            
+
+            <button class="mx-auto">
+        <router-link to="/StartQuiz" class="btn nav-link mx-auto">Go to quiz</router-link> </button>
+
           </div>
         </div>
       </div>
@@ -29,7 +34,12 @@
             <p class="card-text">The JavaScript quiz presents a dynamic examination, covering essential concepts like DOM
               manipulation, event handling, etc. , making it an
               indispensable tool for developers seeking to strengthen their front-end development expertise.</p>
-            <router-link to="/StartQuiz" class="btn btn-primary">Go to quiz</router-link>
+
+
+            <button class="mx-auto">
+        <router-link to="/StartQuiz" class="btn nav-link mx-auto">Go to quiz</router-link> </button>
+
+    
           </div>
         </div>
       </div>
@@ -40,7 +50,11 @@
             <p class="card-text">The JavaScript quiz presents a dynamic examination of client-side scripting, covering
               essential concepts like DOM manipulation, event handling, etc. , making it an
               indispensable tool for developers seeking to strengthen their expertise.</p>
-            <router-link to="/StartQuiz" class="btn btn-primary">Go to quiz</router-link>
+
+            
+
+            <button class="mx-auto">
+        <router-link to="/StartQuiz" class="btn nav-link mx-auto">Go to quiz</router-link> </button>
           </div>
         </div>
       </div>
@@ -51,7 +65,11 @@
             <p class="card-text">In the WordPress quiz, participants can explore various aspects of the popular content
               management system, including themes, plugins, and customization, making it an ideal resource for those
               interested in mastering website creation with WordPress.</p>
-            <router-link to="/StartQuiz" class="btn btn-primary">Go to quiz</router-link>
+
+      
+
+            <button class="mx-auto">
+        <router-link to="/StartQuiz" class="btn nav-link mx-auto">Go to quiz</router-link> </button>
           </div>
         </div>
       </div>
@@ -76,5 +94,10 @@
 h4{
   color: #15374f;
   margin-top: 2rem;
+}
+button {
+  background-color: #163b56 !important;
+  color: #ffffff !important;
+  padding: 10px;
 }
 </style>
