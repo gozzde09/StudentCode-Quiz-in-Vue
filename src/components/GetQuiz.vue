@@ -7,6 +7,7 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 
 const category = ref(route.params.category)
+const countDown = ref('')
 const level = ref(route.params.level)
 const amount = ref(route.params.amount)
 
@@ -88,27 +89,49 @@ const getCorrectAnswer = () => {
     }
   }
 }
-const nextQuestion = () => {
+
+//Funktion som visar hur många sekunder man har till nästa fråga /Alicia
+function startCountdown(seconds) {
+  if (seconds > 0) {
+    countDown.value = `Next question in... ${seconds}`
+    setTimeout(() => {
+      startCountdown(seconds - 1)
+    }, 1000)
+  } else {
+    countDown.value = ''
+  }
+}
+
+//Nästa fråga med progress bar
+function nextQuestion() {
+
   revealAnswer.value = true
   optionsButtonDisabled.value = true;
+  console.log(selectedAnswer.value)
   if (selectedAnswer.value !== getCorrectAnswer()) {
     selectedAnswer.value = getCorrectAnswer()
   }
-  progress.value += 400 / quizData.value.length
+
+  // Kallar på funktionen ovan /Alicia
+  startCountdown(3)
   setTimeout(() => {
-    currentQuestionIndex.value++
+     currentQuestionIndex.value++
+
     selectedAnswer.value = ''
     // progress.value += 400 / quizData.value.length
     revealAnswer.value = false
     optionsButtonDisabled.value = false
     buttonDisabled.value = true;
   }, 3000)
+
   if (currentQuestionIndex.value === quizData.value.length - 1) {
     buttonDisabled.value = true
     buttonText.value = 'DONE'
     done.value = 'Done'
   }
+  progress.value += 400 / quizData.value.length
 }
+
 //Stänga quiz
 const show = ref(false)
 function handleModal() {
@@ -175,9 +198,9 @@ const goHomePage = () => {
     <!-- ProgressBar -->
     <div class="mx-auto d-flex flex-column">
       <div class="progress">
-        <div class="progress-bar bg-success" role="progressbar" :style="{ width: progress + 'px' }" aria-valuenow="25"
+        <div class="progress-bar bg-success progress-bar-striped" role="progressbar" :style="{ width: progress + 'px' }" aria-valuenow="25"
           aria-valuemin="0" aria-valuemax="100">
-          {{ currentQuestionIndex }} /{{ quizData.length }}
+          <!-- {{ currentQuestionIndex +1 }} /{{ quizData.length }} -->
         </div>
       </div>
     </div>
@@ -202,6 +225,7 @@ const goHomePage = () => {
         <p>{{ answer }}</p>
       </button>
     </div>
+    <span class="d-flex justify-content-center">{{ countDown }}</span>
     <BButton class="mx-auto px-4 my-2 blueBtn" style="max-width: 75%" variant="success" @click="nextQuestion()"
       :disabled="optionsButtonDisabled || buttonDisabled">
       {{ buttonText }}
