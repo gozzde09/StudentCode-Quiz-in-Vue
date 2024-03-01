@@ -18,14 +18,14 @@
           <a href="quiz@studentcode.com" />
           <a href="tel:+46 324 854 93" />
         </li>
-        <!-- <li class="nav-item d-flex flex-column">
+        <li class="nav-item d-flex flex-column">
             <router-link to="/QuizPage" class="nav-link" :class="{ active: $route.path === '/QuizPage' }">
               Quizzes</router-link>
             <p class="mx-auto">HTML & CSS</p>
             <p class="mx-auto">JavaScript</p>
             <p class="mx-auto">WordPress</p>
             <p class="mx-auto">PHP</p>
-          </li> -->
+          </li>
 
         <li class="nav-item">
           <router-link to="#" class="nav-link"> Github </router-link>

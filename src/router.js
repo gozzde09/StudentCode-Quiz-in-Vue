@@ -30,10 +30,6 @@ export default createRouter({
       component: QuizStart,
       path: '/QuizStart'
     },
-    // {
-    //   component: GetQuiz,
-    //   path: '/GetQuiz'
-    // },
     {
       component: MyResults,
       path: '/MyResults'
@@ -41,7 +37,6 @@ export default createRouter({
     {
       component: GetQuiz,
       path: '/QuizPage/:category/:level/:amount'
-      // path: '/category/:category/level/:difficulty/amount/:amount'
     }
   ]
 })

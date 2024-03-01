@@ -1,10 +1,6 @@
-<script>
-// import GetQuiz from '../components/GetQuiz.vue';
-
-</script>
 <template>
   <div class="d-flex flex-column mx-auto justify-content-evenly">
-    <h1 class="mx-auto my-3">Welcome!</h1>
+    <h1 class="mx-auto my-3 rubrik">Welcome!</h1>
     <div class="mx-auto row justify-content-center">
       <div class="col-md-10">
         <div class="jumbotron">
@@ -15,9 +11,11 @@
       </div>
     </div>
     <div class="d-flex">
-      <button class="mx-auto">
-        <router-link to="/QuizStart" class="btn nav-link mx-auto">Start quiz</router-link> </button>
-    </div>
+
+    <button type="button" class="btn blueBtn btn-secondary btn-lg mx-auto my-4">
+         <router-link to="/QuizStart" class=" nav-link  mx-auto">Go to quizzes</router-link>
+      </button>
+      </div>
   </div>
 </template>
 <style scoped>
@@ -26,9 +24,5 @@ h1 {
   font-weight: bold;
 }
 
-button {
-  background-color: #163b56 !important;
-  color: #ffffff !important;
-  padding: 10px;
-}
+
 </style>
