@@ -10,7 +10,8 @@
   const buttonText = ref('Continue')
   const optionsButtonDisabled = ref(false)
 
-
+  const isAnswerIncorrect = ref(null)
+  const isAnswerIncorrect2 = ref(false)
 
   //räkna poäng
   const done = ref('')
@@ -37,13 +38,15 @@
     selectedAnswer.value = selected
 
     const correctAnswer = getCorrectAnswer();
-
+    isAnswerIncorrect2.value = false
 
 
     if (selected === correctAnswer) {
-    totalCorrectAnswers.value++ // Öka det totala antalet rätt svar om det valda svaret är korrekt
+    totalCorrectAnswers.value++
   }else {
     console.log('incorrect answer')
+    isAnswerIncorrect.value = key
+    isAnswerIncorrect2.value = true
   }
   }
   //Kontrollera om ett svaret matchar selectedAnswer
@@ -149,7 +152,7 @@
           disableButton: optionsButtonDisabled,
           reveal: !revealAnswer && isSelected(key),
           correct: revealAnswer && isSelected(key) && getCorrectAnswer(),
-          wrong: revealAnswer && isSelected(key) && !getCorrectAnswer()
+          wrong: revealAnswer && !isSelected(key) && key===isAnswerIncorrect && isAnswerIncorrect2
 
 
         }"
