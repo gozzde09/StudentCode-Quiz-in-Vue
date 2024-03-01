@@ -38,5 +38,7 @@ h3,
 h1 {
   margin: 0 auto
 }
-
+[v-cloak] {
+  display: none;
+}
 </style>
