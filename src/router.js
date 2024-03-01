@@ -1,10 +1,8 @@
-import { createRouter, createWebHashHistory } from "vue-router";
-import HomePage from "./pages/HomePage.vue";
-import StartQuiz from './pages/StartQuiz.vue'
-import QuizPage from "./pages/QuizPage.vue"
-import HtmlPage from './pages/HtmlPage.vue'
-import JavascriptPage from './pages/JavascriptPage.vue'
-import PhpPage from './pages/PhpPage.vue'
+import { createRouter, createWebHashHistory } from 'vue-router'
+import ErrorPage from './pages/ErrorPage.vue'
+import HomePage from './pages/HomePage.vue'
+import QuizStart from './pages/QuizStart.vue'
+import QuizPage from './pages/QuizPage.vue'
 import MyResults from './pages/MyResults.vue'
 import GetQuiz from './components/GetQuiz.vue'
 import AboutPage from './pages/AboutPage.vue'
@@ -17,40 +15,33 @@ export default createRouter({
       path: '/'
     },
     {
+      component: ErrorPage,
+      path: '/error'
+    },
+    {
       component: QuizPage,
       path: '/QuizPage'
     },
     {
       component: AboutPage,
-      path: "/about",
+      path: '/about'
     },
     {
-      component: StartQuiz,
-      path: '/StartQuiz'
+      component: QuizStart,
+      path: '/QuizStart'
+    },
+    // {
+    //   component: GetQuiz,
+    //   path: '/GetQuiz'
+    // },
+    {
+      component: MyResults,
+      path: '/MyResults'
     },
     {
       component: GetQuiz,
-      path: '/GetQuiz'
-    },
-    {
-      component: HtmlPage,
-      name: 'Html-quiz',
-      path: '/HtmlPage'
-    },
-    {
-      component: PhpPage,
-      name: 'Php-quiz',
-      path: '/PhpPage'
-    },
-    {
-      component: JavascriptPage,
-      name: 'JS-quiz',
-      path: '/JavascriptPage'
-    },
-    {
-      component: MyResults,
-      name: 'Mina Resultat',
-      path: '/MyResults'
+      path: '/QuizPage/:category/:level/:amount'
+      // path: '/category/:category/level/:difficulty/amount/:amount'
     }
   ]
 })
