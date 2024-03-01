@@ -61,9 +61,10 @@ h1 {
   font-weight:400;
 }
 
+
 .card-title {
   font-size: 1.5rem;
-}
+}  
 
 .card-text {
   font-size: 1rem;

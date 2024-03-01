@@ -30,7 +30,7 @@
             <p class="card-text">The JavaScript quiz presents a dynamic examination, covering essential concepts like DOM
               manipulation, event handling, etc. , making it an
               indispensable tool for developers seeking to strengthen their front-end development expertise.</p>
-            gi <router-link to="/QuizStart" class="btn blueBtn">Go to quiz</router-link>
+            <router-link to="/QuizStart" class="btn blueBtn">Go to quiz</router-link>
           </div>
         </div>
       </div>
