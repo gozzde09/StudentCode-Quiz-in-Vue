@@ -16,7 +16,7 @@
     </div>
     <div class="d-flex">
       <button class="mx-auto">
-        <router-link to="/StartQuiz" class="btn nav-link mx-auto">Start quiz</router-link> </button>
+        <router-link to="/QuizStart" class="btn nav-link mx-auto">Start quiz</router-link> </button>
     </div>
   </div>
 </template>
@@ -31,5 +31,4 @@ button {
   color: #ffffff !important;
   padding: 10px;
 }
-
 </style>
