@@ -1,14 +1,14 @@
 <template>
   <div class="d-flex flex-column justify-content-center">
-     <h1 class="display-4 mx-auto my-3 rubrik">Are you ready to learn?</h1>
+    <h1 class="display-4 mx-auto my-3 rubrik">Are you ready to learn?</h1>
     <div class="mx-auto row justify-content-center">
-    <div class="col-md-12 mb-4">
-      <div class="jumbotron">
-        <p class="lead">Here below we have all our different quizzes, want to pick just one or ace them all? It's up to
-          you!</p>
+      <div class="col-md-12 mb-4">
+        <div class="jumbotron">
+          <p class="lead">Here below we have all our different quizzes, want to pick just one or ace them all? It's up to
+            you!</p>
+        </div>
       </div>
     </div>
-  </div>
   </div>
   <div class="d-flex flex-column mx-auto container mb-4">
     <div class="col-md-14 row justify-content-center">
@@ -20,12 +20,6 @@
               as tags, attributes, and structure, providing an excellent opportunity for learners to test their
               understanding of web development fundamentals.</p>
             <router-link to="/QuizStart" class="btn blueBtn">Go to quiz</router-link>
-
-            
-
-            <button class="mx-auto">
-        <router-link to="/StartQuiz" class="btn nav-link mx-auto">Go to quiz</router-link> </button>
-
           </div>
         </div>
       </div>
@@ -36,7 +30,7 @@
             <p class="card-text">The JavaScript quiz presents a dynamic examination, covering essential concepts like DOM
               manipulation, event handling, etc. , making it an
               indispensable tool for developers seeking to strengthen their front-end development expertise.</p>
-  gi          <router-link to="/QuizStart" class="btn blueBtn">Go to quiz</router-link>
+            gi <router-link to="/QuizStart" class="btn blueBtn">Go to quiz</router-link>
           </div>
         </div>
       </div>
@@ -48,11 +42,6 @@
               essential concepts like DOM manipulation, event handling, etc. , making it an
               indispensable tool for developers seeking to strengthen their expertise.</p>
             <router-link to="/QuizStart" class="btn blueBtn">Go to quiz</router-link>
-
-            
-
-            <button class="mx-auto">
-        <router-link to="/StartQuiz" class="btn nav-link mx-auto">Go to quiz</router-link> </button>
           </div>
         </div>
       </div>
@@ -74,6 +63,6 @@
 <style scoped>
 .card {
   background-color: #F4F3F6;
- margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 </style>
