@@ -1,5 +1,5 @@
 <script>
-// import GetQuiz from '../components/GetQuiz.vue';
+
 
 </script>
 <template>
