@@ -5,6 +5,7 @@ import { ref,computed } from 'vue'
 import axios from 'axios';
 
 const router = useRouter()
+
 const difficulty = ref('')
 const questionAmount = ref('')
 
@@ -15,6 +16,8 @@ const category = computed(() => {
   console.log("quizstart category computed: " + categoryStore.category);
   return categoryStore.category;
 });
+
+
 // Definierar de olika parametrarna i varsin array med olika objekt, loopas sen i templaten (v-for topic in topics etc etc)
 const topics = [
   { id: 'html', value: 'html', label: 'HTML' },
@@ -73,12 +76,12 @@ const QuizStart = async () => {
       <div class="btn-group" role="group" aria-label="Topic">
         <!-- Loopar igenom varje topic i topics-arrayen, samma logik på de nedre också. /Alicia -->
         <template v-for="topic in topics" :key="topic.id">
-          <input v-model="category" type="radio" class="btn-check" :name="'topic'" :id="topic.id"
-            :value="topic.value" />
+          <input v-model=category @click="categoryStore.setCategory(topic.id)" type="radio" class="btn-check" :name="'topic'"
+            :id="topic.id" :value="topic.value" />
           <!-- Kopplar etiketten till knappen genom att använda ämnets id /Alicia -->
           <label class="btn btn-outline-secondary" :for="topic.id">{{
-          topic.label
-        }}</label>
+            topic.label
+            }}</label>
         </template>
       </div>
     </div>
@@ -91,8 +94,8 @@ const QuizStart = async () => {
           <input v-model="difficulty" type="radio" class="btn-check" :name="'level'" :id="level.id"
             :value="level.value" />
           <label class="btn btn-outline-secondary level-btn" :for="level.id" :style="{ color: level.color }">{{
-          level.label
-        }}</label>
+            level.label
+            }}</label>
         </template>
       </div>
     </div>
@@ -105,8 +108,8 @@ const QuizStart = async () => {
           <input v-model="questionAmount" type="radio" class="btn-check" :name="'questionAmount'" :id="amount.id"
             :value="amount.value" />
           <label class="btn btn-outline-secondary" :for="amount.id">{{
-          amount.label
-        }}</label>
+            amount.label
+            }}</label>
         </template>
       </div>
     </div>
