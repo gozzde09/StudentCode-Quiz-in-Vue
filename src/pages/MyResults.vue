@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-column mx-auto justify-content-evenly">
-      <h1 class="display-4 mx-auto my-3">Your Results!</h1>
+      <h1 class="display-4 mx-auto my-3 rubrik">Your Results!</h1>
       <div class="mx-auto row justify-content-center">
         <div class="col-md-10">
           <div class="jumbotron">
@@ -55,12 +55,6 @@ export default {
   margin: 6px;
   padding: 10px;
 }
-
-h1 {
-  color: rgb(21, 52, 76);
-  font-weight:400;
-}
-
 .card-title {
   font-size: 1.5rem;
 }

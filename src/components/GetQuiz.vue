@@ -42,13 +42,13 @@ getQuiz(category, level, amount)
 // console.log('route.params.category ' + category.value)
 // console.log('route.params.level ' + level.value)
 // console.log('route.params.amount ' + amount.value)
+
 //A-B-C-D
 function getLetter(word) {
   const letter = word.split('_')[1].toUpperCase()
   return letter
 }
 //Räkna poäng
-const done = ref('')
 const totalCorrectAnswers = ref(0)
 //Välja svar
 function selectAnswer(key) {
@@ -60,7 +60,7 @@ function selectAnswer(key) {
   isAnswerIncorrect2.value = false
   if (selected === correctAnswer) {
     console.log("correct " + correctAnswer);
-    console.log(totalCorrectAnswers.value);
+    // console.log(totalCorrectAnswers.value);
     totalCorrectAnswers.value++
   } else {
     console.log('incorrect answer')
@@ -101,24 +101,19 @@ function startCountdown(seconds) {
     countDown.value = ''
   }
 }
-
 //Nästa fråga med progress bar
 function nextQuestion() {
-
   revealAnswer.value = true
   optionsButtonDisabled.value = true;
   console.log(selectedAnswer.value)
   if (selectedAnswer.value !== getCorrectAnswer()) {
     selectedAnswer.value = getCorrectAnswer()
   }
-
   // Kallar på funktionen ovan /Alicia
   startCountdown(3)
   setTimeout(() => {
-     currentQuestionIndex.value++
-
+    currentQuestionIndex.value++
     selectedAnswer.value = ''
-    // progress.value += 400 / quizData.value.length
     revealAnswer.value = false
     optionsButtonDisabled.value = false
     buttonDisabled.value = true;
@@ -127,21 +122,14 @@ function nextQuestion() {
   if (currentQuestionIndex.value === quizData.value.length - 1) {
     buttonDisabled.value = true
     buttonText.value = 'DONE'
-    done.value = 'Done'
   }
-  progress.value += 400 / quizData.value.length
+  progress.value += 100 / quizData.value.length
 }
 
 //Stänga quiz
 const show = ref(false)
 function handleModal() {
   show.value = !show.value
-}
-const goBack = () => {
-  router.push('/QuizStart')
-}
-const goResults = () => {
-  router.push('/MyResults')
 }
 const goHomePage = () => {
   router.push('/')
@@ -168,21 +156,21 @@ const goHomePage = () => {
       <button type="button" class="btn backBtn" @click="handleModal">
         Back to the quiz
       </button>
-      <button type="button" class="btn closeBtn" @click="goBack">
+      <router-link to="/QuizStart" class="btn closeBtn">
         Close this quiz
-      </button>
+      </router-link>
     </div>
   </div>
   <!-- Container -->
   <div v-if="quizData && currentQuestion" class="container d-flex flex-column">
     <div class="flex">
-      <!-- Difficulty: -->
+      <!-- Difficulty -->
       <div class="levels mx-1">
         <span class="level mx-1 easy" style="display: inline-block"
           :style="{ opacity: currentQuestion.difficulty === 'Easy' ? 1 : 0.3 }" />
         <span class="level mx-1 medium" style="display: inline-block" :style="{
-          opacity: currentQuestion.difficulty === 'Medium' ? 1 : 0.3
-        }" />
+    opacity: currentQuestion.difficulty === 'Medium' ? 1 : 0.3
+  }" />
         <span class="level mx-1 hard" style="display: inline-block"
           :style="{ opacity: currentQuestion.difficulty === 'Hard' ? 1 : 0.3 }" />
       </div>
@@ -196,44 +184,46 @@ const goHomePage = () => {
     </div>
 
     <!-- ProgressBar -->
-    <div class="mx-auto d-flex flex-column">
+    <div class="mx-auto d-flex align-items-center">
+      <span class="mx-2 amount"> 0 </span>
       <div class="progress">
-        <div class="progress-bar bg-success progress-bar-striped" role="progressbar" :style="{ width: progress + 'px' }" aria-valuenow="25"
-          aria-valuemin="0" aria-valuemax="100">
-          <!-- {{ currentQuestionIndex +1 }} /{{ quizData.length }} -->
+        <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar"
+          :style="{ width: progress + '%' }" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          <!-- {{ currentQuestionIndex }} /{{ quizData.length }} -->
         </div>
       </div>
+      <span class="mx-2 amount">{{ quizData.length }} </span>
     </div>
     <!-- FRÅGA -->
-    <h2 class="mx-auto my-3" style="max-width: 60%">
+    <h2 class="mx-auto my-3 question" style="max-width: 80%">
       {{ currentQuestionIndex + 1 }}. {{ currentQuestion.question }}
     </h2>
     <!-- ALTERNATIV -->
     <div v-for="(answer, key) in currentQuestion.answers" :key="key" class="d-flex mt-3">
       <div v-if="answer" class="mx-auto alternatives" :class="{
-        disableButton: optionsButtonDisabled,
-        default:!isSelected(key),
-        reveal: !revealAnswer && isSelected(key),
-        correct: revealAnswer && isSelected(key) && getCorrectAnswer(),
-        wrong: revealAnswer && !isSelected(key) && key === isAnswerIncorrect && isAnswerIncorrect2
-      }" @click="selectAnswer(key)" :active="isSelected(key)">
+    disableButton: optionsButtonDisabled,
+    default: !isSelected(key),
+    reveal: !revealAnswer && isSelected(key),
+    correct: revealAnswer && isSelected(key) && getCorrectAnswer(),
+    wrong: revealAnswer && !isSelected(key) && key === isAnswerIncorrect && isAnswerIncorrect2
+  }" @click="selectAnswer(key)" :active="isSelected(key)">
         <p v-if="revealAnswer && isSelected(key) && getCorrectAnswer()" class="icon">
           <img src="../assets/check.svg" alt="check-symbol" />
         </p>
         <span v-else class="circle d-flex justify-content-center">{{
           getLetter(key)
-        }}</span>
+          }}</span>
         <p>{{ answer }}</p>
       </div>
     </div>
-    <span class="d-flex justify-content-center">{{ countDown }}</span>
+    <span class="d-flex justify-content-center my-2" style="font-weight:bold">{{ countDown }}</span>
     <BButton class="mx-auto px-4 my-2 blueBtn" style="max-width: 75%" variant="success" @click="nextQuestion()"
       :disabled="optionsButtonDisabled || buttonDisabled">
       {{ buttonText }}
     </BButton>
   </div>
-  <div v-else class="container d-flex flex-column flex-wrap" style="max-width: 40%">
-    <button class="circle align-self-end" @click="goHomePage" style="background-color: white">
+  <div v-else class="container d-flex flex-column flex-wrap" style="max-width: 50%; background-color:#f4f3f6;">
+    <button class="circle align-self-end" @click="goHomePage" style="background-color: #f5eddf">
       X
     </button>
     <div class="d-flex flex-column mx-auto justify-content-evenly">
@@ -247,25 +237,28 @@ const goHomePage = () => {
         </div>
 
         <div class="flex flex-wrap justify-content-between">
-          <button type="button" class="btn blueBtn mx-auto my-4" @click="goResults">
+          <router-link to="/MyResults" class="btn blueBtn mx-auto my-4">
             See your results
-          </button>
-          <button type="button" class="btn blueBtn backBtn mx-auto my-4" @click="goBack">
+          </router-link>
+          <router-link to="/QuizStart" class="btn blueBtn backBtn mx-auto my-4">
             Start a new quiz
-          </button>
+          </router-link>
         </div>
       </div>
     </div>
   </div>
 </template>
+
 <style scoped>
 .disableButton {
   pointer-events: none;
   cursor: default;
 }
+
 .default {
   background-color: #f4f3f6;
 }
+
 .easy {
   background-color: #198754;
 }
@@ -279,7 +272,7 @@ const goHomePage = () => {
 }
 
 .wrong {
-  border: 6px solid #ff544d;
+  border: 4px solid #ff544d;
 }
 
 .reveal {
@@ -300,17 +293,22 @@ const goHomePage = () => {
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset !important;
 }
-
+.amount{
+  font-size:0.8rem
+}
 .progress {
-  width: 400px;
-  height: 30px;
+  width: 10rem;
+  height: 25px;
   border-radius: 10px;
   overflow: hidden;
   background-color: #f4f3f6;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset !important;
 }
 
 .container {
-  margin: 2rem auto;
+  margin: 2.5rem auto;
   border-radius: 10px;
   background-color: #f5eddf;
   border-radius: 20px;
@@ -323,11 +321,12 @@ const goHomePage = () => {
 .levels {
   border: 1px solid #204764;
   border-radius: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset !important;
 }
-
-
 .alternatives {
-  width: 50%;
+  width: 13rem;
   box-sizing: border-box;
   /*Jämlika knappar*/
   display: flex;
@@ -405,5 +404,33 @@ h2 {
 .closeBtn:hover,
 .backBtn:hover {
   opacity: 0.9;
+}
+
+@media only screen and (min-width: 530px) {
+ .progress,.alternatives{
+  width:15rem;
+
+ }
+ .alternatives {
+   width: 17rem;
+
+ }
+ .question{
+  max-width:20rem;
+ }
+
+}
+@media only screen and (min-width: 850px) {
+  .progress,.alternatives {
+    width: 20rem;
+  }
+
+.alternatives {
+  width: 23rem;
+
+}
+ .question {
+   max-width: 25rem;
+ }
 }
 </style>
