@@ -5,15 +5,12 @@ import { ref,computed } from 'vue'
 import axios from 'axios';
 
 const router = useRouter()
-
-// const category = ref('') //default?
 const difficulty = ref('')
 const questionAmount = ref('')
 
 import { useCategoryStore } from '../store.js'
 
 const categoryStore = useCategoryStore()
-  // let category = categoryStore.category
 const category = computed(() => {
   console.log("quizstart category computed: " + categoryStore.category);
   return categoryStore.category;
