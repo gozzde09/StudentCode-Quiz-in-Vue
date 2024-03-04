@@ -9,10 +9,13 @@ declare module 'vue' {
   export interface GlobalComponents {
     BButton: typeof import('bootstrap-vue-next')['BButton']
     BModal: typeof import('bootstrap-vue-next')['BModal']
+    DifficultyComp: typeof import('./src/components/DifficultyComp.vue')['default']
     FooterPart: typeof import('./src/components/FooterPart.vue')['default']
-    GAMLA: typeof import('./src/components/GAMLA.vue')['default']
     GetQuiz: typeof import('./src/components/GetQuiz.vue')['default']
+    ModalComp: typeof import('./src/components/ModalComp.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
+    ProgressBar: typeof import('./src/components/ProgressBar.vue')['default']
+    ResultComp: typeof import('./src/components/ResultComp.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
