@@ -45,12 +45,12 @@ export default {
         { quiz: "PHP" },
         { quiz: "WordPress"}
       ],
-      totalCorrectAnswers: 0, // Totalt antal rätt svar
-      quizData: [], // Data för quizen
+      totalCorrectAnswers: 0, 
+      quizData: [], 
     };
   },
   mounted() {
-    // Räkna antalet rätt svar när komponenten har monterats
+    
     this.results.forEach(result => {
       this.totalCorrectAnswers += result.score === 1 ? 1 : 0;
     });
@@ -85,5 +85,7 @@ h1 {
   font-size: 1rem;
 }
 </style>
+
+
 
 
