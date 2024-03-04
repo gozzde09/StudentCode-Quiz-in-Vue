@@ -10,14 +10,22 @@
       <template #footer>
         <button data-v-e2619669="" class="btn btn-md btn-secondary backBtn" type="button">Back to the
           quiz</button>
-          <!-- FUNKAR EJ -->
         <router-link to="/QuizStart" class="btn closeBtn">
           Close this quiz
         </router-link>
       </template>
     </b-modal>
   </div>
+  <!--EXEMPEL-->
+  <!-- <div>
+    <b-button v-b-modal.modal-1>Launch demo modal</b-button>
+
+    <b-modal id="modal-1" title="BootstrapVue">
+      <p class="my-4">Hello from modal!</p>
+    </b-modal>
+  </div> -->
 </template>
+
 <style>
 .modal-body {
   background-color: #f4f3f6;
@@ -44,6 +52,11 @@
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset !important;
+}
+
+.circle:hover,
+.btn-close:hover {
+  background-color: #f5e76c !important;
 }
 
 .backBtn {
