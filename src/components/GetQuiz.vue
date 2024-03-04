@@ -272,8 +272,7 @@ const goHomePage = () => {
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset !important;
 }
 
-.alternatives:hover,
-.circle:hover {
+.alternatives:hover{
   background-color: #e1dfe3;
 }
 
@@ -317,7 +316,6 @@ h2 {
   .alternatives {
     width: 23rem;
   }
-
   .question {
     max-width: 25rem;
   }
