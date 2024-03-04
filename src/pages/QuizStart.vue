@@ -1,22 +1,19 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { ref,computed } from 'vue'
+import { useCategoryStore } from '../store.js'
 
 import axios from 'axios';
 
 const router = useRouter()
 
-const difficulty = ref('')
-const questionAmount = ref('')
-
-import { useCategoryStore } from '../store.js'
-
 const categoryStore = useCategoryStore()
 const category = computed(() => {
-  console.log("quizstart category computed: " + categoryStore.category);
+  console.log("Quizstart category computed: " + categoryStore.category);
   return categoryStore.category;
 });
-
+const difficulty = ref('')
+const questionAmount = ref('')
 
 // Definierar de olika parametrarna i varsin array med olika objekt, loopas sen i templaten (v-for topic in topics etc etc)
 const topics = [
@@ -76,8 +73,8 @@ const QuizStart = async () => {
       <div class="btn-group" role="group" aria-label="Topic">
         <!-- Loopar igenom varje topic i topics-arrayen, samma logik på de nedre också. /Alicia -->
         <template v-for="topic in topics" :key="topic.id">
-          <input v-model=category @click="categoryStore.setCategory(topic.id)" type="radio" class="btn-check" :name="'topic'"
-            :id="topic.id" :value="topic.value" />
+          <input v-model=category @click="categoryStore.setCategory(topic.id)" type="radio" class="btn-check"
+            :name="'topic'" :id="topic.id" :value="topic.value" />
           <!-- Kopplar etiketten till knappen genom att använda ämnets id /Alicia -->
           <label class="btn btn-outline-secondary" :for="topic.id">{{
             topic.label
