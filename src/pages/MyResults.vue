@@ -1,18 +1,22 @@
 <template>
   <div class="d-flex flex-column mx-auto justify-content-evenly">
     <h1 class="display-4 mx-auto my-3">Your Results!</h1>
-    <div class="mx-auto row justify-content-center">
-      <div class="col-md-10">
-        <div class="jumbotron">
-          <h5 class="mx-auto">
-            You got {{ totalCorrectAnswers }} / {{ quizData.length }}
-          </h5>
-          <p class="mx-auto">
-            Would you like to make another quiz or go to your result page?
-          </p>
-        </div>
-      </div>
-    </div>
+
+        
+    
+    <div class="jumbotron d-flex align-items-center justify-content-center">
+  <div class="text-center">
+    <h2>
+      YOU GOT: {{ totalCorrectAnswers }} / {{ results.length }}
+    </h2>
+    <p>
+      Would you like to make another quiz or go to your result page?
+    </p>
+  </div>
+</div>
+
+
+
 
     <div class="row justify-content-center" id="result-container">
       <div class="col-md-2">
