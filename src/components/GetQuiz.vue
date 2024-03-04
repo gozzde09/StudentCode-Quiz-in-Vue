@@ -3,6 +3,7 @@ import ModalComp from '../components/ModalComp.vue'
 import ProgressBar from '../components/ProgressBar.vue'
 import DifficultyComp from '../components/DifficultyComp.vue'
 import ResultComp from '../components/ResultComp.vue'
+import CountDown from '../components/CountDown.vue'
 
 import axios from 'axios'
 import { ref, computed } from 'vue'
@@ -144,11 +145,17 @@ function nextQuestion() {
       </h4>
       <ModalComp /> <!-- Modal om att stänga quiz-->
     </div>
+
     <ProgressBar :progress-percent="progress" :total-question="quizData.length" />
+    <div>
+      <CountDown />
+    </div>
+
     <!-- FRÅGA -->
     <h4 class="mx-auto my-3 question" style="max-width: 80%">
       {{ currentQuestionIndex + 1 }}. {{ currentQuestion.question }}
     </h4>
+
     <!-- ALTERNATIV -->
     <div v-for="(answer, key) in currentQuestion.answers" :key="key" class="d-flex mt-3">
       <div v-if="answer" class="mx-auto alternatives" :class="{
@@ -170,7 +177,6 @@ function nextQuestion() {
         <p>{{ answer }}</p>
       </div>
     </div>
-    <!-- CountDown -->
     <span class="d-flex justify-content-center my-2" style="font-weight: bold">{{ countDown }}</span>
     <BButton class="mx-auto px-4 my-2 blueBtn" style="max-width: 75%" variant="success" @click="nextQuestion()"
       :disabled="optionsButtonDisabled || buttonDisabled">
