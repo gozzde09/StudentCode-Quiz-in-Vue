@@ -8,7 +8,7 @@ const goBack = () => {
 </script>
 <template>
    <div class="d-flex flex-column mx-auto justify-content-evenly">
-      <h1 class="display-4 mx-auto my-3">Oops, something went wrong!</h1>
+      <h1 class="display-4 mx-auto my-3 rubrik">Oops, something went wrong!</h1>
       <div class="mx-auto row justify-content-center">
         <div class="col-md-6">
           <div class="jumbotron">
@@ -24,10 +24,3 @@ const goBack = () => {
     </button>
   </div>
 </template>
-
-<style scoped>
-h1 {
-  color: rgb(21, 52, 76);
-  font-weight: 400;
-}
-</style>

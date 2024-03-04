@@ -15,6 +15,7 @@ declare module 'vue' {
     ModalComp: typeof import('./src/components/ModalComp.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
     ProgressBar: typeof import('./src/components/ProgressBar.vue')['default']
+    ResultComp: typeof import('./src/components/ResultComp.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
