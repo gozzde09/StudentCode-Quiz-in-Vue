@@ -163,8 +163,8 @@ const saveDataToLocalStorage = () => {
     </div>
 
     <ProgressBar :progress-percent="progress" :total-question="quizData.length" />
-    <div>
-      <CountDown />
+    <div class="justify-content-between align-items-center">
+        <CountDown />
     </div>
 
     <!-- FRÅGA -->

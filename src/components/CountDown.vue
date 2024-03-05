@@ -1,19 +1,25 @@
 <script setup>
-  import { ref, onMounted } from 'vue'
+  import { ref, onMounted, watch } from 'vue'
 
   const time = 90
   const timeleft = ref(time)
   const timeout = ref(false)
+  let intervalId
 
   const aliciastimer = () => {
-    const interval = setInterval(() => {
-      timeleft.value--
-
-      if(timeleft.value <= 0) {
-        stoptimer(interval)
+    intervalId = setInterval(() => {
+      if(timeleft.value > 0) {
+        stoptimer(intervalId)
+        timeleft.value--
+      } else {
+        clearInterval(intervalId)
         timeout.value = true
       }
     }, 1000)
+  }
+
+  const stoptimer = () => {
+    clearInterval(intervalId)
   }
 
   onMounted(() => {
@@ -26,5 +32,7 @@
 </script>
 
 <template>
-  <div></div>
+  <div >
+    <p>{{ timeleft }}</p>
+  </div>
 </template>
