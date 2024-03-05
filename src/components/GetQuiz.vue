@@ -128,7 +128,9 @@ function nextQuestion() {
 
   if (currentQuestionIndex.value === quizData.value.length - 1) {//sista fråga
     buttonDisabled.value = true
-    buttonText.value = 'DONE'
+    buttonText.value = 'DONE' 
+    saveDataToLocalStorage();
+
   }
   progress.value += 100 / quizData.value.length
 }
