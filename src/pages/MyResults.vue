@@ -17,14 +17,14 @@ onMounted(() => {
 });
 
 </script>
+
 <template>
   <!-- Display local storage data -->
   <h1 class="display-4 mx-auto my-3 rubrik">Your Results!</h1>
-  <div class="d-flex row flex-wrap mx-auto justify-content-evenly" v-if="localStorageData.length > 0">
-    <div class="d-flex flex-wrap justify-content-evenly card" v-for="data in localStorageData"
-      :key="data.category">
+  <div class="d-flex row flex-wrap justify-content-evenly" v-if="localStorageData.length > 0">
+    <div class="d-flex flex-wrap card" v-for="data in localStorageData" :key="data.category">
       <div class="d-flex align-items-center">
-        <h2 class="mx-auto rubrik">{{ data.category }}</h2>
+        <h2 class=" mx-auto rubrik my-2">{{ data.category }}</h2>
         <DifficultyComp :difficulty="data.difficulty" />
       </div>
 
@@ -33,9 +33,9 @@ onMounted(() => {
           <div class="jumbotron">
             <h5 class="mx-auto">
               YOU GOT: <strong class="result">{{
-                data.correctAnswers }}/ {{ data.questionAmount }}</strong>
+    data.correctAnswers }}/ {{ data.questionAmount }}</strong>
             </h5>
-            <p class="lead mx-auto">
+            <p class=" mx-auto">
               Would you like to make another quiz or go to your result page?
             </p>
           </div>
@@ -50,18 +50,14 @@ onMounted(() => {
       </div>
     </div>
   </div>
-  <div v-else>
-    <h4>DO MORE QUIZ!</h4>
-  </div>
 </template>
 
 <style scoped>
 
 .card {
   padding: 0px;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
   max-width: 300px;
-  background-color: #F4F3F6;
 }
 
 </style>
