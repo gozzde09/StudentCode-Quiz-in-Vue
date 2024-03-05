@@ -23,16 +23,11 @@ onMounted(() => {
   <div class="d-flex row flex-wrap mx-auto justify-content-evenly" v-if="localStorageData">
     <div class="d-flex flex-wrap mx-auto justify-content-evenly card" v-for="data in localStorageData"
       :key="data.category">
-<<<<<<< HEAD
-      <div class="d-flex align-items-center">
-        <h2 class="mx-auto rubrik">{{ data.category }}</h2>
-=======
       <div class="d-flex align-items.center">
         <h2 class=" mx-auto rubrik">{{ data.category }}</h2>
->>>>>>> 9efb08fcaf38974ac65820dde652b576240c2646
         <DifficultyComp :difficulty="data.difficulty" />
       </div>
-      
+
       <div class="mx-auto row justify-content-center">
         <div class="col-md-10">
           <div class="jumbotron">
@@ -68,16 +63,4 @@ onMounted(() => {
   max-width: 300px;
   background-color: #F4F3F6;
 }
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 9efb08fcaf38974ac65820dde652b576240c2646
 </style>
-
-
-
-
-
-
-
