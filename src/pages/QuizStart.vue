@@ -9,7 +9,7 @@ const router = useRouter()
 
 const categoryStore = useCategoryStore()
 const category = computed(() => {
-  console.log("Quizstart category computed: " + categoryStore.category);
+  // console.log("Quizstart category computed: " + categoryStore.category);
   return categoryStore.category.toLowerCase();
 });
 const difficulty = ref('')

@@ -36,10 +36,11 @@ onMounted(() => {
                 data.correctAnswers }}/{{ data.questionAmount }}</strong>
             </h6>
             <p class=" mx-auto">
-              Your recent score in this difficulty and category. Are you satisfied or would you like to renew it? It's up to you!
+              Your recent score in this difficulty and category. Are you satisfied or would you like to renew it? It's
+              up to you!
             </p>
             <router-link to="/QuizStart" @click="categoryStore.setCategory(data.category)"
-              class="btn blueBtn backBtn mx-auto my-2">
+              class="btn btn-outline-success mx-auto my-2">
               Try again
             </router-link>
           </div>
@@ -50,7 +51,7 @@ onMounted(() => {
   <div v-else>
     <div class="d-flex flex-wrap justify-content-evenly card mx-auto">
       <div class="d-flex align-items-center">
-        <h2 class=" mx-auto rubrik my-2">Oops!</h2>
+        <h2 class=" mx-auto rubrik my-4">Oops!</h2>
       </div>
 
       <div class="mx-auto row justify-content-center">
@@ -66,7 +67,7 @@ onMounted(() => {
         </div>
 
         <div class="d-flex flex-wrap justify-content-between">
-          <router-link to="/QuizStart" class="btn blueBtn backBtn mx-auto my-4">
+          <router-link to="/QuizStart" class="btn btn-outline-success mx-auto my-4">
             Start a quiz
           </router-link>
         </div>

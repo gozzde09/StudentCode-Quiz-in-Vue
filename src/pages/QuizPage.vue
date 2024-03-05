@@ -19,7 +19,7 @@ const categoryStore = useCategoryStore()
   </div>
   <div class="d-flex flex-column mx-auto container mb-4">
     <div class="col-md-14 row justify-content-center">
-      <div class="d-flex flex-column col-sm-5">
+      <div class="d-flex col-sm-5">
         <div class="card">
           <div class="card-body">
             <div class="d-flex align-items-center my-2">
@@ -60,6 +60,7 @@ const categoryStore = useCategoryStore()
             <p class="card-text">Dive into the essentials of PHP with our comprehensive quiz. From grasping the basics
               to
               mastering advanced concepts, this quiz is crafted to elevate your understanding of server-side scripting.
+              We offer a tailored learning experience with real-world applications.
             </p>
             <router-link to="/QuizStart" class="btn blueBtn my-2" @click="categoryStore.setCategory('php')">Go to
               quiz</router-link>
@@ -73,9 +74,10 @@ const categoryStore = useCategoryStore()
               <img class="card-img-top circle" src="../assets/WordPress.png" alt="wordpress logo" />
               <h4 class="card-title">WordPress</h4>
             </div>
-            <p class="card-text">In the WordPress quiz, participants can explore various aspects of the popular content
+            <p class="card-text">In the WordPress quiz, developers can explore various aspects of the popular content
               management system, making it an ideal resource for those
-              interested in mastering website creation with WordPress.</p>
+              interested in mastering website creation with WordPress. It's your
+              gateway to unlocking the full potential of this popular CMS. </p>
             <router-link to="/QuizStart" class="btn blueBtn my-2" @click="categoryStore.setCategory('wordpress')">Go to
               quiz</router-link>
           </div>
@@ -106,8 +108,7 @@ const categoryStore = useCategoryStore()
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset !important;
 }
+@media only screen and (max-width: 580px) {
 
-@media only screen and (max-width: 585px) {
-  /*KONSTIGT LAYOUT vid 585px*/
 }
 </style>

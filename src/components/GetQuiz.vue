@@ -230,14 +230,13 @@ const saveDataToLocalStorage = () => {
   cursor: default;
 }
 
-.alternatives {
-  /*button*/
+.alternatives {/*button*/
   width: 15rem;
-  box-sizing: border-box;
-  /*Jämlika knappar*/
+  box-sizing: border-box;/*Jämlika knappar*/
   display: flex;
   align-items: center;
   cursor: pointer;
+  overflow-wrap: anything;
   border-radius: 20px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
