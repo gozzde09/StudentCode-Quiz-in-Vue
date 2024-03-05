@@ -1,6 +1,15 @@
 <script setup>
   import { ref, onMounted, watch } from 'vue'
 
+  // Skiss på lösning med timer utefter frågelängd:
+  // timeQuiz = 4
+  // const props = defineProps({
+  //   type: Number,
+  //   default: 10
+  // })
+  // const time = ref(timeQuiz * props.questionNumber)
+  // const timeleft = ref(titalTime.value)
+
   const time = 80
   const timeleft = ref(time)
   const timeout = ref(false)
