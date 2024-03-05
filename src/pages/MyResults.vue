@@ -2,18 +2,11 @@
 import DifficultyComp from '../components/DifficultyComp.vue';
 import { ref, onMounted } from 'vue';
 const localStorageData = ref([]);
-
 // Function to retrieve data from local storage
 const retrieveDataFromLocalStorage = () => {
   localStorageData.value = Object.keys(localStorage)
     .filter(key => key.startsWith('quizDataObject_'))
-    .map(key => JSON.parse(localStorage.getItem(key)))
-    .sort((a, b) => {
-      // Sort by category (HTML, JavaScript, PHP, WordPress)
-      if (a.category < b.category) return -1;
-      if (a.category > b.category) return 1;
-      return 0;
-    });
+    .map(key => JSON.parse(localStorage.getItem(key)));
 }
 
 // Call the function on component mount
@@ -22,37 +15,62 @@ onMounted(() => {
 });
 
 </script>
-
 <template>
   <!-- Display local storage data -->
   <h1 class="display-4 mx-auto my-3 rubrik">Your Results!</h1>
-  
-  <!-- Render data for each category -->
-  <div v-for="category in ['HTML', 'JavaScript', 'PHP', 'WordPress']" :key="category">
-    <div class="category-wrapper" v-if="hasResultsForCategory(category)">
-      <h2 class="category-title">{{ category }}</h2>
-      <div class="d-flex flex-wrap mx-auto justify-content-evenly card" v-for="data in filteredDataByCategory(category)" :key="data.category">
-        <!-- Your existing template here -->
+  <div class="d-flex row mx-auto justify-content-evenly" v-if="localStorageData">
+    <div class="d-flex flex-wrap mx-auto justify-content-evenly card" v-for="data in localStorageData"
+      :key="data.category">
+      <div class="d-flex">
+        <h1 class="display-4 mx-auto rubrik">{{ data.category }}</h1>
+        <DifficultyComp :difficulty="data.difficulty" />
+      </div>
+      
+      <div class="mx-auto row justify-content-center">
+        <div class="col-md-10">
+          <div class="jumbotron">
+            <h3 class="mx-auto">
+              YOU GOT: <strong class="result">{{
+                data.correctAnswers }}/ {{ data.questionAmount }}</strong>
+            </h3>
+            <p class="lead mx-auto">
+              Would you like to make another quiz or go to your result page?
+            </p>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-between">
+          <router-link to="/QuizStart" class="btn blueBtn backBtn mx-auto my-4">
+            Try again
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
-
-  <!-- Display message if no results are available -->
-  <div v-if="!localStorageData || localStorageData.length === 0">
+  <div v-else>
     <h4>DO MORE QUIZ!</h4>
   </div>
 </template>
 
 <style scoped>
-/* Your existing styles here */
 
-.category-wrapper {
-  margin-top: 20px;
+.card {
+  padding: 10px;
+  margin-bottom: 10px;
+  max-width: 350px;
+  background-color: #F4F3F6;
 }
 
-.category-title {
-  margin-bottom: 10px;
-  font-size: 2rem;
+.card-body {
+  margin: 6px;
+  padding: 10px;
+}
+.card-title {
+  font-size: 1.5rem;
+}
+
+.card-text {
+  font-size: 1rem;
 }
 </style>
 
