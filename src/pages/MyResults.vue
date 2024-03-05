@@ -20,10 +20,10 @@ onMounted(() => {
 <template>
   <!-- Display local storage data -->
   <h1 class="display-4 mx-auto my-3 rubrik">Your Results!</h1>
-  <div class="d-flex row flex-wrap mx-auto justify-content-evenly" v-if="localStorageData">
+  <div class="d-flex row flex-wrap mx-auto justify-content-evenly" v-if="localStorageData > 0 ">
     <div class="d-flex flex-wrap mx-auto justify-content-evenly card" v-for="data in localStorageData"
       :key="data.category">
-      <div class="d-flex align-items.center">
+      <div class="d-flex align-items-center">
         <h2 class=" mx-auto rubrik">{{ data.category }}</h2>
         <DifficultyComp :difficulty="data.difficulty" />
       </div>
