@@ -1,7 +1,7 @@
 <script setup>
   import { ref, onMounted, watch } from 'vue'
 
-  const time = 5
+  const time = 90
   const timeleft = ref(time)
   const timeout = ref(false)
   let intervalId
