@@ -46,7 +46,7 @@ const goHomePage = () => {
     </div>
   </div>
 </template>
-<style scoped>
+<style>
 .result {
   color: #198754;
 }

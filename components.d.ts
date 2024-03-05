@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     BButton: typeof import('bootstrap-vue-next')['BButton']
     BModal: typeof import('bootstrap-vue-next')['BModal']
+    CountDown: typeof import('./src/components/CountDown.vue')['default']
     DifficultyComp: typeof import('./src/components/DifficultyComp.vue')['default']
     FooterPart: typeof import('./src/components/FooterPart.vue')['default']
     GetQuiz: typeof import('./src/components/GetQuiz.vue')['default']

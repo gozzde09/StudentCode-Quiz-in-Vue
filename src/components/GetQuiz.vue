@@ -129,11 +129,25 @@ function nextQuestion() {
 
   if (currentQuestionIndex.value === quizData.value.length - 1) {//sista fråga
     buttonDisabled.value = true
-    buttonText.value = 'DONE' 
+    buttonText.value = 'DONE'
     saveDataToLocalStorage();
 
   }
   progress.value += 100 / quizData.value.length
+}
+// Spara data i local storage
+const saveDataToLocalStorage = () => {
+  console.log("sparar");
+  const categoryKey = `quizDataObject_${currentQuestion.value.tags[0].name }_${ currentQuestion.value.difficulty }`;
+
+  const dataResult = {
+    category: currentQuestion.value.tags[0].name,
+    questionAmount: quizData.value.length,
+    correctAnswers: totalCorrectAnswers.value,
+    difficulty: currentQuestion.value.difficulty
+  };
+  const results = JSON.stringify(dataResult);
+  localStorage.setItem(categoryKey, results);
 }
 </script>
 
