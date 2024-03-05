@@ -1,4 +1,6 @@
 <script setup>
+import { useCategoryStore } from '../store.js'
+const categoryStore = useCategoryStore()
 import DifficultyComp from '../components/DifficultyComp.vue';
 import { ref, onMounted } from 'vue';
 const localStorageData = ref([]);
@@ -18,27 +20,30 @@ onMounted(() => {
 <template>
   <!-- Display local storage data -->
   <h1 class="display-4 mx-auto my-3 rubrik">Your Results!</h1>
-  <div class="d-flex row mx-auto justify-content-evenly" v-if="localStorageData">
-    <div class="d-flex flex-wrap mx-auto justify-content-evenly card" v-for="data in localStorageData"
+  <div class="d-flex row flex-wrap mx-auto justify-content-evenly" v-if="localStorageData">
+    <div class="d-flex flex-wrap justify-content-evenly card" v-for="data in localStorageData"
       :key="data.category">
-      <div class="d-flex">
-        <h1 class="display-4 mx-auto rubrik">{{ data.category }}</h1>
+      <div class="d-flex align-items-center">
+        <h2 class=" mx-auto rubrik my-2">{{ data.category }}</h2>
         <DifficultyComp :difficulty="data.difficulty" />
       </div>
+
       <div class="mx-auto row justify-content-center">
         <div class="col-md-10">
           <div class="jumbotron">
-            <h3 class="mx-auto">
-              Totalt antal rätt svar: <strong class="result">{{
+            <h5 class="mx-auto">
+              YOU GOT: <strong class="result">{{
                 data.correctAnswers }}/ {{ data.questionAmount }}</strong>
-            </h3>
+            </h5>
             <p class="lead mx-auto">
               Would you like to make another quiz or go to your result page?
             </p>
           </div>
         </div>
+
         <div class="d-flex flex-wrap justify-content-between">
-          <router-link to="/QuizStart" class="btn blueBtn backBtn mx-auto my-4">
+          <router-link to="/QuizStart" @click="categoryStore.setCategory(data.category)"
+            class="btn blueBtn backBtn mx-auto my-4">
             Try again
           </router-link>
         </div>
@@ -46,35 +51,40 @@ onMounted(() => {
     </div>
   </div>
   <div v-else>
-    <h4>DO MORE QUIZ!</h4>
+    <div class="d-flex flex-wrap justify-content-evenly card" >
+      <div class="d-flex align-items-center">
+        <h2 class=" mx-auto rubrik my-2">Ops!</h2>
+      </div>
+
+      <div class="mx-auto row justify-content-center">
+        <div class="col-md-10">
+          <div class="jumbotron">
+            <h5 class="mx-auto">
+              You have not done any quiz!
+            </h5>
+            <p class="lead mx-auto">
+              Would you like to make a quiz?
+            </p>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-between">
+          <router-link to="/QuizStart"
+            class="btn blueBtn backBtn mx-auto my-4">
+            Do a quiz
+          </router-link>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped>
 
 .card {
-  padding: 10px;
+  padding: 0px;
   margin-bottom: 10px;
-  max-width: 350px;
+  max-width: 300px;
   background-color: #F4F3F6;
 }
-
-.card-body {
-  margin: 6px;
-  padding: 10px;
-}
-.card-title {
-  font-size: 1.5rem;
-}
-
-.card-text {
-  font-size: 1rem;
-}
 </style>
-
-
-
-
-
-
-

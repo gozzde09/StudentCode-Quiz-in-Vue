@@ -98,15 +98,23 @@ const getCorrectAnswer = () => {
 
 //Funktion som visar hur många sekunder man har till nästa fråga /Alicia
 function startCountdown(seconds) {
-  if (seconds > 0) {
+  if (seconds > 0 && currentQuestionIndex.value === quizData.value.length - 1) {
+    countDown.value = `Your results in... ${seconds}`
+    setTimeout(() => {
+      startCountdown(seconds - 1)
+    }, 1000)
+  }
+  else if (seconds > 0) {
     countDown.value = `Next question in... ${seconds}`
     setTimeout(() => {
       startCountdown(seconds - 1)
     }, 1000)
-  } else {
+  }
+  else {
     countDown.value = ''
   }
 }
+
 
 //Nästa fråga + progress bar
 function nextQuestion() {
@@ -163,8 +171,8 @@ const saveDataToLocalStorage = () => {
     </div>
 
     <ProgressBar :progress-percent="progress" :total-question="quizData.length" />
-    <div>
-      <CountDown />
+    <div class="justify-content-between align-items-center">
+        <CountDown />
     </div>
 
     <!-- FRÅGA -->
@@ -225,7 +233,7 @@ const saveDataToLocalStorage = () => {
 
 .alternatives {
   /*button*/
-  width: 13rem;
+  width: 15rem;
   box-sizing: border-box;
   /*Jämlika knappar*/
   display: flex;
@@ -295,7 +303,7 @@ const saveDataToLocalStorage = () => {
 
 @media only screen and (min-width: 530px) {
   .alternatives {
-    width: 17rem;
+    width: 20rem;
   }
 
   .question {
@@ -305,7 +313,7 @@ const saveDataToLocalStorage = () => {
 
 @media only screen and (min-width: 850px) {
   .alternatives {
-    width: 23rem;
+    max-width: 28rem;
   }
 
   .question {

@@ -19,6 +19,7 @@ main {
   flex-direction: column;
   min-height: 100vh;
   font-family: 'Poppins', Helvetica, sans-serif;
+   overflow-x: hidden;
 }
 .blueBtn {
   background-color: #204764 !important;
@@ -40,6 +41,7 @@ main {
 footer {
   font-size: 0.8rem;
   background-color: #f4f3f6;
+  overflow-x: hidden;
 }
 
 @media only screen and (max-width: 530px) {
