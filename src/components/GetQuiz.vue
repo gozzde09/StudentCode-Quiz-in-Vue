@@ -4,7 +4,6 @@ import ProgressBar from '../components/ProgressBar.vue'
 import DifficultyComp from '../components/DifficultyComp.vue'
 import ResultComp from '../components/ResultComp.vue'
 import CountDown from '../components/CountDown.vue'
-
 import axios from 'axios'
 import { ref, computed } from 'vue'
 

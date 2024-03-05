@@ -1,7 +1,7 @@
 <script setup>
   import { ref, onMounted, watch } from 'vue'
 
-  const time = 90
+  const time = 80
   const timeleft = ref(time)
   const timeout = ref(false)
   let intervalId
@@ -39,6 +39,18 @@
     <p> {{ timeleft }} seconds remaining</p>
   </div>
   <div v-if="notime">
-    Oh no! You ran out of time
+    <div>
+    <b-modal id="modal-1" v-model="notime">
+      <h2 class="mx-auto my-2 text-center" style="color: #204764; font-weight: bolder">
+        Oh no!
+      </h2>
+      <h2 class="mx-auto my-2 text-center">You ran out of time. Your progress will be lost. Better luck next quiz!</h2>
+      <template #footer>
+        <router-link to="/QuizStart" class="btn closeBtn">
+          Go back to start
+        </router-link>
+      </template>
+    </b-modal>
+  </div>
   </div>
 </template>
