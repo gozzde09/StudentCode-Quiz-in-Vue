@@ -28,7 +28,7 @@ const goHomePage = () => {
       <div class="col-md-10">
         <div class="jumbotron">
           <h3 class="mx-auto">
-            Totalt antal rätt svar: <strong class="result">{{ props.correct }}/{{ props.questionsAmount }}</strong>
+            Your result: <strong class="result">{{ props.correct }}/{{ props.questionsAmount }}</strong>
           </h3>
           <p class="lead mx-auto">
             Would you like to make another quiz or go to your result page?

@@ -20,7 +20,7 @@ onMounted(() => {
 
 <template>
   <!-- Display local storage data -->
-  <h1 class=" mx-auto mt-4 rubrik">Your All Results</h1>
+  <h1 class=" mx-auto mt-4 rubrik">Results from previous quizzes</h1>
   <div class="d-flex row flex-wrap justify-content-evenly my-4" v-if="localStorageData.length > 0">
     <div class="d-flex flex-wrap card" v-for="data in localStorageData" :key="data.category">
       <div class="d-flex align-items-center justify-content-around">
@@ -57,7 +57,7 @@ onMounted(() => {
         <div class="col-md-10">
           <div class="jumbotron">
             <h5 class="mx-auto">
-              You have not done any quiz!
+              You haven't done any quizzes yet!
             </h5>
             <p class="lead mx-auto">
               Would you like to do a quiz?
@@ -67,7 +67,7 @@ onMounted(() => {
 
         <div class="d-flex flex-wrap justify-content-between">
           <router-link to="/QuizStart" class="btn blueBtn backBtn mx-auto my-4">
-            Do a quiz
+            Start a quiz
           </router-link>
         </div>
       </div>
