@@ -20,11 +20,11 @@ onMounted(() => {
 <template>
   <!-- Display local storage data -->
   <h1 class="display-4 mx-auto my-3 rubrik">Your Results!</h1>
-  <div class="d-flex row mx-auto justify-content-evenly" v-if="localStorageData">
+  <div class="d-flex row flex-wrap mx-auto justify-content-evenly" v-if="localStorageData">
     <div class="d-flex flex-wrap mx-auto justify-content-evenly card" v-for="data in localStorageData"
       :key="data.category">
-      <div class="d-flex">
-        <h1 class="display-4 mx-auto rubrik">{{ data.category }}</h1>
+      <div class="d-flex align-items-center">
+        <h2 class="mx-auto rubrik">{{ data.category }}</h2>
         <DifficultyComp :difficulty="data.difficulty" />
       </div>
       <div class="mx-auto row justify-content-center">
@@ -56,21 +56,10 @@ onMounted(() => {
 <style scoped>
 
 .card {
-  padding: 10px;
+  padding: 0px;
   margin-bottom: 10px;
-  max-width: 350px;
+  max-width: 300px;
   background-color: #F4F3F6;
 }
 
-.card-body {
-  margin: 6px;
-  padding: 10px;
-}
-.card-title {
-  font-size: 1.5rem;
-}
-
-.card-text {
-  font-size: 1rem;
-}
 </style>
