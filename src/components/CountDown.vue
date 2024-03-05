@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, onMounted } from 'vue'
+  import { ref, onMounted, watch} from 'vue'
 
   const time = 90
   const timeleft = ref(time)
