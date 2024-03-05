@@ -19,4 +19,12 @@
   onMounted(() => {
     aliciastimer()
   })
+
+  watch(timeleft, (newValue) => {
+    console.log(newValue)
+  })
 </script>
+
+<template>
+  <div></div>
+</template>
