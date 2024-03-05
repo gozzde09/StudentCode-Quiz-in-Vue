@@ -14,7 +14,6 @@
 
 <template>
   <div class="mx-auto d-flex align-items-center">
-    <span class="mx-2 amount"> 0 </span>
     <div class="progress">
       <div
         class="progress-bar bg-success progress-bar-striped progress-bar-animated"

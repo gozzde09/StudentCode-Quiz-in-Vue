@@ -37,7 +37,7 @@ const goHomePage = () => {
       </div>
       <div class="d-flex flex-wrap justify-content-between">
         <router-link to="/MyResults" class="btn blueBtn mx-auto my-4">
-          See my results
+          See all my results
         </router-link>
         <router-link to="/QuizStart" class="btn blueBtn backBtn mx-auto my-4">
           Start a new quiz

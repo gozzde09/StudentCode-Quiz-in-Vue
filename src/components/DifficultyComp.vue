@@ -9,7 +9,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="levels mx-1 p-1">
+  <div class="levels mx-2 p-1">
     <!-- <span> Difficulty: </span> -->
     <span v-if="props.difficulty === 'Easy'">
       <i class="bi bi-star-fill level mx-1 easy" />
