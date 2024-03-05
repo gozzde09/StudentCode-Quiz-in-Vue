@@ -23,22 +23,29 @@ onMounted(() => {
   <div class="d-flex row flex-wrap mx-auto justify-content-evenly" v-if="localStorageData">
     <div class="d-flex flex-wrap mx-auto justify-content-evenly card" v-for="data in localStorageData"
       :key="data.category">
+<<<<<<< HEAD
       <div class="d-flex align-items-center">
         <h2 class="mx-auto rubrik">{{ data.category }}</h2>
+=======
+      <div class="d-flex align-items.center">
+        <h2 class=" mx-auto rubrik">{{ data.category }}</h2>
+>>>>>>> 9efb08fcaf38974ac65820dde652b576240c2646
         <DifficultyComp :difficulty="data.difficulty" />
       </div>
+      
       <div class="mx-auto row justify-content-center">
         <div class="col-md-10">
           <div class="jumbotron">
-            <h3 class="mx-auto">
-              Totalt antal rätt svar: <strong class="result">{{
+            <h5 class="mx-auto">
+              YOU GOT: <strong class="result">{{
                 data.correctAnswers }}/ {{ data.questionAmount }}</strong>
-            </h3>
+            </h5>
             <p class="lead mx-auto">
               Would you like to make another quiz or go to your result page?
             </p>
           </div>
         </div>
+
         <div class="d-flex flex-wrap justify-content-between">
           <router-link to="/QuizStart" @click="categoryStore.setCategory(data.category)"
             class="btn blueBtn backBtn mx-auto my-4">
@@ -62,4 +69,15 @@ onMounted(() => {
   background-color: #F4F3F6;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9efb08fcaf38974ac65820dde652b576240c2646
 </style>
+
+
+
+
+
+
+
