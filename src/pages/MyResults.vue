@@ -21,13 +21,13 @@ onMounted(() => {
   <!-- Display local storage data -->
   <h1 class="display-4 mx-auto my-3 rubrik">Your Results!</h1>
   <div class="d-flex row flex-wrap mx-auto justify-content-evenly" v-if="localStorageData">
-    <div class="d-flex flex-wrap mx-auto justify-content-evenly card" v-for="data in localStorageData"
+    <div class="d-flex flex-wrap justify-content-evenly card" v-for="data in localStorageData"
       :key="data.category">
       <div class="d-flex align-items-center">
-        <h2 class=" mx-auto rubrik">{{ data.category }}</h2>
+        <h2 class=" mx-auto rubrik my-2">{{ data.category }}</h2>
         <DifficultyComp :difficulty="data.difficulty" />
       </div>
-      
+
       <div class="mx-auto row justify-content-center">
         <div class="col-md-10">
           <div class="jumbotron">
@@ -51,7 +51,31 @@ onMounted(() => {
     </div>
   </div>
   <div v-else>
-    <h4>DO MORE QUIZ!</h4>
+    <div class="d-flex flex-wrap justify-content-evenly card" >
+      <div class="d-flex align-items-center">
+        <h2 class=" mx-auto rubrik my-2">Ops!</h2>
+      </div>
+
+      <div class="mx-auto row justify-content-center">
+        <div class="col-md-10">
+          <div class="jumbotron">
+            <h5 class="mx-auto">
+              You have not done any quiz!
+            </h5>
+            <p class="lead mx-auto">
+              Would you like to make a quiz?
+            </p>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-between">
+          <router-link to="/QuizStart"
+            class="btn blueBtn backBtn mx-auto my-4">
+            Do a quiz
+          </router-link>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -63,13 +87,4 @@ onMounted(() => {
   max-width: 300px;
   background-color: #F4F3F6;
 }
-
-
 </style>
-
-
-
-
-
-
-
