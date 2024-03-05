@@ -1,4 +1,6 @@
 <script setup>
+import { useCategoryStore } from '../store.js'
+const categoryStore = useCategoryStore()
 import DifficultyComp from '../components/DifficultyComp.vue';
 import { ref, onMounted } from 'vue';
 const localStorageData = ref([]);
@@ -38,7 +40,8 @@ onMounted(() => {
           </div>
         </div>
         <div class="d-flex flex-wrap justify-content-between">
-          <router-link to="/QuizStart" class="btn blueBtn backBtn mx-auto my-4">
+          <router-link to="/QuizStart" @click="categoryStore.setCategory(data.category)"
+            class="btn blueBtn backBtn mx-auto my-4">
             Try again
           </router-link>
         </div>
@@ -71,10 +74,3 @@ onMounted(() => {
   font-size: 1rem;
 }
 </style>
-
-
-
-
-
-
-

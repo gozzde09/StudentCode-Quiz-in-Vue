@@ -1,14 +1,24 @@
+<script setup>
+import { ref } from 'vue';
+
+const isModalVisible = ref(false);
+
+function closeModal() {
+  isModalVisible.value = !isModalVisible.value;
+}
+</script>
 <template>
   <!-- Button trigger modal -->
   <div>
     <b-button v-b-modal.modal-1 class="circle align-self-end" style="background-color: white; color:black">X</b-button>
-    <b-modal id="modal-1">
+    <b-modal id="modal-1" v-model="isModalVisible">
       <h2 class="mx-auto my-2 text-center" style="color: #204764; font-weight: bolder">
         Are you sure you want to close the quiz?
       </h2>
       <h2 class="mx-auto my-2 text-center">Your progress will be lost.</h2>
       <template #footer>
-        <button data-v-e2619669="" class="btn btn-md btn-secondary backBtn" type="button">Back to the
+        <button data-v-e2619669="" @click="closeModal()" class="btn btn-md btn-secondary backBtn" type="button">Back to
+          the
           quiz</button>
         <router-link to="/QuizStart" class="btn closeBtn">
           Close this quiz
@@ -16,14 +26,6 @@
       </template>
     </b-modal>
   </div>
-  <!--EXEMPEL-->
-  <!-- <div>
-    <b-button v-b-modal.modal-1>Launch demo modal</b-button>
-
-    <b-modal id="modal-1" title="BootstrapVue">
-      <p class="my-4">Hello from modal!</p>
-    </b-modal>
-  </div> -->
 </template>
 
 <style>
