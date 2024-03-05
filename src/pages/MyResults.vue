@@ -43,7 +43,7 @@ onMounted(() => {
 
         <div class="d-flex flex-wrap justify-content-between">
           <router-link to="/QuizStart" @click="categoryStore.setCategory(data.category)"
-           class="btn blueBtn backBtn mx-auto my-4">
+            class="btn blueBtn backBtn mx-auto my-4">
             Try again
           </router-link>
         </div>
@@ -66,8 +66,6 @@ onMounted(() => {
 
 
 </style>
-
-
 
 
 
