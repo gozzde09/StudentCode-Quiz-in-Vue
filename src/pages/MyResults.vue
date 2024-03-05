@@ -29,7 +29,7 @@ onMounted(() => {
         <div class="col-md-10">
           <div class="jumbotron">
             <h3 class="mx-auto">
-              Totalt antal rätt svar: <strong class="result">{{
+              YOU GOT: <strong class="result">{{
                 data.correctAnswers }}/ {{ data.questionAmount }}</strong>
             </h3>
             <p class="lead mx-auto">
