@@ -2,12 +2,12 @@
 import { useRouter } from 'vue-router'
 const router = useRouter()
 
-const goBack = () => {
+const back = () => {
   router.push('/QuizStart')
 }
 </script>
 <template>
-   <div class="d-flex flex-column mx-auto justify-content-evenly">
+  <div class="d-flex flex-column mx-auto justify-content-evenly">
       <h1 class="display-4 mx-auto my-3 rubrik">Oops, something went wrong!</h1>
       <div class="mx-auto row justify-content-center">
         <div class="col-md-6">
@@ -19,7 +19,7 @@ const goBack = () => {
       </div>
     </div>
   <div class="text-center">
-    <button type="button" class="btn btn-secondary btn-lg blueBtn my-4" @click="goBack">
+    <button type="button" class="btn btn-secondary btn-lg blueBtn my-4" @click="back">
       Take me back!
     </button>
   </div>
