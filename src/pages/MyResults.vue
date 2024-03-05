@@ -32,11 +32,11 @@ onMounted(() => {
         <div class="col-md-10">
           <div class="jumbotron d-flex flex-column mx-auto">
             <h6>
-              YOU GOT: <strong class="result">{{
+              Your result: <strong class="result">{{
                 data.correctAnswers }}/{{ data.questionAmount }}</strong>
             </h6>
             <p class=" mx-auto">
-              Would you like to make another quiz or go to your result page?
+              Your recent score in this difficulty and category. Are you satisfied or would you like to renew it? It's up to you!
             </p>
             <router-link to="/QuizStart" @click="categoryStore.setCategory(data.category)"
               class="btn blueBtn backBtn mx-auto my-2">
@@ -50,7 +50,7 @@ onMounted(() => {
   <div v-else>
     <div class="d-flex flex-wrap justify-content-evenly card mx-auto">
       <div class="d-flex align-items-center">
-        <h2 class=" mx-auto rubrik my-2">Ops!</h2>
+        <h2 class=" mx-auto rubrik my-2">Oops!</h2>
       </div>
 
       <div class="mx-auto row justify-content-center">
