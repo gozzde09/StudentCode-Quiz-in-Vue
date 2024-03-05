@@ -135,6 +135,20 @@ function nextQuestion() {
   }
   progress.value += 100 / quizData.value.length
 }
+const saveDataToLocalStorage = () => {
+  console.log("sparar");
+  const categoryKey = `quizDataObject_${currentQuestion.value.tags[0].name}_${currentQuestion.value.difficulty}`;
+
+  const dataResult = {
+    category: currentQuestion.value.tags[0].name,
+    questionAmount: quizData.value.length,
+    correctAnswers: totalCorrectAnswers.value,
+    difficulty: currentQuestion.value.difficulty
+  };
+  const results = JSON.stringify(dataResult);
+  localStorage.setItem(categoryKey, results);
+}
+
 </script>
 
 <template>
