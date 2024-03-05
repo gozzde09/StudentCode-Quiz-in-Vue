@@ -241,6 +241,7 @@ const saveDataToLocalStorage = () => {
   /*text*/
   padding: 5px;
   margin: 0.5rem 0;
+  overflow-wrap: anywhere;
 }
 
 .default {
