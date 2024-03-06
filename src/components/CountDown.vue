@@ -44,8 +44,10 @@
 </script>
 
 <template>
-  <div>
-    <p> {{ timeleft }} seconds remaining</p>
+  <div class="d-flex justify-content-center">
+    <div class="p-4">
+      <p> {{ timeleft }} seconds remaining</p>
+    </div>
   </div>
   <div v-if="notime">
     <div>
