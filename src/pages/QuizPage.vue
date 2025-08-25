@@ -103,7 +103,7 @@
             <div class="d-flex align-items-center my-2">
               <img
                 class="card-img-top circle"
-                src="../assets/wordpress.webp"
+                src="../assets/wordpress.png"
                 alt="wordpress logo"
               />
               <h4 class="card-title">WordPress</h4>
