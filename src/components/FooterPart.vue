@@ -26,32 +26,46 @@
           <!-- <p>See and read about our quizzes.</p> -->
           <router-link
             to="/QuizStart"
-            class="nav-item2"
+            :class="[
+              'nav-item2',
+              { 'active-link': categoryStore.category === 'html' }
+            ]"
             @click="categoryStore.setCategory('html')"
             >HTML</router-link
           >
           <router-link
             to="/QuizStart"
-            class="nav-item2"
+            :class="[
+              'nav-item2',
+              { 'active-link': categoryStore.category === 'javascript' }
+            ]"
             @click="categoryStore.setCategory('javascript')"
             >Javascript</router-link
           >
           <router-link
             to="/QuizStart"
-            class="nav-item2"
+            :class="[
+              'nav-item2',
+              { 'active-link': categoryStore.category === 'php' }
+            ]"
             @click="categoryStore.setCategory('php')"
             >PHP</router-link
           >
           <router-link
             to="/QuizStart"
-            class="nav-item2"
+            :class="[
+              'nav-item2',
+              { 'active-link': categoryStore.category === 'wordpress' }
+            ]"
             @click="categoryStore.setCategory('wordpress')"
             >WordPress</router-link
           >
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link mx-2"> Github </a>
-          <a href="https://github.com/aliciaosv/StudentCode" class="link mx-2"
+          <a
+            href="https://github.com/gozzde09/StudentCode-Quiz-in-Vue"
+            class="link mx-2"
             >Länk till projektet</a
           >
         </li>
@@ -85,7 +99,8 @@
     box-sizing: border-box;
   }
 
-  .nav-item2 {
+  .nav-item2,
+  .link {
     color: #204764;
   }
 
@@ -93,11 +108,11 @@
     color: #28a745;
   }
 
-  .link {
+  .active-link,
+  .link:hover {
     color: #28a745;
   }
 
-  .link:hover,
   .nav-link:hover {
     color: #204764;
   }
