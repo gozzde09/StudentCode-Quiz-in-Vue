@@ -1,6 +1,6 @@
 # StudentCode Quiz- Group project 🖥️
 
-DEMO : https://webbkurs.ei.hv.se/~goak0002/studentcode/#/
+DEMO : https://studentcode-quiz-in-vue.onrender.com
 
 Intro Video: Created by me as part of my own course Media for the Web
 
