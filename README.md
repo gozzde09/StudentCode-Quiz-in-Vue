@@ -1,4 +1,4 @@
-# StudentCode Quiz- Group project 🖥️
+# StudentCode Quiz- Group project with Agil🖥️
 
 DEMO : https://studentcode-quiz-in-vue.onrender.com
 
