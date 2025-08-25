@@ -100,14 +100,14 @@
       <div class="d-flex flex-column col-sm-5">
         <div class="card">
           <div class="card-body">
-            <div class="d-flex align-items-center my-2">
+            <!-- <div class="d-flex align-items-center my-2">
               <img
                 class="card-img-top circle"
                 src="../assets/wordpress.png"
                 alt="wordpress logo"
               />
               <h4 class="card-title">WordPress</h4>
-            </div>
+            </div> -->
             <p class="card-text">
               In the WordPress quiz, developers can explore various aspects of
               the popular content management system, making it an ideal resource
