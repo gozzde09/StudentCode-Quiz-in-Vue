@@ -1,5 +1,10 @@
 <script setup>
   import { useCategoryStore } from '../store.js'
+  import wordpressImg from '../assets/wordpress.png'
+  import phpImg from '../assets/php.png'
+  import jsImg from '../assets/js.png'
+  import htmlImg from '../assets/html.webp'
+
   const categoryStore = useCategoryStore()
 </script>
 
@@ -23,11 +28,7 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex align-items-center my-2">
-              <img
-                class="card-img-top circle"
-                src="../assets/html.webp"
-                alt="HTML logo"
-              />
+              <img class="card-img-top circle" :src="htmlImg" alt="HTML logo" />
               <h4 class="card-title">HTML</h4>
             </div>
             <p class="card-text">
@@ -49,11 +50,7 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex align-items-center my-2">
-              <img
-                class="card-img-top circle"
-                src="../assets/js.png"
-                alt="JS logo"
-              />
+              <img class="card-img-top circle" :src="jsImg" alt="JS logo" />
               <h4 class="card-title">JavaScript</h4>
             </div>
             <p class="card-text">
@@ -75,11 +72,7 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex align-items-center my-2">
-              <img
-                class="card-img-top circle"
-                src="../assets/php.png"
-                alt="PHP logo"
-              />
+              <img class="card-img-top circle" :src="phpImg" alt="PHP logo" />
               <h4 class="card-title">PHP</h4>
             </div>
             <p class="card-text">
@@ -103,7 +96,7 @@
             <div class="d-flex align-items-center my-2">
               <img
                 class="card-img-top circle"
-                src="../assets/wordpress.png"
+                :src="wordpressImg"
                 alt="wordpress logo"
               />
               <h4 class="card-title">WordPress</h4>
