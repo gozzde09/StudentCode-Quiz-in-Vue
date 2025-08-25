@@ -1,10 +1,14 @@
-# StudentCode Quiz- Group project 🖥️
+# StudentCode Quiz- Group project with Agil🖥️
 
 DEMO : https://studentcode-quiz-in-vue.onrender.com
 
 Intro Video: Created by me as part of my own course Media for the Web
 
 https://github.com/user-attachments/assets/9cb3241c-ce05-47a4-b17c-ee132cf70217
+
+Trello Sprintplanering: https://trello.com/b/FBJvW2xF/grupp-9-agile-board-template-trello
+
+Figma: https://www.figma.com/design/sCzUQNrEQX9TiBRCtKtfAg/Quiz-Mobile-and-Web-App-Design--Community-?node-id=0-1&p=f&t=v88qhvN9leEM5nW4-0
 
 # About StudentCode
 
